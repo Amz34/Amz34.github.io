@@ -1,0 +1,11 @@
+# Personal site — https://amz34.github.io
+# Static single-file site served by GitHub Pages from main / root.
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Local preview artefacts
+*.log
+.venv/
+node_modules/
