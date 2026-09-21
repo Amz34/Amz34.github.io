@@ -41,3 +41,7 @@ about a minute. Keep it dependency-free so it never rots.
 ## License
 
 MIT — see the license text in [LICENSE](LICENSE).
+
+---
+
+Part of [my always-on agent stack](https://github.com/Amz34) · [Awesome Agent Infrastructure](https://github.com/Amz34/awesome-agent-infrastructure) (135 live-checked building blocks).
