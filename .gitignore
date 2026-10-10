@@ -9,3 +9,7 @@ Thumbs.db
 *.log
 .venv/
 node_modules/
+
+# Python bytecode from the link guard
+__pycache__/
+*.pyc

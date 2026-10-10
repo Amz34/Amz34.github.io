@@ -1,0 +1,31 @@
+name: link-guard
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "41 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Syntax check
+        run: python -m compileall -q tools
+      - name: Guard controls (healthy tree passes, dead link is caught)
+        run: python tools/check_links.py --selftest
+      - name: Verify every visitor-facing link
+        run: python tools/check_links.py
