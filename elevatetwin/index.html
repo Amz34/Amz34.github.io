@@ -1,334 +1,1029 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElevateTwin AI — Autonomous 3D Elevator Digital Twin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <style>
-        body { margin: 0; overflow: hidden; background-color: #0b0f19; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        #canvas3d { width: 100vw; height: 100vh; display: block; }
-        .glass-panel { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ElevateTwin AI — Argon Grade Industrial Digital Twin</title>
+<script type="importmap">
+{
+  "imports": {
+    "three":              "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "three/addons/":      "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --emerald: #10b981;
+    --rose:    #f43f5e;
+    --amber:   #f59e0b;
+    --sky:     #38bdf8;
+    --indigo:  #6366f1;
+    --bg:      #040712;
+    --panel:   rgba(4,7,18,0.82);
+  }
+
+  body {
+    background: var(--bg);
+    overflow: hidden;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: #e2e8f0;
+  }
+
+  canvas { display: block; width: 100vw !important; height: 100vh !important; }
+
+  /* ── Panels ─────────────────────────────────────── */
+  .glass {
+    background: var(--panel);
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+  }
+
+  /* ── HUD TOP ─────────────────────────────────────── */
+  #hud-top {
+    position: fixed; top: 16px; left: 16px; right: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    pointer-events: none; z-index: 10;
+  }
+  #brand { padding: 10px 18px; pointer-events: auto; display:flex; align-items:center; gap:12px; }
+  #brand-dot { width:9px; height:9px; border-radius:50%; background:var(--emerald);
+               box-shadow: 0 0 8px var(--emerald); animation: pulse 2s infinite; }
+  #brand h1 { font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  #brand p  { font-size:10px; color:#64748b; margin-top:1px; }
+  .badge { font-size:9px; padding:2px 6px; border-radius:4px;
+           background:rgba(99,102,241,0.15); color:var(--indigo);
+           border:1px solid rgba(99,102,241,0.3); vertical-align:middle; margin-left:6px; }
+
+  #telemetry { padding: 10px 20px; display:flex; gap:24px; align-items:center; }
+  .tel-item  { display:flex; flex-direction:column; align-items:flex-end; }
+  .tel-label { font-size:9px; color:#475569; text-transform:uppercase; letter-spacing:.05em; }
+  .tel-value { font-size:13px; font-weight:700; margin-top:1px; transition: color .4s; }
+  .ok  { color: var(--emerald); }
+  .warn{ color: var(--amber);   }
+  .crit{ color: var(--rose);    }
+
+  /* ── SIDE PANEL LEFT ─────────────────────────────── */
+  #panel-left {
+    position: fixed; bottom: 20px; left: 16px;
+    width: 300px; z-index: 10;
+  }
+  #panel-left .inner { padding: 16px 18px; display:flex; flex-direction:column; gap:14px; }
+
+  .section-title {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .1em; color: #475569;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .live-badge {
+    font-size:8px; padding: 1px 5px; border-radius:3px;
+    background: rgba(16,185,129,.15); color: var(--emerald);
+    border: 1px solid rgba(16,185,129,.3);
+    animation: pulse 2s infinite;
+  }
+
+  /* Metric bars */
+  .metric { display:flex; flex-direction:column; gap:4px; }
+  .metric-row { display: flex; justify-content: space-between; font-size:10px; }
+  .metric-name { color:#94a3b8; }
+  .bar-track { height:3px; border-radius:2px; background:rgba(255,255,255,.06); overflow:hidden; }
+  .bar-fill  { height:100%; border-radius:2px; transition: width .6s cubic-bezier(.4,0,.2,1), background .4s; }
+
+  /* AI console */
+  #ai-console {
+    font-size:10px; font-family:'Fira Code', 'JetBrains Mono', monospace;
+    background: rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.04);
+    border-radius:8px; padding:10px; max-height:120px; overflow-y:auto;
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .log-line { display:flex; gap:6px; }
+  .log-ts   { color: #334155; flex-shrink:0; }
+  .log-ok   { color: var(--emerald); }
+  .log-warn { color: var(--amber); }
+  .log-crit { color: var(--rose); }
+
+  /* Buttons */
+  .btn-row { display:flex; gap:8px; }
+  .btn {
+    flex:1; padding:9px 8px; border-radius:9px; border:none; cursor:pointer;
+    font-size:11px; font-weight:600; letter-spacing:.03em;
+    transition: transform .12s, box-shadow .12s, filter .2s;
+    display:flex; align-items:center; justify-content:center; gap:5px;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.15); }
+  .btn:active { transform: translateY(0); }
+  .btn-danger { background: rgba(244,63,94,.12); color: #fb7185;
+                border: 1px solid rgba(244,63,94,.25);
+                box-shadow: 0 0 12px rgba(244,63,94,.08); }
+  .btn-neutral{ background: rgba(255,255,255,.04); color: #94a3b8;
+                border: 1px solid rgba(255,255,255,.06); }
+  .btn-sky    { background: rgba(56,189,248,.1); color: var(--sky);
+                border: 1px solid rgba(56,189,248,.2); }
+
+  /* ── SIDE PANEL RIGHT ─────────────────────────────── */
+  #panel-right {
+    position: fixed; bottom: 20px; right: 16px;
+    width: 240px; z-index: 10;
+  }
+  #panel-right .inner { padding: 14px 16px; display:flex; flex-direction:column; gap:12px; }
+
+  /* Vibration waveform */
+  #wave-canvas { width:100%; height:48px; border-radius:6px; }
+
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:10px; color:#64748b; }
+  .legend-dot  { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+  /* Camera buttons */
+  .cam-row { display:flex; gap:6px; flex-wrap:wrap; }
+  .cam-btn {
+    padding: 5px 10px; border-radius:6px; border:1px solid rgba(255,255,255,.07);
+    background:rgba(255,255,255,.03); color:#94a3b8; font-size:9px; font-weight:600;
+    cursor:pointer; text-transform:uppercase; letter-spacing:.06em;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .cam-btn:hover { background:rgba(56,189,248,.1); color:var(--sky); border-color:rgba(56,189,248,.2); }
+  .cam-btn.active { background:rgba(56,189,248,.15); color:var(--sky); border-color:rgba(56,189,248,.3); }
+
+  /* ── FLOOR INDICATOR (Right-center strip) ─── */
+  #floor-strip {
+    position: fixed; right: 268px; top: 50%; transform: translateY(-50%);
+    display:flex; flex-direction:column; gap:2px; z-index:10;
+    pointer-events:none;
+  }
+  .floor-tick { height:2px; width:20px; border-radius:1px;
+                background: rgba(255,255,255,.04); transition: background .3s; }
+  .floor-tick.active { background: var(--sky); box-shadow: 0 0 4px var(--sky); width:28px; }
+
+  /* ── ANOMALY OVERLAY ─────────────────────────────── */
+  #anomaly-overlay {
+    position: fixed; inset:0; pointer-events:none; z-index:5;
+    border: 3px solid transparent; transition: border-color .3s;
+    border-radius: 0;
+  }
+  #anomaly-overlay.active {
+    border-color: rgba(244,63,94,.35);
+    box-shadow: inset 0 0 60px rgba(244,63,94,.08);
+    animation: glitch-border 1.2s infinite;
+  }
+
+  /* ── LOADING ─────────────────────────────────────── */
+  #loader {
+    position:fixed; inset:0; background:var(--bg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    z-index:100; gap:16px; transition: opacity .6s;
+  }
+  #loader.fade { opacity:0; pointer-events:none; }
+  .loader-bar-track { width:280px; height:2px; background:rgba(255,255,255,.05); border-radius:2px; overflow:hidden; }
+  .loader-bar-fill  { height:100%; background:var(--indigo); width:0%; border-radius:2px; transition: width .3s; }
+  #loader p { font-size:11px; color:#475569; letter-spacing:.1em; text-transform:uppercase; }
+  #loader h2 { font-size:18px; font-weight:700; color:#e2e8f0; letter-spacing:.02em; }
+
+  /* ── ANIMATIONS ──────────────────────────────────── */
+  @keyframes pulse {
+    0%,100% { opacity:1; } 50% { opacity:.45; }
+  }
+  @keyframes glitch-border {
+    0%,100% { border-color: rgba(244,63,94,.35); }
+    50%      { border-color: rgba(244,63,94,.65); }
+  }
+</style>
 </head>
-<body class="text-slate-100 select-none">
+<body>
 
-    <!-- 3D Viewport Canvas -->
-    <div id="canvas3d"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div style="font-size:11px;color:#6366f1;letter-spacing:.15em;text-transform:uppercase;">Initializing</div>
+  <h2>ElevateTwin <span style="color:var(--indigo)">AI</span></h2>
+  <div class="loader-bar-track"><div class="loader-bar-fill" id="lbar"></div></div>
+  <p id="loader-msg">Booting Gemini 4 Argon inference core…</p>
+</div>
 
-    <!-- Header Overlay -->
-    <header class="absolute top-4 left-4 right-4 flex justify-between items-center pointer-events-none">
-        <div class="glass-panel px-4 py-2.5 rounded-xl pointer-events-auto flex items-center gap-3 shadow-2xl">
-            <div class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></div>
-            <div>
-                <h1 class="text-sm font-bold tracking-wide text-white uppercase flex items-center gap-2">
-                    ElevateTwin AI <span class="text-xs px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">v1.0 Argon</span>
-                </h1>
-                <p class="text-xs text-slate-400">Autonomous Vertical Mobility Digital Twin</p>
-            </div>
-        </div>
+<!-- ANOMALY BORDER OVERLAY -->
+<div id="anomaly-overlay"></div>
 
-        <!-- Telemetry Pill -->
-        <div class="glass-panel px-4 py-2.5 rounded-xl pointer-events-auto flex items-center gap-6 text-xs shadow-2xl">
-            <div>
-                <span class="text-slate-400">Current Floor:</span>
-                <span id="hudFloor" class="font-bold text-blue-400 ml-1 text-sm">18 / 40</span>
-            </div>
-            <div>
-                <span class="text-slate-400">Traction Motor:</span>
-                <span id="hudMotorTemp" class="font-bold text-emerald-400 ml-1 text-sm">48.2 °C</span>
-            </div>
-            <div>
-                <span class="text-slate-400">Vibration:</span>
-                <span id="hudVibe" class="font-bold text-emerald-400 ml-1 text-sm">0.12 g (Normal)</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-                <span class="text-slate-400">Status:</span>
-                <span id="hudStatus" class="font-bold text-emerald-400">HEALTHY</span>
-            </div>
-        </div>
-    </header>
+<!-- HUD TOP -->
+<header id="hud-top">
+  <div class="glass" id="brand">
+    <div id="brand-dot"></div>
+    <div>
+      <h1>ElevateTwin AI <span class="badge">Argon</span></h1>
+      <p>Autonomous 3D Industrial Digital Twin &nbsp;·&nbsp; Gemini 4 Argon</p>
+    </div>
+  </div>
+  <div class="glass" id="telemetry">
+    <div class="tel-item">
+      <div class="tel-label">Floor</div>
+      <div class="tel-value ok" id="telFloor">18 / 40</div>
+    </div>
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.06)"></div>
+    <div class="tel-item">
+      <div class="tel-label">Motor Temp</div>
+      <div class="tel-value ok" id="telTemp">48.2 °C</div>
+    </div>
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.06)"></div>
+    <div class="tel-item">
+      <div class="tel-label">Vibration RMS</div>
+      <div class="tel-value ok" id="telVibe">0.12 g</div>
+    </div>
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.06)"></div>
+    <div class="tel-item">
+      <div class="tel-label">Cable Tension</div>
+      <div class="tel-value ok" id="telTension">6.8 kN</div>
+    </div>
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.06)"></div>
+    <div class="tel-item">
+      <div class="tel-label">AI Status</div>
+      <div class="tel-value ok" id="telStatus">NOMINAL</div>
+    </div>
+  </div>
+</header>
 
-    <!-- Sidebar Diagnostics & Controls -->
-    <div class="absolute bottom-6 left-4 w-96 glass-panel rounded-2xl p-5 shadow-2xl pointer-events-auto flex flex-col gap-4">
-        <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">Gemini 4 Argon Diagnostics</div>
-            <span class="text-[10px] text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">Active Inference</span>
-        </div>
+<!-- FLOOR STRIP -->
+<div id="floor-strip"></div>
 
-        <div id="diagBox" class="text-xs space-y-2 text-slate-300 font-mono bg-slate-950/60 p-3 rounded-lg border border-slate-800">
-            <div class="text-emerald-400">✓ Shaft Harmonic Resonance: nominal</div>
-            <div class="text-emerald-400">✓ Counterweight Alignment: 99.8%</div>
-            <div class="text-emerald-400">✓ Door Mechanism Cycles: 4,120 / 50k</div>
-            <div class="text-slate-400 text-[11px] mt-1 pt-1 border-t border-slate-800">Next predicted maintenance: 18 days</div>
-        </div>
+<!-- LEFT PANEL -->
+<div id="panel-left">
+  <div class="glass inner">
 
-        <div class="flex gap-2">
-            <button id="btnSimAnomaly" onclick="triggerAnomaly()" class="flex-1 text-xs font-semibold py-2.5 px-3 rounded-lg bg-rose-600/80 hover:bg-rose-600 text-white transition duration-150 flex items-center justify-center gap-1.5 shadow-lg shadow-rose-900/30">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                Simulate Bearing Stress
-            </button>
-            <button id="btnReset" onclick="resetSystem()" class="text-xs font-medium py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition duration-150">
-                Reset
-            </button>
-        </div>
-
-        <!-- Camera Switcher -->
-        <div class="pt-2 border-t border-slate-700/60 flex justify-between items-center text-xs">
-            <span class="text-slate-400">Viewpoint:</span>
-            <div class="flex gap-1.5">
-                <button onclick="setCameraView('shaft')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px] text-slate-300">Shaft</button>
-                <button onclick="setCameraView('cab')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px] text-slate-300">Cab</button>
-                <button onclick="setCameraView('motor')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded text-[11px] text-slate-300">Motor</button>
-            </div>
-        </div>
+    <div class="section-title">
+      Gemini 4 Argon Diagnostics
+      <span class="live-badge">LIVE</span>
     </div>
 
-    <!-- Right-hand Architecture Legend -->
-    <div class="absolute bottom-6 right-4 glass-panel rounded-2xl p-4 shadow-2xl pointer-events-auto text-xs space-y-2 max-w-xs">
-        <div class="font-semibold text-slate-200">Architecture Nodes:</div>
-        <div class="flex items-center gap-2 text-slate-400">
-            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> <span>Elevator Cab (Interactive)</span>
+    <!-- Metric Bars -->
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <div class="metric">
+        <div class="metric-row">
+          <span class="metric-name">Bearing Health</span>
+          <span id="m-bearing-val" class="ok" style="font-size:10px;font-weight:600;">98.4%</span>
         </div>
-        <div class="flex items-center gap-2 text-slate-400">
-            <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> <span>Counterweight Balance</span>
+        <div class="bar-track">
+          <div class="bar-fill" id="m-bearing" style="width:98.4%;background:var(--emerald)"></div>
         </div>
-        <div class="flex items-center gap-2 text-slate-400">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> <span>Traction Hoist Motor (Top)</span>
+      </div>
+      <div class="metric">
+        <div class="metric-row">
+          <span class="metric-name">Cable Integrity</span>
+          <span id="m-cable-val" class="ok" style="font-size:10px;font-weight:600;">97.1%</span>
         </div>
-        <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-800">
-            Rotate: Left Click + Drag | Pan: Right Click | Zoom: Scroll
+        <div class="bar-track">
+          <div class="bar-fill" id="m-cable" style="width:97.1%;background:var(--emerald)"></div>
         </div>
+      </div>
+      <div class="metric">
+        <div class="metric-row">
+          <span class="metric-name">Sheave Wear</span>
+          <span id="m-sheave-val" class="ok" style="font-size:10px;font-weight:600;">92.0%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="m-sheave" style="width:92%;background:var(--emerald)"></div>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-row">
+          <span class="metric-name">Motor Thermal Margin</span>
+          <span id="m-thermal-val" class="ok" style="font-size:10px;font-weight:600;">76.2%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="m-thermal" style="width:76.2%;background:var(--emerald)"></div>
+        </div>
+      </div>
+      <div class="metric">
+        <div class="metric-row">
+          <span class="metric-name">Door Cycle Budget</span>
+          <span id="m-door-val" class="ok" style="font-size:10px;font-weight:600;">91.8%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="m-door" style="width:91.8%;background:var(--emerald)"></div>
+        </div>
+      </div>
     </div>
 
-    <script>
-        // --- Three.js Scene Setup ---
-        const container = document.getElementById('canvas3d');
-        const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x0b0f19, 0.015);
+    <!-- AI Console -->
+    <div>
+      <div class="section-title" style="margin-bottom:7px;">Inference Log</div>
+      <div id="ai-console">
+        <div class="log-line"><span class="log-ts">05:00:01</span><span class="log-ok">✓ Shaft harmonics within nominal band (±0.03 g)</span></div>
+        <div class="log-line"><span class="log-ts">05:00:04</span><span class="log-ok">✓ Counterweight delta: 0.2 mm — within spec</span></div>
+        <div class="log-line"><span class="log-ts">05:00:07</span><span class="log-ok">✓ Motor winding resistance: 4.82 Ω (nominal 4.8)</span></div>
+        <div class="log-line"><span class="log-ts">05:00:11</span><span class="log-ok">✓ Multimodal inference: 0 anomalies detected</span></div>
+        <div class="log-line"><span class="log-ts">05:00:15</span><span class="log-ok">✓ Next maintenance window: 18 days</span></div>
+      </div>
+    </div>
 
-        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(22, 25, 32);
+    <!-- Buttons -->
+    <div class="btn-row">
+      <button class="btn btn-danger" onclick="triggerAnomaly()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        Inject Bearing Fault
+      </button>
+      <button class="btn btn-neutral" onclick="resetSystem()">Reset</button>
+    </div>
+    <button class="btn btn-sky" style="width:100%;margin-top:-4px;" onclick="toggleAutoFlight()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      <span id="auto-btn-label">Cinematic Auto-Tour</span>
+    </button>
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.shadowMap.enabled = true;
-        renderer.setClearColor(0x0b0f19);
-        container.appendChild(renderer.domElement);
+  </div>
+</div>
 
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.target.set(0, 15, 0);
+<!-- RIGHT PANEL -->
+<div id="panel-right">
+  <div class="glass inner">
 
-        // --- Lights ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
+    <div class="section-title">Vibration Waveform (FFT)<span class="live-badge">LIVE</span></div>
+    <canvas id="wave-canvas" height="48"></canvas>
 
-        const dirLight = new THREE.DirectionalLight(0x60a5fa, 1.2);
-        dirLight.position.set(20, 45, 20);
-        dirLight.castShadow = true;
-        scene.add(dirLight);
+    <div class="section-title" style="margin-top:2px;">Scene Legend</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="legend-item"><div class="legend-dot" style="background:#38bdf8;box-shadow:0 0 6px #38bdf8"></div>Elevator Cab</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;box-shadow:0 0 6px #f59e0b"></div>Counterweight</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#10b981;box-shadow:0 0 6px #10b981"></div>Traction Motor</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#6366f1;box-shadow:0 0 6px #6366f1"></div>Particle Heat Plume</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f43f5e;box-shadow:0 0 6px #f43f5e;animation:pulse 2s infinite"></div>Fault Zone (when active)</div>
+    </div>
 
-        const pointLight = new THREE.PointLight(0x3b82f6, 1.5, 30);
-        pointLight.position.set(0, 15, 5);
-        scene.add(pointLight);
+    <div class="section-title" style="margin-top:2px;">Camera</div>
+    <div class="cam-row">
+      <button class="cam-btn active" id="cam-overview" onclick="setCam('overview')">Overview</button>
+      <button class="cam-btn" id="cam-cab"      onclick="setCam('cab')">Cab</button>
+      <button class="cam-btn" id="cam-motor"    onclick="setCam('motor')">Motor</button>
+      <button class="cam-btn" id="cam-pit"      onclick="setCam('pit')">Pit</button>
+    </div>
 
-        // --- Shaft Structure (Wireframe & Guides) ---
-        const shaftHeight = 40;
-        const shaftWidth = 6;
-        const shaftDepth = 6;
+    <div style="font-size:9px;color:#334155;line-height:1.5;margin-top:2px;">
+      Rotate: drag &nbsp;·&nbsp; Zoom: scroll &nbsp;·&nbsp; Pan: right-drag
+    </div>
 
-        // Ground base
-        const grid = new THREE.GridHelper(50, 50, 0x1e293b, 0x0f172a);
-        grid.position.y = -0.1;
-        scene.add(grid);
+  </div>
+</div>
 
-        // Tower Frame
-        const towerGeo = new THREE.BoxGeometry(shaftWidth, shaftHeight, shaftDepth);
-        const towerWire = new THREE.WireframeGeometry(towerGeo);
-        const towerMat = new THREE.LineBasicMaterial({ color: 0x1e293b, linewidth: 1 });
-        const tower = new THREE.LineSegments(towerWire, towerMat);
-        tower.position.y = shaftHeight / 2;
-        scene.add(tower);
+<!-- THREE.JS ENGINE -->
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls }  from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass }     from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass }from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass }     from 'three/addons/postprocessing/OutputPass.js';
 
-        // Guide Rails
-        const railMat = new THREE.MeshStandardMaterial({ color: 0x475569, metalness: 0.8, roughness: 0.3 });
-        const railGeo = new THREE.BoxGeometry(0.2, shaftHeight, 0.2);
-        const railL = new THREE.Mesh(railGeo, railMat);
-        railL.position.set(-shaftWidth / 2 + 0.2, shaftHeight / 2, 0);
-        const railR = new THREE.Mesh(railGeo, railMat);
-        railR.position.set(shaftWidth / 2 - 0.2, shaftHeight / 2, 0);
-        scene.add(railL, railR);
+// ─────────────────────────────────────────────────────────────────
+// LOADER
+// ─────────────────────────────────────────────────────────────────
+const lbar = document.getElementById('lbar');
+const lmsg = document.getElementById('loader-msg');
+const msgs = [
+  'Initializing WebGPU renderer…',
+  'Loading Three.js r165 engine…',
+  'Building PBR material shaders…',
+  'Connecting Gemini 4 Argon inference…',
+  'Generating elevator shaft geometry…',
+  'Spawning particle heat plumes…',
+  'Calibrating post-processing pipeline…',
+  'Digital twin is live.',
+];
+let loadIdx = 0;
+const loadInt = setInterval(() => {
+  if (loadIdx >= msgs.length) { clearInterval(loadInt); return; }
+  lbar.style.width = ((loadIdx+1) / msgs.length * 100) + '%';
+  lmsg.textContent  = msgs[loadIdx++];
+}, 280);
+setTimeout(() => {
+  document.getElementById('loader').classList.add('fade');
+  setTimeout(() => document.getElementById('loader').remove(), 800);
+}, msgs.length * 280 + 400);
 
-        // --- Machine Room (Top) ---
-        const motorGroup = new THREE.Group();
-        motorGroup.position.set(0, shaftHeight + 1.5, 0);
+// ─────────────────────────────────────────────────────────────────
+// RENDERER
+// ─────────────────────────────────────────────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type    = THREE.PCFSoftShadowMap;
+renderer.toneMapping       = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+renderer.outputColorSpace  = THREE.SRGBColorSpace;
+document.body.prepend(renderer.domElement);
 
-        const motorBaseGeo = new THREE.BoxGeometry(5, 0.8, 5);
-        const motorBaseMat = new THREE.MeshStandardMaterial({ color: 0x1e293b });
-        const motorBase = new THREE.Mesh(motorBaseGeo, motorBaseMat);
-        motorGroup.add(motorBase);
+// ─────────────────────────────────────────────────────────────────
+// SCENE & CAMERA
+// ─────────────────────────────────────────────────────────────────
+const scene  = new THREE.Scene();
+scene.background = new THREE.Color(0x040712);
+scene.fog        = new THREE.FogExp2(0x040712, 0.012);
 
-        // Motor Sheave (Pulley)
-        const sheaveGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.6, 32);
-        sheaveGeo.rotateZ(Math.PI / 2);
-        const sheaveMat = new THREE.MeshStandardMaterial({ color: 0x10b981, metalness: 0.9, roughness: 0.2 });
-        const sheave = new THREE.Mesh(sheaveGeo, sheaveMat);
-        sheave.position.set(0, 1.2, 0);
-        motorGroup.add(sheave);
-        scene.add(motorGroup);
+const camera = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.1, 600);
+camera.position.set(28, 30, 38);
 
-        // --- Elevator Cab ---
-        const cabGroup = new THREE.Group();
-        const cabGeo = new THREE.BoxGeometry(3.2, 3.8, 3.2);
-        const cabMat = new THREE.MeshStandardMaterial({
-            color: 0x1d4ed8,
-            metalness: 0.5,
-            roughness: 0.2,
-            transparent: true,
-            opacity: 0.85
-        });
-        const cabMesh = new THREE.Mesh(cabGeo, cabMat);
-        cabMesh.castShadow = true;
-        cabGroup.add(cabMesh);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 20, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance   = 5;
+controls.maxDistance   = 100;
 
-        // Cab Interior Light
-        const cabLight = new THREE.PointLight(0x93c5fd, 1.2, 8);
-        cabLight.position.set(0, 1, 0);
-        cabGroup.add(cabLight);
+// ─────────────────────────────────────────────────────────────────
+// POST-PROCESSING (Bloom)
+// ─────────────────────────────────────────────────────────────────
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(
+  new THREE.Vector2(innerWidth, innerHeight),
+  0.55, // strength
+  0.42, // radius
+  0.60  // threshold
+);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
 
-        cabGroup.position.set(0, 15, 0);
-        scene.add(cabGroup);
+// ─────────────────────────────────────────────────────────────────
+// LIGHTS
+// ─────────────────────────────────────────────────────────────────
+scene.add(new THREE.AmbientLight(0x0d1826, 1.8));
 
-        // --- Counterweight ---
-        const cwGeo = new THREE.BoxGeometry(1.2, 3.0, 0.8);
-        const cwMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.7, roughness: 0.4 });
-        const cwMesh = new THREE.Mesh(cwGeo, cwMat);
-        cwMesh.position.set(0, shaftHeight - 15, -shaftDepth / 2 + 0.6);
-        scene.add(cwMesh);
+const sun = new THREE.DirectionalLight(0x7eb8f7, 2.2);
+sun.position.set(20, 60, 20);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 1; sun.shadow.camera.far = 200;
+sun.shadow.camera.left = sun.shadow.camera.bottom = -40;
+sun.shadow.camera.right = sun.shadow.camera.top   = 40;
+sun.shadow.bias = -0.0006;
+scene.add(sun);
 
-        // --- Cables ---
-        const cableMat = new THREE.LineBasicMaterial({ color: 0x94a3b8 });
-        function updateCables() {
-            // Remove old cables if exist
-            if (window.cabCable) scene.remove(window.cabCable);
-            if (window.cwCable) scene.remove(window.cwCable);
+const fill = new THREE.DirectionalLight(0x1e3a5f, 0.8);
+fill.position.set(-20, 20, -20);
+scene.add(fill);
 
-            const cabPoints = [
-                new THREE.Vector3(0, cabGroup.position.y + 1.9, 0),
-                new THREE.Vector3(0, shaftHeight + 2.5, 0)
-            ];
-            const cabGeo = new THREE.BufferGeometry().setFromPoints(cabPoints);
-            window.cabCable = new THREE.Line(cabGeo, cableMat);
-            scene.add(window.cabCable);
+const motorGlow = new THREE.PointLight(0x10b981, 6, 14);
+motorGlow.position.set(0, 43, 0);
+scene.add(motorGlow);
 
-            const cwPoints = [
-                new THREE.Vector3(0, cwMesh.position.y + 1.5, -shaftDepth / 2 + 0.6),
-                new THREE.Vector3(0, shaftHeight + 2.5, 0)
-            ];
-            const cwGeo = new THREE.BufferGeometry().setFromPoints(cwPoints);
-            window.cwCable = new THREE.Line(cwGeo, cableMat);
-            scene.add(window.cwCable);
-        }
+const cabLight = new THREE.PointLight(0x38bdf8, 3, 10);
+scene.add(cabLight); // attached dynamically
 
-        // --- Dynamic State ---
-        let currentY = 15;
-        let targetY = 32;
-        let speed = 0.08;
-        let isAnomaly = false;
+// ─────────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────────
+const H = 40, W = 6, D = 6;
 
-        function animate() {
-            requestAnimationFrame(animate);
+function pbr(color, metal=0.7, rough=0.3) {
+  return new THREE.MeshStandardMaterial({ color, metalness:metal, roughness:rough });
+}
+function emissive(color, emis, inten=1) {
+  return new THREE.MeshStandardMaterial({ color, emissive:emis, emissiveIntensity:inten,
+                                          metalness:.8, roughness:.2 });
+}
 
-            // Move Cab smoothly
-            if (Math.abs(targetY - currentY) > 0.1) {
-                currentY += (targetY > currentY ? 1 : -1) * speed;
-                cabGroup.position.y = currentY;
-                cwMesh.position.y = shaftHeight - currentY;
-                sheave.rotation.x += (targetY > currentY ? 1 : -1) * 0.05;
-                updateCables();
+// ─────────────────────────────────────────────────────────────────
+// GROUND
+// ─────────────────────────────────────────────────────────────────
+const groundGeo = new THREE.PlaneGeometry(120, 120);
+const groundMat = new THREE.MeshStandardMaterial({ color:0x050c1a, roughness:1, metalness:0 });
+const ground = new THREE.Mesh(groundGeo, groundMat);
+ground.rotation.x = -Math.PI/2; ground.receiveShadow = true;
+scene.add(ground);
 
-                // Update Floor Number
-                const currentFloor = Math.max(1, Math.min(40, Math.round((currentY / shaftHeight) * 40)));
-                document.getElementById('hudFloor').textContent = `${currentFloor} / 40`;
-            } else {
-                // Pick new target floor periodically
-                targetY = 4 + Math.random() * (shaftHeight - 8);
-            }
+// Grid
+const gridHelper = new THREE.GridHelper(80, 80, 0x0d2240, 0x060e1e);
+gridHelper.position.y = 0.01;
+scene.add(gridHelper);
 
-            // Anomaly pulse if triggered
-            if (isAnomaly) {
-                sheave.material.color.setHex(0xe11d48);
-                cabMesh.position.x = (Math.random() - 0.5) * 0.08;
-            } else {
-                cabMesh.position.x = 0;
-            }
+// ─────────────────────────────────────────────────────────────────
+// BUILDING FACADE (Subtle surrounding context)
+// ─────────────────────────────────────────────────────────────────
+const bldMat = pbr(0x0a1628, 0.3, 0.9);
+const bldFrontGeo = new THREE.BoxGeometry(22, H + 8, 1.5);
+[-1,1].forEach(s => {
+  const side = new THREE.Mesh(new THREE.BoxGeometry(1.5, H+8, D+20), bldMat);
+  side.position.set(s * 12, (H+8)/2, 0);
+  side.castShadow = side.receiveShadow = true;
+  scene.add(side);
+});
 
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        animate();
+// ─────────────────────────────────────────────────────────────────
+// SHAFT WALLS (glass-transparent)
+// ─────────────────────────────────────────────────────────────────
+const glassMat = new THREE.MeshStandardMaterial({
+  color: 0x1e3a5f, metalness: 0.2, roughness: 0.05,
+  transparent: true, opacity: 0.12, side: THREE.DoubleSide
+});
+[
+  [W/2+.1, H/2, 0,  0, 1, H],    // right
+  [-W/2-.1, H/2, 0, 0, 1, H],    // left
+  [0, H/2,  D/2+.1, W, H, 1],    // front
+  [0, H/2, -D/2-.1, W, H, 1],    // back
+].forEach(([x,y,z,gw,gh,gd]) => {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(gw||1, gh, gd||1), glassMat);
+  m.position.set(x, y, z);
+  scene.add(m);
+});
 
-        // --- Interaction Handlers ---
-        function triggerAnomaly() {
-            isAnomaly = true;
-            document.getElementById('hudStatus').textContent = 'ANOMALY DETECTED';
-            document.getElementById('hudStatus').className = 'font-bold text-rose-500 animate-pulse';
-            document.getElementById('hudMotorTemp').textContent = '84.6 °C (Critical)';
-            document.getElementById('hudMotorTemp').className = 'font-bold text-rose-400 ml-1 text-sm';
-            document.getElementById('hudVibe').textContent = '0.94 g (Harmonic Peak)';
-            document.getElementById('hudVibe').className = 'font-bold text-rose-400 ml-1 text-sm';
+// ─────────────────────────────────────────────────────────────────
+// GUIDE RAILS
+// ─────────────────────────────────────────────────────────────────
+const railMat = pbr(0x1e3a5f, 0.9, 0.15);
+const railGeo = new THREE.BoxGeometry(.25, H, .25);
+[
+  [-W/2+.4, H/2, 0],
+  [ W/2-.4, H/2, 0],
+  [-W/2+.4, H/2, -D/2+.4],
+  [ W/2-.4, H/2, -D/2+.4],
+].forEach(([x,y,z]) => {
+  const r = new THREE.Mesh(railGeo, railMat);
+  r.position.set(x,y,z);
+  r.castShadow = true;
+  scene.add(r);
+});
 
-            document.getElementById('diagBox').innerHTML = `
-                <div class="text-rose-400 font-bold">⚠️ CRITICAL: Bearing 3B Harmonic Spikes</div>
-                <div class="text-amber-400">⚡ Thermal surge: +36.4 °C in 120s</div>
-                <div class="text-slate-300">Gemini 4 Argon Prescription:</div>
-                <div class="text-blue-300 text-[11px] bg-blue-950/40 p-1.5 rounded mt-1">
-                    "Switch Cab to gentle deceleration lane. Dispatch Field Tech with SKF 6205 bearing replacement. Predicted catastrophic seizure in 4.2 hours."
-                </div>
-            `;
-        }
+// Floor slabs (every 4 units = 4 floors)
+for (let f = 0; f <= H; f += 4) {
+  const slab = new THREE.Mesh(
+    new THREE.BoxGeometry(W+2, .12, D+2),
+    pbr(0x0d1c30, 0.5, 0.8)
+  );
+  slab.position.y = f;
+  slab.receiveShadow = true;
+  scene.add(slab);
+}
 
-        function resetSystem() {
-            isAnomaly = false;
-            sheave.material.color.setHex(0x10b981);
-            document.getElementById('hudStatus').textContent = 'HEALTHY';
-            document.getElementById('hudStatus').className = 'font-bold text-emerald-400';
-            document.getElementById('hudMotorTemp').textContent = '48.2 °C';
-            document.getElementById('hudMotorTemp').className = 'font-bold text-emerald-400 ml-1 text-sm';
-            document.getElementById('hudVibe').textContent = '0.12 g (Normal)';
-            document.getElementById('hudVibe').className = 'font-bold text-emerald-400 ml-1 text-sm';
+// ─────────────────────────────────────────────────────────────────
+// MACHINE ROOM (Top)
+// ─────────────────────────────────────────────────────────────────
+const motorRoom = new THREE.Group();
+motorRoom.position.set(0, H + 1.2, 0);
 
-            document.getElementById('diagBox').innerHTML = `
-                <div class="text-emerald-400">✓ Shaft Harmonic Resonance: nominal</div>
-                <div class="text-emerald-400">✓ Counterweight Alignment: 99.8%</div>
-                <div class="text-emerald-400">✓ Door Mechanism Cycles: 4,120 / 50k</div>
-                <div class="text-slate-400 text-[11px] mt-1 pt-1 border-t border-slate-800">Next predicted maintenance: 18 days</div>
-            `;
-        }
+const roomBase = new THREE.Mesh(new THREE.BoxGeometry(9, 1, 9), pbr(0x0d1c30, 0.6, 0.7));
+roomBase.receiveShadow = true;
+motorRoom.add(roomBase);
 
-        function setCameraView(view) {
-            if (view === 'shaft') {
-                camera.position.set(22, 25, 32);
-                controls.target.set(0, 15, 0);
-            } else if (view === 'cab') {
-                camera.position.set(7, cabGroup.position.y + 4, 9);
-                controls.target.set(0, cabGroup.position.y, 0);
-            } else if (view === 'motor') {
-                camera.position.set(8, shaftHeight + 6, 8);
-                controls.target.set(0, shaftHeight + 2, 0);
-            }
-        }
+// Motor block
+const motorBlock = new THREE.Mesh(new THREE.BoxGeometry(3.5, 2, 3.5), pbr(0x1a3050, 0.9, 0.2));
+motorBlock.position.y = 1.5;
+motorBlock.castShadow = true;
+motorRoom.add(motorBlock);
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+// Sheave drum
+const sheaveMat2 = emissive(0x134e4a, 0x10b981, 1.8);
+const sheaveMesh = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.4, .8, 48), sheaveMat2);
+sheaveMesh.rotation.x = Math.PI/2;
+sheaveMesh.position.set(0, 3, 0);
+motorRoom.add(sheaveMesh);
+
+// Sheave groove ring
+const grooveGeo = new THREE.TorusGeometry(1.1, .1, 12, 48);
+const grooveMat = pbr(0x0f2940, 0.95, 0.1);
+const groove = new THREE.Mesh(grooveGeo, grooveMat);
+groove.rotation.y = Math.PI/2;
+groove.position.set(0, 3, 0);
+motorRoom.add(groove);
+
+scene.add(motorRoom);
+
+// ─────────────────────────────────────────────────────────────────
+// ELEVATOR CAB
+// ─────────────────────────────────────────────────────────────────
+const cab = new THREE.Group();
+
+// Shell — PBR glass-metal
+const cabMat = new THREE.MeshStandardMaterial({
+  color: 0x0f2a4a, metalness: .75, roughness: .08,
+  transparent: true, opacity: .88,
+  emissive: 0x0a1a3a, emissiveIntensity: .4
+});
+const cabMesh = new THREE.Mesh(new THREE.BoxGeometry(3, 3.6, 3), cabMat);
+cabMesh.castShadow = cabMesh.receiveShadow = true;
+cab.add(cabMesh);
+
+// Edge trim (emissive blue)
+const trimMat = emissive(0x0e3a6e, 0x38bdf8, 2.0);
+const trimGeo = new THREE.EdgesGeometry(new THREE.BoxGeometry(3.05, 3.65, 3.05));
+const edges = new THREE.LineSegments(trimGeo, new THREE.LineBasicMaterial({ color: 0x38bdf8 }));
+cab.add(edges);
+
+// Interior light
+const cabInteriorLight = new THREE.PointLight(0x7dd3fc, 2.5, 8);
+cab.add(cabInteriorLight);
+
+cab.position.set(0, 16, 0);
+scene.add(cab);
+
+// ─────────────────────────────────────────────────────────────────
+// COUNTERWEIGHT
+// ─────────────────────────────────────────────────────────────────
+const cw = new THREE.Mesh(
+  new THREE.BoxGeometry(1.4, 3.2, .9),
+  emissive(0x3d1a00, 0xf59e0b, 0.9)
+);
+cw.castShadow = true;
+cw.position.set(.1, H - 16, -D/2 + .6);
+scene.add(cw);
+
+// ─────────────────────────────────────────────────────────────────
+// CABLES (dynamic, multi-strand)
+// ─────────────────────────────────────────────────────────────────
+const cableMat = new THREE.LineBasicMaterial({ color: 0x334155 });
+const cables = [];
+[-0.25, 0, 0.25].forEach(ox => {
+  const pts = [new THREE.Vector3(ox, 20, 0), new THREE.Vector3(ox, H + 3.8, 0)];
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geo, cableMat);
+  cables.push(line);
+  scene.add(line);
+});
+
+function updateCables(cabY) {
+  cables.forEach((l, i) => {
+    const ox = [-0.25, 0, 0.25][i];
+    const pts = [
+      new THREE.Vector3(ox, cabY + 1.85, 0),
+      new THREE.Vector3(ox, H + 3.8, 0)
+    ];
+    l.geometry.setFromPoints(pts);
+    l.geometry.computeBoundingSphere();
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// PARTICLE HEAT PLUME (Motor)
+// ─────────────────────────────────────────────────────────────────
+const PARTICLE_COUNT = 400;
+const pGeo = new THREE.BufferGeometry();
+const pPos  = new Float32Array(PARTICLE_COUNT * 3);
+const pVel  = new Float32Array(PARTICLE_COUNT * 3);
+const pLife = new Float32Array(PARTICLE_COUNT);
+
+function resetParticle(i) {
+  const angle = Math.random() * Math.PI * 2;
+  const r = Math.random() * .6;
+  pPos[i*3]   = Math.cos(angle) * r;
+  pPos[i*3+1] = H + 4.5 + Math.random() * .5;
+  pPos[i*3+2] = Math.sin(angle) * r;
+  pVel[i*3]   = (Math.random() - .5) * .04;
+  pVel[i*3+1] = .04 + Math.random() * .08;
+  pVel[i*3+2] = (Math.random() - .5) * .04;
+  pLife[i]    = Math.random();
+}
+for (let i=0; i<PARTICLE_COUNT; i++) resetParticle(i);
+pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+
+const pMat  = new THREE.PointsMaterial({ color: 0x6366f1, size:.2, transparent:true, opacity:.6 });
+const particles = new THREE.Points(pGeo, pMat);
+scene.add(particles);
+
+// ─────────────────────────────────────────────────────────────────
+// FAULT SPARKS (show only in anomaly mode)
+// ─────────────────────────────────────────────────────────────────
+const SPARK_COUNT = 120;
+const spGeo = new THREE.BufferGeometry();
+const spPos = new Float32Array(SPARK_COUNT * 3);
+const spVel = new Float32Array(SPARK_COUNT * 3);
+const spLife= new Float32Array(SPARK_COUNT);
+
+function resetSpark(i, cx, cy, cz) {
+  spPos[i*3]   = cx + (Math.random()-.5)*1.5;
+  spPos[i*3+1] = cy + (Math.random()-.5)*1.5;
+  spPos[i*3+2] = cz + (Math.random()-.5)*1.5;
+  spVel[i*3]   = (Math.random()-.5)*.2;
+  spVel[i*3+1] = Math.random()*.15;
+  spVel[i*3+2] = (Math.random()-.5)*.2;
+  spLife[i]    = Math.random();
+}
+for (let i=0; i<SPARK_COUNT; i++) resetSpark(i,0,18,0);
+spGeo.setAttribute('position', new THREE.BufferAttribute(spPos, 3));
+
+const spMat   = new THREE.PointsMaterial({ color: 0xf43f5e, size:.18, transparent:true, opacity:0 });
+const sparks  = new THREE.Points(spGeo, spMat);
+scene.add(sparks);
+
+// ─────────────────────────────────────────────────────────────────
+// FLOOR INDICATOR STRIP
+// ─────────────────────────────────────────────────────────────────
+const strip = document.getElementById('floor-strip');
+const ticks = [];
+for (let i=0; i<40; i++) {
+  const t = document.createElement('div');
+  t.className = 'floor-tick';
+  strip.prepend(t);
+  ticks.push(t);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+let cabY      = 16;
+let targetY   = 32;
+let speed     = 0.09;
+let isAnomaly = false;
+let autoFlight = false;
+let autoTimer  = 0;
+let clock      = new THREE.Clock();
+let sheaveAngle= 0;
+
+// Camera targets
+const CAM_POSES = {
+  overview: { pos:[28,30,38],   target:[0,20,0] },
+  cab:      { pos:[6, 17, 8],   target:[0,16,0] },
+  motor:    { pos:[7, H+5, 8],  target:[0,H+2,0] },
+  pit:      { pos:[6, 3, 8],    target:[0,1,0]  },
+};
+let activeCam = 'overview';
+
+function lerp3(from, to, t) {
+  return [
+    from[0]+(to[0]-from[0])*t,
+    from[1]+(to[1]-from[1])*t,
+    from[2]+(to[2]-from[2])*t,
+  ];
+}
+let camLerping = false;
+let camFrom    = { pos:[28,30,38], target:[0,20,0] };
+let camTo      = { pos:[28,30,38], target:[0,20,0] };
+let camT       = 1;
+
+// ─────────────────────────────────────────────────────────────────
+// WAVEFORM CANVAS
+// ─────────────────────────────────────────────────────────────────
+const waveC = document.getElementById('wave-canvas');
+const wctx  = waveC.getContext('2d');
+waveC.width  = 240; waveC.height = 48;
+let waveHistory = new Float32Array(240).fill(0);
+
+function drawWave() {
+  wctx.clearRect(0, 0, 240, 48);
+  wctx.strokeStyle = isAnomaly ? '#f43f5e' : '#38bdf8';
+  wctx.lineWidth = 1.5;
+  wctx.shadowBlur  = isAnomaly ? 8 : 4;
+  wctx.shadowColor = isAnomaly ? '#f43f5e' : '#38bdf8';
+  wctx.beginPath();
+  for (let x=0; x<240; x++) {
+    const y = 24 - waveHistory[x] * 22;
+    x === 0 ? wctx.moveTo(x, y) : wctx.lineTo(x, y);
+  }
+  wctx.stroke();
+}
+
+// ─────────────────────────────────────────────────────────────────
+// AI LOG
+// ─────────────────────────────────────────────────────────────────
+const logLines = [
+  { t:'ok',   m:'Shaft harmonics nominal (±0.03 g)' },
+  { t:'ok',   m:'Counterweight delta: 0.2 mm — in spec' },
+  { t:'ok',   m:'Motor winding resistance: 4.82 Ω' },
+  { t:'ok',   m:'Multimodal inference: 0 anomalies' },
+  { t:'ok',   m:'Predicted maintenance: 18 days' },
+];
+let logIdx = 0;
+function pushLog(type, msg) {
+  const c = document.getElementById('ai-console');
+  const now = new Date();
+  const ts = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+  const d = document.createElement('div');
+  d.className = 'log-line';
+  d.innerHTML = `<span class="log-ts">${ts}</span><span class="log-${type}">${msg}</span>`;
+  c.appendChild(d);
+  while (c.children.length > 14) c.removeChild(c.firstChild);
+  c.scrollTop = c.scrollHeight;
+}
+
+// ─────────────────────────────────────────────────────────────────
+// UPDATE TELEMETRY (DOM)
+// ─────────────────────────────────────────────────────────────────
+function setVal(id, text, cls) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = text;
+  el.className = `tel-value ${cls}`;
+}
+function setBar(prefix, pct, cls) {
+  const bar = document.getElementById(`m-${prefix}`);
+  const val = document.getElementById(`m-${prefix}-val`);
+  if (!bar || !val) return;
+  bar.style.width = pct + '%';
+  bar.style.background = cls === 'crit' ? 'var(--rose)' : cls === 'warn' ? 'var(--amber)' : 'var(--emerald)';
+  val.textContent = pct.toFixed(1) + '%';
+  val.className = cls;
+}
+
+let tickCount = 0;
+
+function updateTelemetry(dt) {
+  tickCount++;
+  const floor = Math.max(1, Math.min(40, Math.round((cabY / H) * 40)));
+
+  if (!isAnomaly) {
+    setVal('telFloor',   `${floor} / 40`,      'ok');
+    setVal('telTemp',    `${(47 + Math.sin(Date.now()*.001)*1.5).toFixed(1)} °C`, 'ok');
+    setVal('telVibe',    `${(.10 + Math.random()*.04).toFixed(2)} g`, 'ok');
+    setVal('telTension', `${(6.7 + Math.random()*.2).toFixed(1)} kN`, 'ok');
+    setVal('telStatus',  'NOMINAL', 'ok');
+    setBar('bearing', 98.4 - Math.random()*.2, 'ok');
+    setBar('cable',   97.1 - Math.random()*.15, 'ok');
+    setBar('sheave',  92.0 - Math.random()*.1, 'ok');
+    setBar('thermal', 76.2 - Math.random()*.3, 'ok');
+    setBar('door',    91.8 - Math.random()*.1, 'ok');
+  } else {
+    const heat  = (84 + Date.now()/1000 % 4).toFixed(1);
+    const vib   = (.7  + Math.random()*.35).toFixed(2);
+    const ten   = (9.1 + Math.random()*.4).toFixed(1);
+    setVal('telFloor',   `${floor} / 40`,  'warn');
+    setVal('telTemp',    `${heat} °C`,      'crit');
+    setVal('telVibe',    `${vib} g`,        'crit');
+    setVal('telTension', `${ten} kN`,       'warn');
+    setVal('telStatus',  'FAULT DETECTED',  'crit');
+    setBar('bearing', Math.max(12, 34 - tickCount*.05), 'crit');
+    setBar('cable',   Math.max(52, 80 - tickCount*.03), 'warn');
+    setBar('sheave',  Math.max(44, 70 - tickCount*.04), 'warn');
+    setBar('thermal', Math.max(8,  20 - tickCount*.06), 'crit');
+    setBar('door',    92 - Math.random()*.2, 'ok');
+  }
+
+  // Floor strip
+  ticks.forEach((t, i) => {
+    t.className = i === (floor - 1) ? 'floor-tick active' : 'floor-tick';
+  });
+
+  // Waveform
+  waveHistory.copyWithin(0, 1);
+  const amp  = isAnomaly ? .6 + Math.random()*.4 : .07 + Math.random()*.06;
+  const freq = isAnomaly ? 3.2 : .8;
+  waveHistory[239] = Math.sin(Date.now()*0.002 * freq) * amp + (Math.random()-.5)*amp*.3;
+  drawWave();
+
+  // Periodic AI log
+  if (tickCount % 120 === 0) {
+    if (!isAnomaly) {
+      const msgs = [
+        ['ok', '✓ Bearing frequency spectrum nominal'],
+        ['ok', '✓ Cable sag within 1.2 mm tolerance'],
+        ['ok', '✓ Motor thermal gradient steady'],
+        ['ok', '✓ Door sensor response: 18 ms'],
+      ];
+      pushLog(...msgs[Math.floor(Math.random()*msgs.length)]);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────
+// ANIMATE
+// ─────────────────────────────────────────────────────────────────
+let frameId;
+function animate() {
+  frameId = requestAnimationFrame(animate);
+  const dt = clock.getDelta();
+  autoTimer += dt;
+
+  // ── Cab movement ──
+  const diff = targetY - cabY;
+  if (Math.abs(diff) > .08) {
+    cabY += Math.sign(diff) * Math.min(speed + Math.abs(diff)*.012, .22);
+  } else {
+    // Pick new target
+    if (Math.abs(diff) < .1) targetY = 3 + Math.random() * (H - 6);
+  }
+  cab.position.y = cabY;
+  cw.position.y  = H - cabY;
+  cabLight.position.copy(cab.position);
+  updateCables(cabY);
+
+  // Sheave spin
+  const spinDir = targetY > cabY ? 1 : -1;
+  sheaveMesh.rotation.y += spinDir * speed * 0.18;
+  groove.rotation.y      = sheaveMesh.rotation.y;
+
+  // ── Particles (heat plume) ──
+  for (let i=0; i<PARTICLE_COUNT; i++) {
+    pLife[i] -= dt * (isAnomaly ? .9 : .6);
+    if (pLife[i] <= 0) { resetParticle(i); continue; }
+    pPos[i*3]   += pVel[i*3];
+    pPos[i*3+1] += pVel[i*3+1] * (isAnomaly ? 1.6 : 1);
+    pPos[i*3+2] += pVel[i*3+2];
+  }
+  pGeo.attributes.position.needsUpdate = true;
+  pMat.color.setHex(isAnomaly ? 0xf43f5e : 0x6366f1);
+  pMat.opacity = isAnomaly ? .85 : .55;
+
+  // ── Sparks (anomaly only) ──
+  if (isAnomaly) {
+    spMat.opacity = .9;
+    for (let i=0; i<SPARK_COUNT; i++) {
+      spLife[i] -= dt * 1.6;
+      if (spLife[i] <= 0) { resetSpark(i, cab.position.x, cabY, cab.position.z); continue; }
+      spPos[i*3]   += spVel[i*3];
+      spPos[i*3+1] += spVel[i*3+1];
+      spPos[i*3+2] += spVel[i*3+2];
+      spVel[i*3+1] -= dt * .15; // gravity
+    }
+    spGeo.attributes.position.needsUpdate = true;
+  } else {
+    spMat.opacity = 0;
+  }
+
+  // ── Motor glow ──
+  motorGlow.intensity = isAnomaly
+    ? 5 + Math.sin(Date.now()*.012) * 3
+    : 2 + Math.sin(Date.now()*.003) * .5;
+  motorGlow.color.setHex(isAnomaly ? 0xf43f5e : 0x10b981);
+
+  // ── Cab material pulse ──
+  cabMat.emissiveIntensity = isAnomaly
+    ? .5 + Math.sin(Date.now()*.008) * .3
+    : .35;
+  cabMat.emissive.setHex(isAnomaly ? 0x3d0010 : 0x0a1a3a);
+
+  // ── Bloom strength ──
+  bloom.strength = isAnomaly ? .9 : .55;
+
+  // ── Camera lerp ──
+  if (camLerping && camT < 1) {
+    camT = Math.min(1, camT + dt * 1.2);
+    const t = 1 - Math.pow(1 - camT, 3);
+    const p = lerp3(camFrom.pos, camTo.pos, t);
+    const tg = lerp3(camFrom.target, camTo.target, t);
+    camera.position.set(...p);
+    controls.target.set(...tg);
+    if (camT >= 1) camLerping = false;
+  }
+
+  // ── Auto-flight cinematic ──
+  if (autoFlight && autoTimer > 4) {
+    autoTimer = 0;
+    const keys = Object.keys(CAM_POSES);
+    const next = keys[(keys.indexOf(activeCam) + 1) % keys.length];
+    applyCam(next);
+  }
+
+  updateTelemetry(dt);
+  controls.update();
+  composer.render();
+}
+animate();
+
+// ─────────────────────────────────────────────────────────────────
+// GLOBAL CONTROLS
+// ─────────────────────────────────────────────────────────────────
+function applyCam(name) {
+  const pose = CAM_POSES[name];
+  if (!pose) return;
+  camFrom = {
+    pos: [camera.position.x, camera.position.y, camera.position.z],
+    target: [controls.target.x, controls.target.y, controls.target.z]
+  };
+  camTo = pose;
+  camT = 0; camLerping = true;
+  activeCam = name;
+  document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById(`cam-${name}`);
+  if (btn) btn.classList.add('active');
+}
+window.setCam = applyCam;
+
+window.triggerAnomaly = function() {
+  isAnomaly = true;
+  tickCount = 0;
+  document.getElementById('anomaly-overlay').classList.add('active');
+  pushLog('crit', '⚠ CRITICAL — Bearing 3B harmonic spike: +0.82 g');
+  pushLog('crit', '⚡ Motor thermal surge: +36 °C in 120 sec');
+  pushLog('warn', '🔴 Gemini 4 Argon: switch to gentle decel profile');
+  pushLog('warn', '📍 Dispatch: SKF 6205-2RSH bearing — Cab 1, Pit');
+  pushLog('crit', '⏱ Predicted catastrophic seizure: 4.2 hours');
+  bloom.strength = 1.1;
+};
+
+window.resetSystem = function() {
+  isAnomaly = false;
+  tickCount = 0;
+  document.getElementById('anomaly-overlay').classList.remove('active');
+  bloom.strength = .55;
+  setBar('bearing', 98.4, 'ok');
+  setBar('cable',   97.1, 'ok');
+  setBar('sheave',  92.0, 'ok');
+  setBar('thermal', 76.2, 'ok');
+  setBar('door',    91.8, 'ok');
+  pushLog('ok', '✓ Fault cleared — System restored to nominal');
+  pushLog('ok', '✓ Bearing replacement acknowledged by Gemini 4 Argon');
+};
+
+window.toggleAutoFlight = function() {
+  autoFlight = !autoFlight;
+  autoTimer = 0;
+  document.getElementById('auto-btn-label').textContent =
+    autoFlight ? 'Stop Auto-Tour' : 'Cinematic Auto-Tour';
+};
+
+// ─────────────────────────────────────────────────────────────────
+// RESIZE
+// ─────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  composer.setSize(innerWidth, innerHeight);
+  bloom.setSize(innerWidth, innerHeight);
+});
+</script>
 </body>
 </html>
