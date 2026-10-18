@@ -12,6 +12,7 @@ Served by GitHub Pages from `main` / root.
 
 | Project | What it is |
 |---|---|
+| [enterprise-cloud-ai-coe](https://github.com/Amz34/enterprise-cloud-ai-coe) | Production reference architecture, IaC & sovereign MLOps lakehouse for KSA industrial operations (Aramco/SABIC aligned) |
 | [ai-can-run](https://github.com/Amz34/ai-can-run) | Browser-side hardware detection: which open models your machine can run |
 | [selfhosted-agent-stack](https://github.com/Amz34/selfhosted-agent-stack) | Run a 24/7 AI agent on free cloud — watchdogs, zram, crash recovery |
 | [linkedin-autopilot](https://github.com/Amz34/linkedin-autopilot) | AI drafts, you approve, it publishes |
