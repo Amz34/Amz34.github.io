@@ -1,699 +1,829 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-[#080808] text-[#fcfcfc]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AZ Brand Agency | AI Product Collaborations & DFY Executive LinkedIn Positioning</title>
-  <meta name="description" content="Saudi & GCC premier technical branding agency. We put your AI architecture, sovereign cloud product, and executive vision in front of decision-makers who buy.">
+  <title>AZ BRAND — High-Fashion Engineering & Technical Editorial</title>
+  <meta name="description" content="AI brand collaborations, sovereign cloud positioning, and done-for-you technical ghostwriting for founders and enterprise leaders. High-fashion dark editorial architecture.">
+  
+  <!-- Fonts: Neue Haas / Inter substitute (Waldenburg) + Playfair Display Italic (Editorialnew) + Cinzel / Expressive Serif (Dirtyline 36) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@1,300;1,400&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857',
-              800: '#065f46',
-              900: '#064e3b',
-              saudi: '#006C35'
-            },
-            dark: {
-              950: '#05080f',
-              900: '#090d16',
-              800: '#101623',
-              700: '#182235',
-              600: '#23324d'
-            }
-          },
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['Space Grotesk', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
+  
   <style>
-    .glass-nav {
-      background: rgba(9, 13, 22, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    :root {
+      --void: #080808;
+      --absolute: #000000;
+      --charcoal: #171617;
+      --smoke: #262525;
+      --graphite: #393939;
+      --bone: #fcfcfc;
+      --linen: #f3efef;
+      --ash: #d4d2d2;
+      --pebble: #b5b2b2;
+      --iron: #525252;
+      --arterial-red: #fe1e34;
+      --crimson-pure: #ff0000;
     }
-    .glass-card {
-      background: rgba(16, 22, 35, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .hero-glow {
-      background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.18), transparent 70%);
+
+    body {
+      background-color: var(--void);
+      color: var(--bone);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      letter-spacing: -0.017em;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Typographic Hierarchy */
+    .font-serif-italic {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .font-ornamental {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+    }
+
+    /* Nav Labels */
+    .nav-label {
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ash);
+      transition: transform 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-label:hover {
+      color: var(--bone);
+      transform: translateY(-1px);
+    }
+
+    /* Ghost CTA Link: Uppercase 12px weight 400 with 0.071em tracking */
+    .ghost-cta {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.071em;
+      color: var(--bone);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 0;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ghost-cta:hover {
+      transform: translateX(4px);
+    }
+    .ghost-cta .arrow {
+      font-size: 14px;
+      transition: transform 0.2s ease;
+    }
+    .ghost-cta:hover .arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* Discovery Call Outlined Button */
+    .discovery-btn {
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--bone);
+      background: transparent;
+      border: 1px solid var(--ash);
+      border-radius: 8px;
+      padding: 12px 22px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .discovery-btn:hover {
+      border-color: var(--bone);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Display Headline: 160px caps, line-height 0.90, letter-spacing -12.8px */
+    .hero-headline {
+      font-size: clamp(48px, 11vw, 150px);
+      font-weight: 700;
+      line-height: 0.90;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+      color: var(--bone);
+    }
+
+    /* Section Transition Headline */
+    .section-headline {
+      font-size: clamp(36px, 7vw, 84px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      color: var(--bone);
+    }
+
+    /* Subheadings */
+    .subheading {
+      font-size: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.91px;
+      font-weight: 700;
+    }
+
+    /* Cards */
+    .card-standard {
+      background: var(--void);
+      border: 1px solid var(--graphite);
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: rgba(255, 255, 255, 0.08) 0px 2px 5px 0px inset;
+      transition: transform 0.3s ease;
+    }
+    .card-standard:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Bordered Brand Card: The red border is the ONLY chromatic border */
+    .card-featured-red {
+      background: var(--void);
+      border: 1px solid var(--arterial-red);
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: rgba(255, 255, 255, 0.12) 0px 2px 5px 0px inset;
+      position: relative;
+    }
+
+    /* Inverted Linen Body Panel */
+    .linen-panel {
+      background: var(--linen);
+      color: var(--void);
+      border-top: 1px solid var(--ash);
+      border-bottom: 1px solid var(--ash);
+      padding: 72px 0;
+    }
+    .linen-panel h2, .linen-panel h3, .linen-panel h4 {
+      color: var(--absolute);
+    }
+    .linen-panel p, .linen-panel li {
+      color: #262525;
+    }
+
+    /* Hairline Link */
+    .hairline-link {
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.071em;
+      color: var(--ash);
+      text-decoration: underline;
+      text-decoration-color: var(--iron);
+      text-underline-offset: 4px;
+      transition: color 0.2s ease;
+    }
+    .hairline-link:hover {
+      color: var(--bone);
+      text-decoration-color: var(--bone);
+    }
+
+    /* Accent Dot: Solid 18px Arterial Red */
+    .accent-dot {
+      width: 16px;
+      height: 16px;
+      background-color: var(--arterial-red);
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Decorative Background Bleed */
+    .decor-shape {
+      position: absolute;
+      color: var(--charcoal);
+      opacity: 0.22;
+      user-select: none;
+      pointer-events: none;
+      font-size: 380px;
+      font-weight: 900;
+      line-height: 1;
+      z-index: 0;
+    }
+
+    /* Grid & Container */
+    .editorial-container {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding-left: clamp(20px, 4vw, 56px);
+      padding-right: clamp(20px, 4vw, 56px);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Metadata label (10px tracked) */
+    .meta-label {
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--pebble);
+    }
+
+    /* Form Fields */
+    .editorial-input {
+      width: 100%;
+      background: var(--void);
+      border: 1px solid var(--iron);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: var(--bone);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .editorial-input:focus {
+      border-color: var(--bone);
     }
   </style>
 </head>
-<body class="bg-dark-950 text-slate-200 antialiased font-sans selection:bg-emerald-500 selection:text-white">
+<body>
 
-  <!-- Top Notification & Verified Status -->
-  <aside aria-label="Limited Retainers" class="bg-gradient-to-r from-emerald-950 via-dark-900 to-emerald-950 border-b border-emerald-500/20 py-2 px-4 text-xs">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-          <i class="fa-solid fa-crown mr-1"></i> TOP 1% TECH INFLUENCE
-        </span>
-        <span class="text-slate-300 font-medium">B2B Product Launches & Executive Ghostwriting for GCC & Global Leaders</span>
-      </div>
-      <div class="flex items-center gap-4 text-slate-300 text-xs">
-        <span class="text-amber-400 font-semibold flex items-center">
-          <i class="fa-solid fa-bolt mr-1 text-amber-300 animate-pulse"></i> Entry Retainers: 45% Price-Drop Active
-        </span>
-        <a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-mono transition-colors">
-          <i class="fa-brands fa-linkedin text-sm"></i> @aamirzameer
+  <!-- Decorative Architectural Background Shapes -->
+  <div class="decor-shape font-ornamental" style="top: -60px; right: -80px;">AZ</div>
+  <div class="decor-shape font-serif-italic" style="top: 1400px; left: -100px;">&amp;</div>
+
+  <!-- Top Floating Editorial Navigation -->
+  <header style="padding: 36px 0 20px 0; position: relative; z-index: 50;">
+    <div class="editorial-container" style="display: flex; justify-content: space-between; align-items: baseline;">
+      
+      <!-- Brand Logo in Editorial Type -->
+      <div>
+        <a href="#hero" style="text-decoration: none; display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-size: 26px; font-weight: 700; letter-spacing: -0.06em; color: var(--bone);">AZ</span>
+          <span class="font-serif-italic" style="font-size: 22px; color: var(--ash);">Agency</span>
+          <span class="accent-dot" style="width: 8px; height: 8px; margin-left: 2px;"></span>
         </a>
-        <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-mono transition-colors">
-          <i class="fa-brands fa-github text-sm"></i> @Amz34
+        <div class="meta-label" style="margin-top: 4px;">ARCHITECTURAL &amp; EXECUTIVE POSITIONING</div>
+      </div>
+
+      <!-- Nav Columns -->
+      <nav style="display: flex; gap: 40px; align-items: center;" class="hidden-mobile">
+        <a href="#manifesto" class="nav-label">Manifesto</a>
+        <a href="#services" class="nav-label">Engagements</a>
+        <a href="#pricing" class="nav-label">Price Matrix</a>
+        <a href="#proof" class="nav-label">Ecosystem</a>
+        <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="nav-label">
+          <i class="fa-brands fa-github"></i> 50 Repos
         </a>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 glass-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center font-extrabold text-white font-mono shadow-lg shadow-emerald-500/20">
-          AZ
-        </div>
-        <div>
-          <span class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
-            AZ Brand Agency <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono">EXECUTIVE</span>
-          </span>
-          <p class="text-[11px] text-slate-400">Personal Branding & Technical Product Launches</p>
-        </div>
-      </div>
-
-      <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-300">
-        <a href="#results" class="hover:text-emerald-400 transition-colors">Results</a>
-        <a href="#services" class="hover:text-emerald-400 transition-colors">Two Ways to Work</a>
-        <a href="#comparison" class="hover:text-emerald-400 transition-colors">Agency Comparison</a>
-        <a href="#pricing" class="hover:text-emerald-400 transition-colors">Price-Drop Packages</a>
-        <a href="#testimonials" class="hover:text-emerald-400 transition-colors">Client Proof</a>
-        <a href="#faq" class="hover:text-emerald-400 transition-colors">FAQ</a>
       </nav>
 
-      <div class="flex items-center gap-3">
-        <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-lg bg-dark-800 hover:bg-dark-700 text-white border border-slate-700 transition-all">
-          <i class="fa-brands fa-github text-emerald-400"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/30 transition-all">
-          <i class="fa-solid fa-paper-plane"></i>
-          <span>Work With AZ</span>
+      <!-- Discovery Call Ghost Button -->
+      <div>
+        <a href="#dialogue" class="discovery-btn">
+          <span>Discovery Call</span>
+          <span style="font-size: 13px;">↗</span>
         </a>
       </div>
+
     </div>
   </header>
 
-  <!-- Hero Section with Neuromarketing Hook -->
-  <section class="relative pt-20 pb-28 hero-glow overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+  <!-- Hero Section -->
+  <section id="hero" style="padding: clamp(60px, 10vh, 120px) 0 clamp(48px, 8vh, 90px) 0; position: relative;">
+    <div class="editorial-container">
       
-      <!-- Trust Pill -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-8 shadow-inner">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>BENCHMARKED WITH JAV & CO ARCHITECTURE • REAL HARDWARE & ARCHITECTURE TESTED</span>
+      <!-- Punctuation Top Strip -->
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 32px;">
+        <span class="accent-dot"></span>
+        <span class="meta-label">B2B ARTICULATION &amp; DFY EXECUTIVE GHOSTWRITING</span>
+        <span style="color: var(--iron); font-size: 12px;">/</span>
+        <span class="meta-label" style="color: var(--ash);">SAUDI &amp; GLOBAL C-SUITE</span>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.12]">
-        We Put Your <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">AI Product & Executive Voice</span> In Front of Buyers Who Sign Contracts.
+      <!-- Hero Typographic Masterwork -->
+      <h1 class="hero-headline">
+        WE PUT <span class="font-serif-italic" style="text-transform: none; font-size: 0.55em; letter-spacing: -0.02em; color: var(--ash); margin: 0 0.1em;">your</span> AI PRODUCT
+        <br>
+        <span class="font-ornamental" style="color: var(--bone); letter-spacing: -0.04em;">BEFORE</span> DECISION-MAKERS
+        <br>
+        WHO <span class="font-serif-italic" style="text-transform: none; font-size: 0.55em; letter-spacing: -0.02em; color: var(--arterial-red);">actually</span> BUY<span style="color: var(--arterial-red);">.</span>
       </h1>
 
-      <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
-        Engineered by Aamir Zameer (Az) and AZ Consultants. We test your software first, uncover the compelling technical angle, and publish battle-tested carousels and thought leadership to founders, CTOs, and GCC enterprise decision-makers.
-      </p>
-
-      <!-- Neuromarketing Conversion Urgency Banner -->
-      <div class="mt-8 max-w-2xl mx-auto bg-emerald-950/40 border border-emerald-500/30 rounded-2xl p-4 flex items-center justify-between text-left text-xs sm:text-sm">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg">
-            <i class="fa-solid fa-trophy"></i>
-          </div>
-          <div>
-            <div class="font-bold text-white">45% Launch Price-Drop Guaranteed</div>
-            <div class="text-slate-400 text-xs">Standard ghostwriting agencies charge $2,500/mo. Lock in our technical FDE retainer from $999/mo.</div>
-          </div>
+      <!-- Editorial Narrative Whisper -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; margin-top: 56px; border-top: 1px solid var(--graphite); padding-top: 36px;">
+        <div>
+          <p style="font-size: 15px; line-height: 1.6; color: var(--ash); font-weight: 300;">
+            Engineered by <strong style="color: var(--bone); font-weight: 700;">Aamir Zameer (Az)</strong>. We discard generic agency marketing filler. As Forward-Deployed Engineers, we deploy your repository, inspect your CLI and API telemetry, locate the surgical value proposition, and compose architectural breakdowns and carousels that command executive respect.
+          </p>
         </div>
-        <div class="text-right pl-3 font-mono text-emerald-400 font-bold hidden sm:block">
-          3 Retainers Open
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm uppercase tracking-wider shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5">
-          <span>Start a Product Collaboration</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-        <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-dark-800 text-slate-200 font-semibold text-sm border border-slate-700 flex items-center justify-center gap-2 transition-all">
-          <i class="fa-solid fa-user-tie text-emerald-400"></i>
-          <span>Get My LinkedIn Managed</span>
-        </a>
-      </div>
-
-      <!-- Proof Metric Strip -->
-      <div id="results" class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-          <div class="text-3xl font-extrabold text-white font-mono">14.2M+</div>
-          <div class="text-xs text-slate-400 mt-1">Campaign Reach Benchmark</div>
-        </div>
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-          <div class="text-3xl font-extrabold text-emerald-400 font-mono">50+</div>
-          <div class="text-xs text-slate-400 mt-1">Shipped Open Source Repos</div>
-        </div>
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-          <div class="text-3xl font-extrabold text-cyan-400 font-mono">35%</div>
-          <div class="text-xs text-slate-400 mt-1">C-Suite & Decision-Makers</div>
-        </div>
-        <div class="glass-card p-5 rounded-2xl border border-slate-800 text-center">
-          <div class="text-3xl font-extrabold text-amber-400 font-mono">Zero</div>
-          <div class="text-xs text-slate-400 mt-1">Generic AI Slop Or Noise</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Ingestion: Two Ways to Work -->
-  <section id="services" class="py-24 bg-dark-900 border-t border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-emerald-400 font-mono">ENGAGEMENT MODELS</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Two Ways to Partner With AZ Brand Agency</h2>
-        <p class="text-slate-400 mt-4 text-sm sm:text-base">
-          Whether you have an AI product ready to launch, or you are an executive founder who needs to be visible without writing content 10 hours a week.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        <!-- Model 1: AI Brand Collaborations -->
-        <div class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold font-mono mb-6">
-              01
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div style="display: flex; gap: 32px;">
+            <div>
+              <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">14.2M+</div>
+              <div class="meta-label" style="margin-top: 4px;">AUDITED IMPRESSIONS</div>
             </div>
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">Technical Product Launches</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-3">AI Brand Collaborations</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Make your AI tool, SaaS platform, or cloud product easier to understand, trust, and adopt. We test the product ourselves, locate the authentic technical angle, and publish battle-tested carousels and architecture breakdowns.
-            </p>
-            <div class="space-y-2.5 text-xs text-slate-300">
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Sponsored LinkedIn breakdowns with real code & UI</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Architecture cheatsheets & PDF carousels that get saved</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Pre-launch product UX & onboarding feedback</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Active comment management & lead redirection</div>
+            <div>
+              <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">50+</div>
+              <div class="meta-label" style="margin-top: 4px;">PRODUCTION GITHUB ENGINES</div>
+            </div>
+            <div>
+              <div style="font-size: 32px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">35%</div>
+              <div class="meta-label" style="margin-top: 4px;">C-SUITE &amp; DIRECTORS</div>
             </div>
           </div>
-          <div class="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
-            <span class="text-xs text-slate-400">From <strong class="text-emerald-400 text-base">$499</strong> <del class="text-rose-400 text-xs">$850</del></span>
-            <a href="#pricing" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
-              Explore Collaborations <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
 
-        <!-- Model 2: DFY Executive LinkedIn Management -->
-        <div class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between group">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl font-bold font-mono mb-6">
-              02
-            </div>
-            <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Done-For-You Executive Branding</span>
-            <h3 class="text-2xl font-bold text-white mt-1 mb-3">Done-For-You LinkedIn for Leaders</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              For founders, CTOs, and senior directors who want a presence people remember. You have the technical insights; we handle positioning, ghostwriting, visual carousel design, publishing, and weekly analytics reporting.
-            </p>
-            <div class="space-y-2.5 text-xs text-slate-300">
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Clear positioning: What people associate with your name</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Authentic voice capture (sounds like you, not AI)</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Custom visual assets & high-retention carousels</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> B2B inbound funnel capture for clients and investors</div>
-            </div>
-          </div>
-          <div class="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
-            <span class="text-xs text-slate-400">From <strong class="text-cyan-400 text-base">$999/mo</strong> <del class="text-rose-400 text-xs">$2,000</del></span>
-            <a href="#pricing" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
-              Explore DFY Management <i class="fa-solid fa-arrow-right"></i>
+          <div style="margin-top: 24px;">
+            <a href="#services" class="ghost-cta">
+              <span>EXPLORE THE TWO WORK MODES</span>
+              <span class="arrow">↗</span>
             </a>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Technical Integrity Invariant: Testing Product Before Talking About It -->
-  <section class="py-20 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-12">
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-bold">OUR TECHNICAL INTEGRITY CODE</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1">We Use The Product Before We Talk About It</h2>
-        <p class="text-slate-400 text-sm mt-3">
-          We don’t copy-paste a press release and call it understanding. As Forward-Deployed Engineers, we deploy your build, run the CLI, inspect the API responses, and find the angle that technical buyers actually respect.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-2xl border border-slate-800">
-          <div class="text-emerald-400 text-xl mb-3"><i class="fa-solid fa-code-commit"></i></div>
-          <h4 class="text-base font-bold text-white mb-2">Understand Before Promoting</h4>
-          <p class="text-xs text-slate-400">We inspect the architecture and deploy the tool before putting our name behind the campaign.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl border border-slate-800">
-          <div class="text-cyan-400 text-xl mb-3"><i class="fa-solid fa-microchip"></i></div>
-          <h4 class="text-base font-bold text-white mb-2">Think Like an Architect</h4>
-          <p class="text-xs text-slate-400">We highlight what saves real engineering hours and budget, not empty buzzwords.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl border border-slate-800">
-          <div class="text-teal-400 text-xl mb-3"><i class="fa-solid fa-bullseye"></i></div>
-          <h4 class="text-base font-bold text-white mb-2">Find The Strongest Angle</h4>
-          <p class="text-xs text-slate-400">Not every sub-feature matters. We isolate the single capability that triggers immediate signups.</p>
-        </div>
-        <div class="glass-card p-6 rounded-2xl border border-slate-800">
-          <div class="text-amber-400 text-xl mb-3"><i class="fa-solid fa-shield-halved"></i></div>
-          <h4 class="text-base font-bold text-white mb-2">Protect Audience Trust</h4>
-          <p class="text-xs text-slate-400">We strictly publish campaigns we endorse, maintaining our 100% credibility rating.</p>
+  <!-- Mid-Page Typographic Punctuation (WE ARE Section) -->
+  <section id="manifesto" style="padding: 72px 0; border-top: 1px solid var(--charcoal); position: relative;">
+    <div class="editorial-container">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+        <h2 class="section-headline">
+          WE <span class="font-ornamental" style="font-size: 1.15em; color: var(--arterial-red);">ARE</span>
+          <br>
+          <span class="font-serif-italic" style="text-transform: none; font-size: 0.6em; color: var(--ash);">technical architects</span> FIRST.
+        </h2>
+        <div style="max-width: 440px;">
+          <div class="meta-label" style="margin-bottom: 12px; color: var(--arterial-red);">ZERO MARKETING SLOP</div>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--ash);">
+            Traditional agencies employ non-technical junior writers who summarize your marketing PDFs with regurgitated buzzwords. We treat technical positioning like an architectural blueprint: precise, grounded in real code, and undeniable to engineers and buyers alike.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Side-by-Side Competitive Benchmark Table -->
-  <section id="comparison" class="py-24 bg-dark-900 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-emerald-400 font-mono">BENCHMARK MATRIX</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Why Technical Founders Choose AZ Brand Agency</h2>
-        <p class="text-slate-400 mt-4 text-sm sm:text-base">
-          Comparing generic social media marketing agencies against our engineering-first positioning model.
-        </p>
+  <!-- Two Ways to Work (Cards Grid) -->
+  <section id="services" style="padding: 64px 0 96px 0;">
+    <div class="editorial-container">
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 1px solid var(--graphite); padding-bottom: 20px;">
+        <div>
+          <span class="meta-label">DISCIPLINE CONTRACT</span>
+          <h3 class="subheading" style="margin-top: 8px; color: var(--bone);">TWO MODES OF ENGAGEMENT</h3>
+        </div>
+        <div class="meta-label">ESTABLISHED RIGOR</div>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-slate-300 border-collapse">
-          <thead>
-            <tr class="border-b border-slate-800 text-xs font-mono uppercase">
-              <th class="py-4 px-6 text-slate-400">Execution Capability</th>
-              <th class="py-4 px-6 text-slate-400 bg-dark-800/40">Generic Marketing Agencies</th>
-              <th class="py-4 px-6 text-emerald-400 bg-emerald-950/20 border-x border-emerald-500/30 font-bold">AZ Brand Agency</th>
-              <th class="py-4 px-6 text-slate-400">Decision-Maker Impact</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800/60 font-sans">
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="py-5 px-6 font-semibold text-white">Technical Comprehension</td>
-              <td class="py-5 px-6 text-slate-400 bg-dark-800/40">Junior copywriters reading generic marketing briefs</td>
-              <td class="py-5 px-6 font-semibold text-white bg-emerald-950/20 border-x border-emerald-500/30">
-                Senior FDE testing repos, APIs, and real cloud setups
-              </td>
-              <td class="py-5 px-6 text-emerald-400 text-xs font-mono">100% technical accuracy</td>
-            </tr>
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="py-5 px-6 font-semibold text-white">Content Voice & Tone</td>
-              <td class="py-5 px-6 text-slate-400 bg-dark-800/40">Generic ChatGPT filler ("Unlock synergy with AI!")</td>
-              <td class="py-5 px-6 font-semibold text-white bg-emerald-950/20 border-x border-emerald-500/30">
-                Hard-hitting engineering reality, real benchmarks, and diagrams
-              </td>
-              <td class="py-5 px-6 text-emerald-400 text-xs font-mono">Zero AI slop detection</td>
-            </tr>
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="py-5 px-6 font-semibold text-white">Audience Quality</td>
-              <td class="py-5 px-6 text-slate-400 bg-dark-800/40">Random engagement pods and casual scrollers</td>
-              <td class="py-5 px-6 font-semibold text-white bg-emerald-950/20 border-x border-emerald-500/30">
-                35% Verified C-Suite, CTOs, and Tech Decision-Makers
-              </td>
-              <td class="py-5 px-6 text-emerald-400 text-xs font-mono">Direct qualified leads</td>
-            </tr>
-            <tr class="hover:bg-slate-800/30 transition-colors">
-              <td class="py-5 px-6 font-semibold text-white">Entry Pricing</td>
-              <td class="py-5 px-6 text-slate-400 bg-dark-800/40">$2,500 - $4,500/mo retainer with 6-month lock-in</td>
-              <td class="py-5 px-6 font-semibold text-white bg-emerald-950/20 border-x border-emerald-500/30">
-                Aggressive Price Drop: From $499 single / $999/mo retainer
-              </td>
-              <td class="py-5 px-6 text-emerald-400 text-xs font-mono">45% savings, zero lock-in</td>
-            </tr>
-          </tbody>
-        </table>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px;">
+        
+        <!-- Standard Card 1: AI Brand Collaborations -->
+        <div class="card-standard">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+            <span class="meta-label">01 / TECHNICAL SPOTLIGHT</span>
+            <span class="hairline-link">ONE-OFF OR BUNDLE</span>
+          </div>
+
+          <h4 style="font-size: 32px; font-weight: 700; letter-spacing: -0.05em; line-height: 1.05; text-transform: uppercase;">
+            AI Brand <span class="font-serif-italic" style="text-transform: none; color: var(--ash);">collaborations</span>
+          </h4>
+
+          <p style="font-size: 13px; line-height: 1.6; color: var(--ash); margin: 20px 0 28px 0;">
+            Make your AI product, SaaS platform, or cloud engine impossible to ignore. We install and benchmark the software before writing a single word, finding the surgical use case that compels GCC and global enterprise buyers.
+          </p>
+
+          <ul style="list-style: none; font-size: 12px; line-height: 2.1; color: var(--ash); border-top: 1px solid var(--graphite); padding-top: 20px; margin-bottom: 28px;">
+            <li><span style="color: var(--bone);">+</span> Sponsored deep-dive technical LinkedIn posts</li>
+            <li><span style="color: var(--bone);">+</span> Architectural cheatsheets and saveable PDF carousels</li>
+            <li><span style="color: var(--bone);">+</span> Pre-launch technical UX, CLI, and API evaluation</li>
+            <li><span style="color: var(--bone);">+</span> Direct comment engagement &amp; prospective buyer redirection</li>
+          </ul>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--graphite); padding-top: 18px;">
+            <div style="font-size: 12px; color: var(--ash);">
+              Entry: <strong style="color: var(--bone); font-size: 15px;">$499</strong> <del style="color: var(--iron); font-size: 11px;">$850</del>
+            </div>
+            <a href="#dialogue" class="ghost-cta" style="padding: 0;">
+              <span>INITIATE COLLAB</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured Card 2: Bordered Brand Card with Arterial Red -->
+        <div class="card-featured-red">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="accent-dot" style="width: 10px; height: 10px;"></span>
+              <span class="meta-label" style="color: var(--bone);">02 / FEATURED RETENTION</span>
+            </div>
+            <span class="meta-label" style="color: var(--arterial-red);">EXECUTIVE RETAINER</span>
+          </div>
+
+          <h4 style="font-size: 32px; font-weight: 700; letter-spacing: -0.05em; line-height: 1.05; text-transform: uppercase;">
+            Done-For-You <span class="font-serif-italic" style="text-transform: none; color: var(--ash);">LinkedIn for leaders</span>
+          </h4>
+
+          <p style="font-size: 13px; line-height: 1.6; color: var(--ash); margin: 20px 0 28px 0;">
+            For founders, CTOs, and managing directors who command deep domain mastery but refuse to spend 15 hours a week drafting social content. We run your positioning end-to-end in your authentic, authoritative voice.
+          </p>
+
+          <ul style="list-style: none; font-size: 12px; line-height: 2.1; color: var(--bone); border-top: 1px solid var(--graphite); padding-top: 20px; margin-bottom: 28px;">
+            <li><span style="color: var(--arterial-red);">+</span> Precise authority positioning: what people associate with your name</li>
+            <li><span style="color: var(--arterial-red);">+</span> Authentic voice extraction via monthly 45-min architecture intake</li>
+            <li><span style="color: var(--arterial-red);">+</span> 8 High-caliber posts + 2 custom editorial carousels/mo</li>
+            <li><span style="color: var(--arterial-red);">+</span> Weekly inbound lead telemetry &amp; reach performance audit</li>
+          </ul>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--graphite); padding-top: 18px;">
+            <div style="font-size: 12px; color: var(--ash);">
+              Retainer: <strong style="color: var(--bone); font-size: 15px;">$1,399/mo</strong> <del style="color: var(--iron); font-size: 11px;">$2,500</del>
+            </div>
+            <a href="#dialogue" class="ghost-cta" style="padding: 0;">
+              <span>ACQUIRE SEAT</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Aggressive Price-Drop Packages Matrix -->
-  <section id="pricing" class="py-24 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-amber-400 font-mono">TRANSPARENT PRICING</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Aggressive Price-Drop Launch Tiers</h2>
-        <p class="text-slate-400 mt-4 text-sm sm:text-base">
-          Clear, upfront investment levels undercutting traditional agency bloat. Full transparency on deliverables, rounds of revisions, and post-launch engagement.
+  <!-- Inverted Linen Body Panel: High-Density Editorial Read -->
+  <section class="linen-panel" id="discipline">
+    <div class="editorial-container">
+      
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 48px;" class="stack-mobile">
+        <div>
+          <span class="meta-label" style="color: #525252;">PAGE INVERSION / DISCIPLINE CODE</span>
+          <h3 style="font-size: 38px; font-weight: 700; line-height: 1.0; letter-spacing: -0.05em; text-transform: uppercase; margin-top: 12px;">
+            WE TEST <span class="font-serif-italic" style="text-transform: none; font-weight: 400;">before</span>
+            <br>
+            WE PUBLISH.
+          </h3>
+          <div style="margin-top: 24px;">
+            <span class="accent-dot"></span>
+          </div>
+        </div>
+
+        <div style="font-size: 14px; line-height: 1.7; font-weight: 400;">
+          <p style="margin-bottom: 18px;">
+            When a tech founder approaches us, we do not ask for a press kit to paraphrase. We request access to the staging cluster, the SDK documentation, and the raw schema. We run local CLI invocations and measure latency. We discover where the system excels and where the user friction exists.
+          </p>
+          <p style="margin-bottom: 18px;">
+            That rigorous friction is precisely where genuine storytelling originates. Technical decision-makers do not convert on hollow promises of "seamless digital transformation." They convert when an engineer demonstrates how an architectural bottleneck was eliminated.
+          </p>
+          <div style="display: flex; gap: 24px; margin-top: 32px; border-top: 1px solid var(--ash); padding-top: 20px;">
+            <div>
+              <strong style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #000;">NO JARGON BLOAT</strong>
+              <span style="font-size: 12px; color: #525252;">Clear, surgical, and proof-driven language.</span>
+            </div>
+            <div>
+              <strong style="display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: #000;">SOVEREIGN STANDARDS</strong>
+              <span style="font-size: 12px; color: #525252;">Strict adherence to Saudi PDPL &amp; GCC data integrity.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Aggressive Neuromarketing Price Matrix Section -->
+  <section id="pricing" style="padding: 96px 0; border-top: 1px solid var(--charcoal);">
+    <div class="editorial-container">
+      
+      <div style="margin-bottom: 56px;">
+        <span class="meta-label">TRANSPARENT VALUATION</span>
+        <h3 class="section-headline" style="margin-top: 8px;">
+          PRICE-DROP <span class="font-serif-italic" style="text-transform: none; color: var(--ash);">matrix</span>
+        </h3>
+        <p style="font-size: 14px; color: var(--ash); max-width: 540px; margin-top: 12px;">
+          Deliberately engineered to undercut opaque agency retainers by up to 45% while deploying senior FDE talent directly to your positioning.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Tier 1: Single Feature Drop -->
-        <div class="glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        
+        <!-- Tier 1 -->
+        <div class="card-standard" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <span class="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold">01 · Single Product Feature</span>
-            <h3 class="text-2xl font-bold text-white mt-1">Single Launch Spotlight</h3>
-            <p class="text-slate-400 text-xs mt-2 mb-6">One product. One strong technical introduction to the right GCC & global audience.</p>
-            
-            <div class="mb-6 p-4 rounded-xl bg-dark-900 border border-slate-800">
-              <div class="text-xs text-slate-500 line-through">Market Rate: $850</div>
-              <div class="flex items-baseline gap-1 mt-1">
-                <span class="text-3xl font-extrabold text-white">$499</span>
-                <span class="text-xs text-slate-400">/ one-off</span>
+            <div class="meta-label" style="color: var(--pebble);">01 / LAUNCH SPOTLIGHT</div>
+            <div style="font-size: 26px; font-weight: 700; margin: 12px 0 6px 0;">Single Feature</div>
+            <div style="font-size: 12px; color: var(--ash); margin-bottom: 24px;">One product. One surgical introduction to high-intent buyers.</div>
+
+            <div style="padding: 16px 0; border-top: 1px solid var(--graphite); border-bottom: 1px solid var(--graphite); margin-bottom: 20px;">
+              <div style="font-size: 11px; color: var(--iron); text-decoration: line-through;">MARKET RATE: $850</div>
+              <div style="font-size: 34px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">
+                $499 <span style="font-size: 12px; font-weight: 400; color: var(--ash);">/ single</span>
               </div>
-              <div class="text-[11px] text-emerald-400 font-semibold mt-1 flex items-center gap-1">
-                <i class="fa-solid fa-tag"></i> 41% Price Drop for First-Time Brands
-              </div>
+              <div style="font-size: 11px; color: var(--ash); margin-top: 4px;">41% launch price-drop discount</div>
             </div>
 
-            <ul class="text-xs space-y-3 text-slate-300">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 1 Sponsored Deep-Dive Post</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Custom Architecture Cheatsheet or Visual</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Product Testing & Honest Angle Finding</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Post Copywriting & 1 Revision Round</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 48-Hour Comment Moderation & Engagement</li>
+            <ul style="list-style: none; font-size: 12px; line-height: 2.0; color: var(--ash);">
+              <li>• 1 Dedicated technical LinkedIn post</li>
+              <li>• Custom architecture cheatsheet or diagram</li>
+              <li>• Complete hands-on product UX review</li>
+              <li>• 1 Thorough revision cycle</li>
+              <li>• 48-Hour comment moderation</li>
             </ul>
           </div>
 
-          <a href="#contact" class="mt-8 block text-center py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs tracking-wide transition-all border border-slate-700">
-            Book Single Feature ($499)
-          </a>
+          <div style="margin-top: 32px;">
+            <a href="#dialogue" class="ghost-cta" style="width: 100%; border-top: 1px solid var(--graphite); padding-top: 16px;">
+              <span>BOOK SINGLE SPOTLIGHT</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Tier 2: Campaign Bundle (Best for Launches) -->
-        <div class="glass-card p-8 rounded-3xl border-2 border-emerald-500 flex flex-col justify-between relative shadow-2xl shadow-emerald-500/10">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase">
-            BEST FOR PRODUCT LAUNCHES
-          </div>
-
+        <!-- Tier 2: Featured Bundle -->
+        <div class="card-featured-red" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">02 · Full Launch Campaign</span>
-            <h3 class="text-2xl font-bold text-white mt-1">Multi-Angle Launch Bundle</h3>
-            <p class="text-slate-400 text-xs mt-2 mb-6">More visibility across multiple posts with distinct angles: problem, solution, and benchmark.</p>
-            
-            <div class="mb-6 p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30">
-              <div class="text-xs text-slate-500 line-through">Market Rate: $1,530</div>
-              <div class="flex items-baseline gap-1 mt-1">
-                <span class="text-3xl font-extrabold text-emerald-400">$899</span>
-                <span class="text-xs text-slate-400">/ campaign</span>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="meta-label" style="color: var(--arterial-red);">02 / MULTI-ANGLE CAMPAIGN</span>
+              <span class="accent-dot" style="width: 8px; height: 8px;"></span>
+            </div>
+            <div style="font-size: 26px; font-weight: 700; margin: 12px 0 6px 0;">Launch Bundle</div>
+            <div style="font-size: 12px; color: var(--ash); margin-bottom: 24px;">Multi-angle distribution across architecture, benchmark, and problem.</div>
+
+            <div style="padding: 16px 0; border-top: 1px solid var(--graphite); border-bottom: 1px solid var(--graphite); margin-bottom: 20px;">
+              <div style="font-size: 11px; color: var(--iron); text-decoration: line-through;">MARKET RATE: $1,530</div>
+              <div style="font-size: 34px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">
+                $899 <span style="font-size: 12px; font-weight: 400; color: var(--ash);">/ campaign</span>
               </div>
-              <div class="text-[11px] text-emerald-300 font-semibold mt-1 flex items-center gap-1">
-                <i class="fa-solid fa-fire text-amber-400"></i> 42% Price-Drop Discount
-              </div>
+              <div style="font-size: 11px; color: var(--bone); margin-top: 4px;">42% bundle discount applied</div>
             </div>
 
-            <ul class="text-xs space-y-3 text-slate-300">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 2 Sponsored LinkedIn Posts (Distinct Angles)</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Custom Multi-Slide PDF Carousel + Diagram</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Complete Pre-Launch Product UX Inspection</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Unlimited Minor Revisions Prior to Publish</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Impression & Click Performance Telemetry</li>
+            <ul style="list-style: none; font-size: 12px; line-height: 2.0; color: var(--bone);">
+              <li>• 2 Sponsored LinkedIn posts (distinct angles)</li>
+              <li>• 1 Multi-slide high-retention PDF carousel</li>
+              <li>• Deep-dive pre-launch UX audit &amp; feedback</li>
+              <li>• Unlimited minor revisions prior to publish</li>
+              <li>• Full click-through and impression telemetry</li>
             </ul>
           </div>
 
-          <a href="#contact" class="mt-8 block text-center py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-emerald-500/25 transition-all">
-            Book Launch Bundle ($899)
-          </a>
+          <div style="margin-top: 32px;">
+            <a href="#dialogue" class="ghost-cta" style="width: 100%; border-top: 1px solid var(--graphite); padding-top: 16px;">
+              <span>SECURE LAUNCH BUNDLE</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
         </div>
 
-        <!-- Tier 3: DFY Executive Retainer -->
-        <div class="glass-card p-8 rounded-3xl border border-slate-800 flex flex-col justify-between">
+        <!-- Tier 3: Monthly Retainer -->
+        <div class="card-standard" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
-            <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">03 · DFY Executive Retainer</span>
-            <h3 class="text-2xl font-bold text-white mt-1">Full C-Suite Retainer</h3>
-            <p class="text-slate-400 text-xs mt-2 mb-6">End-to-end LinkedIn presence for founders who want inbound contracts without writing all week.</p>
-            
-            <div class="mb-6 p-4 rounded-xl bg-dark-900 border border-slate-800">
-              <div class="text-xs text-slate-500 line-through">Market Rate: $2,500 / mo</div>
-              <div class="flex items-baseline gap-1 mt-1">
-                <span class="text-3xl font-extrabold text-white">$1,399</span>
-                <span class="text-xs text-slate-400">/ month</span>
+            <div class="meta-label" style="color: var(--pebble);">03 / EXECUTIVE VOICE</div>
+            <div style="font-size: 26px; font-weight: 700; margin: 12px 0 6px 0;">DFY Retainer</div>
+            <div style="font-size: 12px; color: var(--ash); margin-bottom: 24px;">Full personal branding for technical founders and managing directors.</div>
+
+            <div style="padding: 16px 0; border-top: 1px solid var(--graphite); border-bottom: 1px solid var(--graphite); margin-bottom: 20px;">
+              <div style="font-size: 11px; color: var(--iron); text-decoration: line-through;">MARKET RATE: $2,500 / MO</div>
+              <div style="font-size: 34px; font-weight: 700; letter-spacing: -0.05em; color: var(--bone);">
+                $1,399 <span style="font-size: 12px; font-weight: 400; color: var(--ash);">/ mo</span>
               </div>
-              <div class="text-[11px] text-cyan-400 font-semibold mt-1 flex items-center gap-1">
-                <i class="fa-solid fa-bolt"></i> 44% Recurring Retainer Savings
-              </div>
+              <div style="font-size: 11px; color: var(--ash); margin-top: 4px;">44% ongoing retainer price-drop</div>
             </div>
 
-            <ul class="text-xs space-y-3 text-slate-300">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> 8 High-Impact Posts per Month</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> 2 Custom High-Retention PDF Carousels</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Executive Positioning & Voice Modeling</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Direct WhatsApp/Slack Communication Line</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Weekly Growth & Inbound Pipeline Analytics</li>
+            <ul style="list-style: none; font-size: 12px; line-height: 2.0; color: var(--ash);">
+              <li>• 8 High-caliber strategic LinkedIn posts/mo</li>
+              <li>• 2 Custom architectural PDF carousels</li>
+              <li>• Authentic executive voice calibration</li>
+              <li>• Direct Slack / Telegram line with Lead Architect</li>
+              <li>• Weekly inbound pipeline telemetry</li>
             </ul>
           </div>
 
-          <a href="#contact" class="mt-8 block text-center py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs tracking-wide transition-all border border-slate-700">
-            Apply for Executive Retainer
+          <div style="margin-top: 32px;">
+            <a href="#dialogue" class="ghost-cta" style="width: 100%; border-top: 1px solid var(--graphite); padding-top: 16px;">
+              <span>APPLY FOR RETAINER</span>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Open Systems & Ecosystem Linkage -->
+  <section id="proof" style="padding: 72px 0; border-top: 1px solid var(--charcoal);">
+    <div class="editorial-container">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 24px; margin-bottom: 36px;">
+        <div>
+          <span class="meta-label">OPEN TECHNICAL ARSENAL</span>
+          <h3 class="subheading" style="margin-top: 8px;">VERIFIABLE GITHUB PROOF</h3>
+        </div>
+        <div>
+          <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hairline-link">
+            VIEW @AMZ34 GITHUB PROFILE ↗
           </a>
         </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div class="card-standard">
+          <div class="meta-label">ARCHITECTURE REPO</div>
+          <div style="font-size: 16px; font-weight: 700; margin: 8px 0 6px 0;">awesome-agent-infrastructure</div>
+          <p style="font-size: 12px; color: var(--ash);">Live-checked ecosystem index of production-grade building blocks for autonomous AI workloads.</p>
+          <div style="margin-top: 16px;">
+            <a href="https://github.com/Amz34/awesome-agent-infrastructure" target="_blank" rel="noopener noreferrer" class="hairline-link">Inspect Code ↗</a>
+          </div>
+        </div>
+
+        <div class="card-standard">
+          <div class="meta-label">CONTEXT COMPRESSION</div>
+          <div style="font-size: 16px; font-weight: 700; margin: 8px 0 6px 0;">mcp-router</div>
+          <p style="font-size: 12px; color: var(--ash);">Dynamic MCP router and token containment engine cutting LLM tool context overhead by 88%–100%.</p>
+          <div style="margin-top: 16px;">
+            <a href="https://github.com/Amz34/mcp-router" target="_blank" rel="noopener noreferrer" class="hairline-link">Inspect Code ↗</a>
+          </div>
+        </div>
+
+        <div class="card-standard">
+          <div class="meta-label">SOVEREIGN AIR-GAP</div>
+          <div style="font-size: 16px; font-weight: 700; margin: 8px 0 6px 0;">zeroegress</div>
+          <p style="font-size: 12px; color: var(--ash);">Local-only confidential document AI with socket-level egress jails for strict zero-leakage enterprise compliance.</p>
+          <div style="margin-top: 16px;">
+            <a href="https://github.com/Amz34/zeroegress" target="_blank" rel="noopener noreferrer" class="hairline-link">Inspect Code ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manifest Link -->
+      <div style="margin-top: 32px; padding: 20px; background: var(--charcoal); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <span style="font-size: 13px; color: var(--ash);">Complete 50-repo enterprise AI &amp; infrastructure manifest live on Pastebin:</span>
+        <a href="https://pastebin.com/6sH3kC7b" target="_blank" rel="noopener noreferrer" class="discovery-btn">
+          <span>PASTEBIN REPO INDEX</span>
+          <span>↗</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Client Testimonials & Social Proof -->
-  <section id="testimonials" class="py-24 bg-dark-900 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-bold tracking-widest uppercase text-emerald-400 font-mono">PROOF OF EXECUTION</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">What Founders & CTOs Say</h2>
-        <p class="text-slate-400 mt-4 text-sm sm:text-base">
-          Real feedback from technical leaders and brand partners who chose technical depth over superficial marketing.
+  <!-- Editorial Dialogue / Contact Form -->
+  <section id="dialogue" style="padding: 96px 0; border-top: 1px solid var(--charcoal); position: relative;">
+    <div class="editorial-container" style="max-width: 880px;">
+      
+      <div style="text-align: center; margin-bottom: 48px;">
+        <span class="accent-dot"></span>
+        <div class="meta-label" style="margin-top: 12px;">INITIATE TECHNICAL DIALOGUE</div>
+        <h3 class="section-headline" style="margin-top: 12px;">
+          HAVE SOMETHING <span class="font-serif-italic" style="text-transform: none; color: var(--ash);">worth</span>
+          <br>
+          PAYING ATTENTION TO<span style="color: var(--arterial-red);">?</span>
+        </h3>
+        <p style="font-size: 14px; color: var(--ash); margin-top: 14px;">
+          Tell us about what you are engineering or the executive voice you wish to articulate. Direct response within 12 hours from Aamir Zameer.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 text-sm italic leading-relaxed">
-            "Az doesn't just write fluff. He deployed our Docker container, identified an edge case in our API, and wrote a carousel that actually explained our architectural advantage. It brought us 14 Enterprise demo bookings in 72 hours."
-          </p>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">TR</div>
+      <div class="card-standard" style="padding: clamp(24px, 5vw, 48px);">
+        <form onsubmit="event.preventDefault(); document.getElementById('confirmation').style.display='block'; this.reset();">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 20px;">
             <div>
-              <div class="text-xs font-bold text-white">Tariq R.</div>
-              <div class="text-[11px] text-slate-400">Co-Founder, Saudi Cloud Ops</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 text-sm italic leading-relaxed">
-            "Before AZ Brand Agency, my LinkedIn had 800 connections and zero inbound. Within 60 days of DFY management, my profile reaches 40,000+ tech leaders every month. The content sounds 100% authentic to my voice."
-          </p>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs">KF</div>
-            <div>
-              <div class="text-xs font-bold text-white">Khalid F.</div>
-              <div class="text-[11px] text-slate-400">Managing Director, B2B Fintech</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-          <p class="text-slate-300 text-sm italic leading-relaxed">
-            "The combination of deep GitHub credibility (50+ repos) and sharp copywriting makes AZ unique in the market. The price-drop bundle delivered 4x the ROI of our previous London agency."
-          </p>
-          <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">SM</div>
-            <div>
-              <div class="text-xs font-bold text-white">Suleman M.</div>
-              <div class="text-[11px] text-slate-400">Head of Product, AI SaaS</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section (Ingested from javco.site) -->
-  <section id="faq" class="py-20 border-t border-slate-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-bold">CLEAR ANSWERS</span>
-        <h2 class="text-3xl font-extrabold text-white mt-1">Frequently Asked Questions</h2>
-      </div>
-
-      <div class="space-y-4">
-        <div class="glass-card p-5 rounded-2xl border border-slate-800">
-          <h4 class="text-sm font-bold text-white mb-2">Do you promote every product?</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            No. We only work with software, AI platforms, or cloud architectures that we can personally test, verify, and identify genuine technical utility for. If we wouldn’t use it ourselves, we don’t put our brand behind it.
-          </p>
-        </div>
-
-        <div class="glass-card p-5 rounded-2xl border border-slate-800">
-          <h4 class="text-sm font-bold text-white mb-2">Can we send you the post copy?</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            You can provide documentation, core value propositions, and key talking points. We craft the final copy and hook structure because our voice and high-conversion formatting are what buyers respond to.
-          </p>
-        </div>
-
-        <div class="glass-card p-5 rounded-2xl border border-slate-800">
-          <h4 class="text-sm font-bold text-white mb-2">How does the DFY LinkedIn management work?</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            It is completely done-for-you. We do an initial 45-minute architectural interview to extract your core opinions, philosophy, and war stories. From there, our team writes, designs carousels, schedules, and delivers weekly analytics reports.
-          </p>
-        </div>
-
-        <div class="glass-card p-5 rounded-2xl border border-slate-800">
-          <h4 class="text-sm font-bold text-white mb-2">Do you work with Saudi & GCC startups?</h4>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Yes! We specialize in positioning tech companies, AI startups, and cloud providers targeting the Kingdom of Saudi Arabia's Vision 2030 digital ecosystem.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Direct Conversion & Contact Form -->
-  <section id="contact" class="py-24 bg-dark-900 border-t border-slate-800 relative">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="glass-card p-8 sm:p-12 rounded-3xl border border-emerald-500/30 shadow-2xl shadow-emerald-500/10">
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <span class="text-xs font-bold tracking-widest uppercase text-emerald-400 font-mono">INITIATE PARTNERSHIP</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Have Something Worth Paying Attention To?</h2>
-          <p class="text-slate-400 text-sm mt-3">
-            Tell us about your AI product, SaaS launch, or executive profile. If it’s a fit, you’ll hear back directly from Aamir Zameer within 12 hours.
-          </p>
-        </div>
-
-        <form id="brandForm" class="space-y-5" onsubmit="event.preventDefault(); document.getElementById('brandSuccess').classList.remove('hidden'); this.reset();">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-              <label for="brand-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Your Name</label>
-              <input id="brand-name" type="text" required placeholder="e.g. Faisal Al-Otaibi" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+              <label for="contact-name" class="meta-label" style="display: block; margin-bottom: 8px;">FULL NAME</label>
+              <input id="contact-name" type="text" required placeholder="e.g. Tariq Al-Ghamdi" class="editorial-input">
             </div>
             <div>
-              <label for="brand-email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Corporate Email</label>
-              <input id="brand-email" type="email" required placeholder="faisal@techcorp.sa" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+              <label for="contact-email" class="meta-label" style="display: block; margin-bottom: 8px;">CORPORATE EMAIL</label>
+              <input id="contact-email" type="email" required placeholder="tariq@enterprise.sa" class="editorial-input">
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 20px;">
             <div>
-              <label for="brand-service" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Partnership Type</label>
-              <select id="brand-service" class="w-full bg-dark-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
-                <option>Single Launch Spotlight ($499 - 41% off)</option>
-                <option>Multi-Angle Launch Bundle ($899 - 42% off)</option>
+              <label for="contact-interest" class="meta-label" style="display: block; margin-bottom: 8px;">ENGAGEMENT DISCIPLINE</label>
+              <select id="contact-interest" class="editorial-input">
+                <option>Single Launch Spotlight ($499)</option>
+                <option>Multi-Angle Launch Bundle ($899)</option>
                 <option>DFY Executive LinkedIn Retainer ($1,399/mo)</option>
-                <option>Pre-Launch Technical UX Audit</option>
+                <option>Pre-Launch Architectural Review</option>
               </select>
             </div>
             <div>
-              <label for="brand-url" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Product or LinkedIn URL</label>
-              <input id="brand-url" type="url" required placeholder="https://..." class="w-full bg-dark-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+              <label for="contact-repo" class="meta-label" style="display: block; margin-bottom: 8px;">PRODUCT / GITHUB / LINKEDIN URL</label>
+              <input id="contact-repo" type="url" required placeholder="https://..." class="editorial-input">
             </div>
           </div>
 
-          <div>
-            <label for="brand-notes" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">What are you building & who is the target buyer?</label>
-            <textarea id="brand-notes" rows="3" placeholder="Briefly describe what your product does or the expertise you want to own..." class="w-full bg-dark-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
+          <div style="margin-bottom: 28px;">
+            <label for="contact-notes" class="meta-label" style="display: block; margin-bottom: 8px;">WHAT ARE YOU ENGINEERING &amp; WHO IS THE BUYER?</label>
+            <textarea id="contact-notes" rows="4" placeholder="Briefly describe what your system solves or the core thesis you want to establish..." class="editorial-input"></textarea>
           </div>
 
-          <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-bold text-sm uppercase tracking-wider shadow-xl shadow-emerald-500/25 transition-all transform hover:-translate-y-0.5">
-            Submit Partnership Request
+          <button type="submit" class="discovery-btn" style="width: 100%; justify-content: center; padding: 18px; border-color: var(--bone); background: var(--void); cursor: pointer;">
+            <span>TRANSMIT PROPOSAL REQUEST</span>
+            <span>↗</span>
           </button>
 
-          <div id="brandSuccess" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-center text-xs font-medium">
-            <i class="fa-solid fa-circle-check mr-1.5"></i> Request sent. Aamir Zameer will review your product and reach out directly within 12 hours.
+          <div id="confirmation" style="display: none; margin-top: 20px; padding: 16px; border: 1px solid var(--arterial-red); border-radius: 8px; font-size: 13px; color: var(--bone); text-align: center;">
+            <span class="accent-dot" style="width: 8px; height: 8px; margin-right: 6px;"></span>
+            Transmission received. A senior architect from AZ Brand Agency will contact you directly within 12 hours.
           </div>
         </form>
 
-        <!-- Direct Direct Reach Options -->
-        <div class="mt-8 pt-8 border-t border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-xs text-slate-400">
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--graphite); text-align: center;">
           <div>
-            <div class="font-semibold text-slate-300"><i class="fa-solid fa-envelope text-emerald-400 mr-1"></i> Direct Email</div>
-            <a href="mailto:aamir1zahran@gmail.com" class="hover:text-emerald-400 font-mono">aamir1zahran@gmail.com</a>
+            <div class="meta-label">DIRECT EMAIL</div>
+            <a href="mailto:aamir1zahran@gmail.com" class="hairline-link" style="margin-top: 4px; display: inline-block;">aamir1zahran@gmail.com</a>
           </div>
           <div>
-            <div class="font-semibold text-slate-300"><i class="fa-brands fa-linkedin text-emerald-400 mr-1"></i> LinkedIn Profile</div>
-            <a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-mono">linkedin.com/in/aamirzameer</a>
+            <div class="meta-label">EXECUTIVE ADVISORY</div>
+            <a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="hairline-link" style="margin-top: 4px; display: inline-block;">linkedin.com/in/aamirzameer</a>
           </div>
           <div>
-            <div class="font-semibold text-slate-300"><i class="fa-brands fa-github text-emerald-400 mr-1"></i> GitHub Workspace</div>
-            <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-mono">github.com/Amz34</a>
+            <div class="meta-label">SOVEREIGN CLOUD</div>
+            <a href="https://amz34.github.io/az-consultants-cloud/" target="_blank" rel="noopener noreferrer" class="hairline-link" style="margin-top: 4px; display: inline-block;">AZ Consultants Cloud ↗</a>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-dark-950 py-12 text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+  <!-- Editorial Charcoal Footer -->
+  <footer style="background: var(--charcoal); padding: 64px 0 48px 0; border-top: 1px solid var(--graphite);">
+    <div class="editorial-container">
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 48px; margin-bottom: 48px;">
         <div>
-          <div class="flex items-center gap-2 mb-3">
-            <div class="w-7 h-7 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-white font-mono text-xs">AZ</div>
-            <span class="text-base font-bold text-white">AZ Brand Agency</span>
+          <div style="font-size: 20px; font-weight: 700; color: var(--bone); letter-spacing: -0.05em; margin-bottom: 12px;">
+            AZ BRAND AGENCY
           </div>
-          <p class="leading-relaxed">AI product collaborations, technical carousels, and done-for-you LinkedIn positioning for GCC founders and enterprise executives.</p>
-          <div class="mt-4 flex items-center gap-3">
-            <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 transition-colors"><i class="fa-brands fa-github"></i></a>
-            <a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://amz34.github.io" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-dark-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 transition-colors"><i class="fa-solid fa-globe"></i></a>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--ash);">
+            High-fashion engineering, architectural product spotlights, and done-for-you technical positioning for GCC and global founders.
+          </p>
+          <div style="margin-top: 18px;">
+            <span class="accent-dot"></span>
           </div>
         </div>
 
         <div>
-          <h5 class="font-bold text-slate-200 mb-3 uppercase tracking-wider text-[11px]">Solutions</h5>
-          <ul class="space-y-2">
-            <li><a href="#services" class="hover:text-emerald-400 transition-colors">AI Brand Collaborations</a></li>
-            <li><a href="#services" class="hover:text-emerald-400 transition-colors">DFY LinkedIn Management</a></li>
-            <li><a href="#services" class="hover:text-emerald-400 transition-colors">Technical PDF Carousels</a></li>
-            <li><a href="#services" class="hover:text-emerald-400 transition-colors">Product UX Auditing</a></li>
-            <li><a href="#pricing" class="hover:text-emerald-400 transition-colors">Price-Drop Packages</a></li>
+          <div class="meta-label" style="margin-bottom: 16px; color: var(--bone);">PRACTICE AREAS</div>
+          <ul style="list-style: none; font-size: 12px; line-height: 2.2; color: var(--ash);">
+            <li><a href="#services" style="color: inherit; text-decoration: none;">AI Product Collaborations</a></li>
+            <li><a href="#services" style="color: inherit; text-decoration: none;">DFY Executive LinkedIn</a></li>
+            <li><a href="#services" style="color: inherit; text-decoration: none;">Technical Architecture Cheatsheets</a></li>
+            <li><a href="#pricing" style="color: inherit; text-decoration: none;">Price-Drop Matrix</a></li>
           </ul>
         </div>
 
         <div>
-          <h5 class="font-bold text-slate-200 mb-3 uppercase tracking-wider text-[11px]">Direct Ecosystem</h5>
-          <ul class="space-y-2">
-            <li><a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i class="fa-brands fa-github text-emerald-400"></i> GitHub Profile (@Amz34)</a></li>
-            <li><a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i class="fa-brands fa-linkedin text-emerald-400"></i> Az. Consultants LinkedIn</a></li>
-            <li><a href="https://amz34.github.io/az-consultants-cloud/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-cloud text-emerald-400"></i> AZ Consultants Cloud</a></li>
-            <li><a href="https://pastebin.com/6sH3kC7b" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><i class="fa-solid fa-code text-emerald-400"></i> 50 Shipped AI Repos</a></li>
+          <div class="meta-label" style="margin-bottom: 16px; color: var(--bone);">SOVEREIGN ECOSYSTEM</div>
+          <ul style="list-style: none; font-size: 12px; line-height: 2.2; color: var(--ash);">
+            <li><a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">GitHub Workspace (@Amz34)</a></li>
+            <li><a href="https://linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Az. Consultancy Advisory</a></li>
+            <li><a href="https://amz34.github.io/az-consultants-cloud/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">AZ Consultants Cloud Portal</a></li>
+            <li><a href="https://pastebin.com/6sH3kC7b" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">50 Shipped AI Repositories</a></li>
           </ul>
         </div>
 
         <div>
-          <h5 class="font-bold text-slate-200 mb-3 uppercase tracking-wider text-[11px]">Presence & Hub</h5>
-          <p class="leading-relaxed mb-3">Operating across Riyadh, Dubai, and global enterprise ecosystems with high-velocity async execution.</p>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[11px] font-mono">
-            <i class="fa-solid fa-bolt text-emerald-400"></i> Az. Consultancy Strategic Media
-          </div>
+          <div class="meta-label" style="margin-bottom: 16px; color: var(--bone);">EDITORIAL DISCIPLINE</div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--ash); margin-bottom: 12px;">
+            Pitch-black void canvas (#080808), oversized display typography, and a single arterial red accent (#fe1e34).
+          </p>
+          <div class="meta-label" style="color: var(--pebble);">RIYADH • GLOBAL ASYNC</div>
         </div>
       </div>
 
-      <div class="border-t border-slate-800/80 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
-        <div>
+      <div style="border-top: 1px solid var(--graphite); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div style="font-size: 11px; color: var(--pebble);">
           © 2026 AZ Brand Agency. A Division of Az. Consultancy. All rights reserved.
         </div>
-        <div class="flex items-center gap-4">
-          <a href="#services" class="hover:text-emerald-400">Terms of Collaboration</a>
-          <span>•</span>
-          <a href="#services" class="hover:text-emerald-400">Confidentiality Policy</a>
-          <span>•</span>
-          <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400">Engineering Proof</a>
+        <div style="display: flex; gap: 24px;">
+          <a href="#services" class="hairline-link">TERMS</a>
+          <a href="#services" class="hairline-link">CONFIDENTIALITY</a>
+          <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="hairline-link">OPEN REPOSITORIES</a>
         </div>
       </div>
+
     </div>
   </footer>
 
