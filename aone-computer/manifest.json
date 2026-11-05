@@ -1,0 +1,21 @@
+{
+  "name": "AOne Computer & Teammates",
+  "short_name": "AOne Computer",
+  "description": "Autonomous AI Coworkers & Digital Computer Runtime",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#191A1A",
+  "theme_color": "#20B8CD",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

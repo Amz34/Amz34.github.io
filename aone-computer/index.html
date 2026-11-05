@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AOne Computer — Persistent Teammates & Digital Worker Cloud</title>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#20B8CD">
+  <link rel="icon" type="image/png" href="./assets/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AOne Computer">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            pplx: {
+              bg: '#191A1A',
+              card: '#202222',
+              cardHover: '#2A2C2C',
+              sidebar: '#141414',
+              border: '#2E3030',
+              accent: '#20B8CD',
+              accentHover: '#1AA0B2',
+              text: '#E8E8E8',
+              muted: '#8D9191',
+              darker: '#0E0F0F'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #191A1A;
+      color: #E8E8E8;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #141414;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2E3030;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3E4242;
+    }
+    .hexagon-shape {
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden text-sm selection:bg-pplx-accent selection:text-white">
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-overlay" onclick="toggleSidebar()" class="fixed inset-0 z-40 hidden bg-black/60 backdrop-blur-sm md:hidden"></div>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-pplx-border bg-pplx-sidebar transition-transform duration-300 -translate-x-full md:relative md:translate-x-0">
+    <!-- Brand Header -->
+    <div class="flex h-14 items-center justify-between px-4 border-b border-pplx-border">
+      <div class="flex items-center gap-2.5">
+        <div class="hexagon-shape flex h-7 w-7 items-center justify-center bg-pplx-accent text-pplx-darker font-bold">
+          <i data-lucide="cpu" class="h-4 w-4"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold tracking-tight text-white text-base">AOne Computer</span>
+          <span class="text-[10px] text-pplx-accent font-mono uppercase tracking-wider">Teammate OS v2.6</span>
+        </div>
+      </div>
+      <button onclick="toggleSidebar()" class="md:hidden text-pplx-muted hover:text-white">
+        <i data-lucide="x" class="h-5 w-5"></i>
+      </button>
+    </div>
+
+    <!-- New Action Button -->
+    <div class="p-3">
+      <button onclick="openNewMissionModal()" class="flex w-full items-center justify-center gap-2 rounded-xl bg-pplx-accent px-4 py-2.5 font-medium text-pplx-darker shadow-sm hover:bg-pplx-accentHover transition-colors">
+        <i data-lucide="plus" class="h-4 w-4 stroke-[2.5]"></i>
+        <span>Delegate New Mission</span>
+      </button>
+    </div>
+
+    <!-- Navigation Lanes -->
+    <div class="flex-1 overflow-y-auto px-2 space-y-1">
+      <div class="px-2 pt-2 pb-1 text-[11px] font-semibold tracking-wider text-pplx-muted uppercase">Digital Coworkers</div>
+      
+      <!-- Teammates List in Nav -->
+      <button onclick="selectTeammate('sre_sentinel')" id="nav-sre_sentinel" class="teammate-nav-btn flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs font-medium hover:bg-pplx-card transition-colors active-tab text-white bg-pplx-card">
+        <div class="flex items-center gap-2.5 truncate">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="truncate font-medium">SRE Sentinel</span>
+        </div>
+        <span class="rounded bg-pplx-darker px-1.5 py-0.5 font-mono text-[10px] text-pplx-accent">Infra</span>
+      </button>
+
+      <button onclick="selectTeammate('lead_scout')" id="nav-lead_scout" class="teammate-nav-btn flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs font-medium hover:bg-pplx-card transition-colors text-pplx-muted hover:text-white">
+        <div class="flex items-center gap-2.5 truncate">
+          <span class="inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span class="truncate">Market & Lead Scout</span>
+        </div>
+        <span class="rounded bg-pplx-darker px-1.5 py-0.5 font-mono text-[10px] text-emerald-400">BizDev</span>
+      </button>
+
+      <button onclick="selectTeammate('code_auditor')" id="nav-code_auditor" class="teammate-nav-btn flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs font-medium hover:bg-pplx-card transition-colors text-pplx-muted hover:text-white">
+        <div class="flex items-center gap-2.5 truncate">
+          <span class="inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+          <span class="truncate">Codebase & QA Auditor</span>
+        </div>
+        <span class="rounded bg-pplx-darker px-1.5 py-0.5 font-mono text-[10px] text-amber-400">QA</span>
+      </button>
+
+      <button onclick="selectTeammate('research_analyst')" id="nav-research_analyst" class="teammate-nav-btn flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs font-medium hover:bg-pplx-card transition-colors text-pplx-muted hover:text-white">
+        <div class="flex items-center gap-2.5 truncate">
+          <span class="inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span class="truncate">Deep Research Analyst</span>
+        </div>
+        <span class="rounded bg-pplx-darker px-1.5 py-0.5 font-mono text-[10px] text-blue-400">R&D</span>
+      </button>
+
+      <!-- Section: Computer Environment -->
+      <div class="px-2 pt-5 pb-1 text-[11px] font-semibold tracking-wider text-pplx-muted uppercase">Computer Hardware & Cloud</div>
+      <button onclick="switchView('overview')" id="nav-overview" class="view-nav-btn flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs font-medium text-pplx-muted hover:bg-pplx-card hover:text-white transition-colors">
+        <i data-lucide="layout-grid" class="h-4 w-4"></i>
+        <span>Mesh Dashboard</span>
+      </button>
+      <button onclick="switchView('terminal')" id="nav-terminal" class="view-nav-btn flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs font-medium text-pplx-muted hover:bg-pplx-card hover:text-white transition-colors">
+        <i data-lucide="terminal" class="h-4 w-4"></i>
+        <span>Computer CLI & Sandbox</span>
+      </button>
+      <button onclick="switchView('telemetry')" id="nav-telemetry" class="view-nav-btn flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs font-medium text-pplx-muted hover:bg-pplx-card hover:text-white transition-colors">
+        <i data-lucide="activity" class="h-4 w-4"></i>
+        <span>Live Telemetry & HITL</span>
+      </button>
+      <a href="https://github.com/Amz34/aone-teammate-mesh" target="_blank" class="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-xs font-medium text-pplx-muted hover:bg-pplx-card hover:text-white transition-colors">
+        <i data-lucide="github" class="h-4 w-4"></i>
+        <span>GitHub Repository</span>
+      </a>
+    </div>
+
+    <!-- Infrastructure Footer Status -->
+    <div class="p-3 border-t border-pplx-border bg-pplx-darker/60">
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-pplx-muted">Host Hardware:</span>
+        <span class="font-mono text-emerald-400 font-semibold">OCI ARM64 (12GB)</span>
+      </div>
+      <div class="flex items-center justify-between text-[11px] mt-1">
+        <span class="text-pplx-muted">Monthly SaaS Cost:</span>
+        <span class="font-mono text-pplx-accent font-semibold">$0.00 / mo</span>
+      </div>
+      <div class="mt-2.5 flex items-center justify-between rounded-lg bg-pplx-card px-2.5 py-1.5 text-[11px]">
+        <div class="flex items-center gap-1.5">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+          <span class="text-white font-medium">Mesh Online</span>
+        </div>
+        <span class="font-mono text-pplx-muted">4/4 Idle</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Work Area -->
+  <main class="flex flex-1 flex-col overflow-hidden bg-pplx-bg">
+
+    <!-- Topbar -->
+    <header class="flex h-14 items-center justify-between border-b border-pplx-border px-4 md:px-6">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="md:hidden text-pplx-muted hover:text-white">
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+        <div class="flex items-center gap-2">
+          <h1 id="active-title" class="font-semibold text-base text-white">SRE Sentinel</h1>
+          <span id="active-badge" class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-mono text-emerald-400 border border-emerald-500/20">Active Daemon</span>
+        </div>
+      </div>
+
+      <!-- Action Cluster -->
+      <div class="flex items-center gap-2">
+        <button onclick="triggerHitlTest()" class="hidden sm:flex items-center gap-1.5 rounded-lg border border-pplx-border bg-pplx-card px-3 py-1.5 text-xs font-medium text-white hover:bg-pplx-cardHover transition-colors">
+          <i data-lucide="shield-alert" class="h-3.5 w-3.5 text-amber-400"></i>
+          <span>Simulate HITL Gate</span>
+        </button>
+        <button onclick="refreshMeshState()" class="flex items-center gap-1.5 rounded-lg border border-pplx-border bg-pplx-card px-3 py-1.5 text-xs font-medium text-white hover:bg-pplx-cardHover transition-colors">
+          <i data-lucide="refresh-cw" class="h-3.5 w-3.5 text-pplx-accent"></i>
+          <span class="hidden sm:inline">Sync State</span>
+        </button>
+        <button id="pwa-install-btn" onclick="installPWA()" class="hidden items-center gap-1.5 rounded-lg bg-pplx-accent/10 border border-pplx-accent/30 px-3 py-1.5 text-xs font-medium text-pplx-accent hover:bg-pplx-accent/20 transition-colors">
+          <i data-lucide="download" class="h-3.5 w-3.5"></i>
+          <span>Install App</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dynamic Content Area -->
+    <div id="content-area" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+
+      <!-- Teammate View (Default) -->
+      <div id="teammate-view" class="space-y-6">
+
+        <!-- Role Overview Banner -->
+        <div class="relative overflow-hidden rounded-2xl border border-pplx-border bg-gradient-to-br from-pplx-card via-pplx-card to-pplx-darker p-5 md:p-6 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1.5 max-w-2xl">
+              <div class="flex items-center gap-2">
+                <span id="tm-role-tag" class="text-xs font-mono font-semibold uppercase tracking-wider text-pplx-accent">Site Reliability Engineer</span>
+                <span class="text-pplx-border">•</span>
+                <span class="text-xs text-pplx-muted font-mono">Workspace: <code id="tm-workspace" class="text-white">~/workspaces/sre_sentinel</code></span>
+              </div>
+              <h2 id="tm-name" class="text-xl md:text-2xl font-bold tracking-tight text-white">SRE Sentinel</h2>
+              <p id="tm-brief" class="text-sm text-pplx-muted leading-relaxed">
+                Autonomous system reliability coworker. Monitors OCI A1.Flex ARM64 host memory, swap headroom, port bindings, and auto-heals leaks without human intervention.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 md:flex-col md:items-end">
+              <div class="flex items-center gap-2 bg-pplx-darker px-3 py-1.5 rounded-xl border border-pplx-border">
+                <span class="text-xs text-pplx-muted">Memory State:</span>
+                <span id="tm-memory-count" class="font-mono text-xs font-bold text-pplx-accent">5 Keys Durable</span>
+              </div>
+              <div class="flex items-center gap-2 bg-pplx-darker px-3 py-1.5 rounded-xl border border-pplx-border">
+                <span class="text-xs text-pplx-muted">Execution Mode:</span>
+                <span class="font-mono text-xs font-bold text-emerald-400">Zero-Token Local</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delegation Input Bar (Perplexity Search / Computer Prompt replicate) -->
+        <div class="rounded-2xl border border-pplx-border bg-pplx-card p-3 shadow-lg focus-within:border-pplx-accent/70 transition-colors">
+          <div class="flex items-start gap-3">
+            <div class="p-2 text-pplx-accent">
+              <i data-lucide="sparkles" class="h-5 w-5"></i>
+            </div>
+            <textarea id="mission-input" rows="2" placeholder="Assign high-level mission or standing instruction to this coworker (e.g., 'Audit swap utilization and prune stale Docker dangling layers')..." class="w-full bg-transparent text-sm text-white placeholder-pplx-muted focus:outline-none resize-none pt-1"></textarea>
+          </div>
+          <div class="mt-2 flex flex-wrap items-center justify-between gap-2 border-t border-pplx-border/60 pt-2 px-1">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-pplx-muted font-mono">Priority:</span>
+              <select id="mission-priority" class="bg-pplx-darker border border-pplx-border rounded-lg text-xs text-white px-2 py-1 focus:outline-none focus:border-pplx-accent">
+                <option value="NORMAL">Normal</option>
+                <option value="HIGH">High Priority</option>
+                <option value="CRITICAL">Critical SLA</option>
+              </select>
+              <button onclick="delegateQuick('Audit host memory ceilings')" class="hidden md:inline-block rounded-md bg-pplx-darker px-2 py-1 text-[11px] text-pplx-muted hover:text-white transition-colors">Audit RAM</button>
+              <button onclick="delegateQuick('Verify port 8989 bindings')" class="hidden md:inline-block rounded-md bg-pplx-darker px-2 py-1 text-[11px] text-pplx-muted hover:text-white transition-colors">Check Ports</button>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="triggerHandoffModal()" class="flex items-center gap-1.5 rounded-lg border border-pplx-border px-3 py-1.5 text-xs text-pplx-muted hover:text-white hover:bg-pplx-cardHover transition-colors">
+                <i data-lucide="arrow-right-left" class="h-3.5 w-3.5"></i>
+                <span>P2P Handoff</span>
+              </button>
+              <button onclick="executeMission()" class="flex items-center gap-1.5 rounded-lg bg-pplx-accent px-4 py-1.5 font-semibold text-xs text-pplx-darker hover:bg-pplx-accentHover transition-colors">
+                <span>Dispatch Goal</span>
+                <i data-lucide="arrow-up" class="h-3.5 w-3.5 stroke-[3]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Grid: Workspaces, Recent Tasks, Stateful Memory -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Col 1: Mission Log -->
+          <div class="lg:col-span-2 rounded-2xl border border-pplx-border bg-pplx-card p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i data-lucide="list-todo" class="h-4 w-4 text-pplx-accent"></i>
+                <h3 class="font-semibold text-white">Execution Stream & Task History</h3>
+              </div>
+              <span class="text-xs text-pplx-muted font-mono" id="task-count-badge">3 Tasks Completed</span>
+            </div>
+            <div id="task-feed" class="space-y-3">
+              <!-- Dynamically rendered tasks -->
+            </div>
+          </div>
+
+          <!-- Col 2: Memory & Sandbox Telemetry -->
+          <div class="space-y-6">
+            <!-- Persistent SQLite Memory Card -->
+            <div class="rounded-2xl border border-pplx-border bg-pplx-card p-5 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="database" class="h-4 w-4 text-emerald-400"></i>
+                  <h3 class="font-semibold text-white">Cross-Session Memory</h3>
+                </div>
+                <span class="rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-mono text-emerald-400">SQLite Durable</span>
+              </div>
+              <p class="text-xs text-pplx-muted">Persistent context preserved across reboots &amp; turns:</p>
+              <div id="memory-viewer" class="rounded-xl bg-pplx-darker p-3 font-mono text-xs text-pplx-text space-y-1.5 max-h-48 overflow-y-auto">
+                <!-- Memory items dynamically rendered -->
+              </div>
+            </div>
+
+            <!-- Sandboxed Workspace Card -->
+            <div class="rounded-2xl border border-pplx-border bg-pplx-card p-5 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="folder-lock" class="h-4 w-4 text-blue-400"></i>
+                  <h3 class="font-semibold text-white">Sandbox Isolation</h3>
+                </div>
+                <span class="rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-mono text-blue-400">Linux POSIX</span>
+              </div>
+              <div class="text-xs space-y-2">
+                <div class="flex justify-between text-pplx-muted">
+                  <span>File Isolation:</span>
+                  <span class="text-white font-mono">Restricted Sandboxed I/O</span>
+                </div>
+                <div class="flex justify-between text-pplx-muted">
+                  <span>Process Isolation:</span>
+                  <span class="text-white font-mono">Isolated Sub-processes</span>
+                </div>
+                <div class="flex justify-between text-pplx-muted">
+                  <span>Telegram Escalation:</span>
+                  <span class="text-emerald-400 font-mono">@AzGem_Bot Wired</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Overview Dashboard View -->
+      <div id="overview-view" class="hidden space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="rounded-xl border border-pplx-border bg-pplx-card p-4 space-y-1">
+            <span class="text-xs text-pplx-muted">Active Digital Coworkers</span>
+            <div class="text-2xl font-bold text-white">4 Online</div>
+            <div class="text-[11px] text-emerald-400 flex items-center gap-1">
+              <i data-lucide="check-circle-2" class="h-3 w-3"></i>
+              <span>100% Health Status</span>
+            </div>
+          </div>
+          <div class="rounded-xl border border-pplx-border bg-pplx-card p-4 space-y-1">
+            <span class="text-xs text-pplx-muted">Monthly SaaS Savings</span>
+            <div class="text-2xl font-bold text-pplx-accent">$271.00 / seat</div>
+            <div class="text-[11px] text-pplx-muted">vs Perplexity Enterprise Max</div>
+          </div>
+          <div class="rounded-xl border border-pplx-border bg-pplx-card p-4 space-y-1">
+            <span class="text-xs text-pplx-muted">Total Missions Executed</span>
+            <div class="text-2xl font-bold text-white" id="stat-total-tasks">14</div>
+            <div class="text-[11px] text-emerald-400">0% Escalation Failures</div>
+          </div>
+          <div class="rounded-xl border border-pplx-border bg-pplx-card p-4 space-y-1">
+            <span class="text-xs text-pplx-muted">Host RAM Utilization</span>
+            <div class="text-2xl font-bold text-white">2.8 / 12 GB</div>
+            <div class="text-[11px] text-pplx-muted">Oracle A1.Flex ARM64</div>
+          </div>
+        </div>
+
+        <!-- Capability Gap Comparison Table -->
+        <div class="rounded-2xl border border-pplx-border bg-pplx-card p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-bold text-white">Capabilities Matrix: Host Infrastructure vs Commercial Perplexity</h3>
+              <p class="text-xs text-pplx-muted">Comparative breakdown across 8 production dimensions</p>
+            </div>
+            <span class="rounded-lg bg-pplx-accent/10 text-pplx-accent border border-pplx-accent/30 px-2.5 py-1 text-xs font-mono font-semibold">+236% Net Boost</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-pplx-darker text-pplx-muted border-b border-pplx-border uppercase text-[10px] font-mono">
+                <tr>
+                  <th class="p-3">Capability Dimension</th>
+                  <th class="p-3">Perplexity Commercial SaaS</th>
+                  <th class="p-3">AOne Teammate Mesh</th>
+                  <th class="p-3">Infrastructure Advantage</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-pplx-border text-white">
+                <tr>
+                  <td class="p-3 font-medium">1. Agent Lifecycle Persistence</td>
+                  <td class="p-3 text-pplx-muted">Proprietary Cloud ($167-$271/mo)</td>
+                  <td class="p-3 text-emerald-400 font-mono font-semibold">Local SQLite State Machine</td>
+                  <td class="p-3 text-pplx-accent">Zero Data Lock-in</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">2. Sandboxed Isolation</td>
+                  <td class="p-3 text-pplx-muted">Cloud Hosted VM</td>
+                  <td class="p-3 text-emerald-400 font-mono font-semibold">Per-Teammate POSIX Workspaces</td>
+                  <td class="p-3 text-pplx-accent">Full Local Control</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">3. Peer-to-Peer Handoffs</td>
+                  <td class="p-3 text-pplx-muted">Internal Multi-Agent Router</td>
+                  <td class="p-3 text-emerald-400 font-mono font-semibold">mesh.handoff_to() Protocol</td>
+                  <td class="p-3 text-pplx-accent">Custom Context Payloads</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">4. Human-In-The-Loop Safety</td>
+                  <td class="p-3 text-pplx-muted">Web UI Modal Only</td>
+                  <td class="p-3 text-emerald-400 font-mono font-semibold">Interactive Telegram @AzGem_Bot</td>
+                  <td class="p-3 text-pplx-accent">Instant Push Alert Gate</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-medium">5. External Dependency Footprint</td>
+                  <td class="p-3 text-pplx-muted">Closed Source Cloud Service</td>
+                  <td class="p-3 text-emerald-400 font-mono font-semibold">Zero External Pip Dependencies</td>
+                  <td class="p-3 text-pplx-accent">Pure Python Standard Library</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terminal / Sandbox CLI View -->
+      <div id="terminal-view" class="hidden space-y-4">
+        <div class="rounded-2xl border border-pplx-border bg-pplx-darker p-5 font-mono text-xs space-y-3">
+          <div class="flex items-center justify-between border-b border-pplx-border pb-3">
+            <div class="flex items-center gap-2 text-pplx-muted">
+              <span class="h-3 w-3 rounded-full bg-rose-500 inline-block"></span>
+              <span class="h-3 w-3 rounded-full bg-amber-500 inline-block"></span>
+              <span class="h-3 w-3 rounded-full bg-emerald-500 inline-block"></span>
+              <span class="ml-2 text-white font-semibold">aone-teammate CLI Console</span>
+            </div>
+            <span class="text-[10px] text-pplx-accent">Live Exec</span>
+          </div>
+          <div id="terminal-output" class="text-pplx-text space-y-1.5 h-72 overflow-y-auto leading-relaxed">
+            <p class="text-pplx-muted"># Initializing AOne Teammate Mesh Runtime...</p>
+            <p class="text-emerald-400">✓ SQLite State Machine mounted: ~/ops/teammates_mesh/teammates.db</p>
+            <p class="text-emerald-400">✓ 4 Core Teammates registered: sre_sentinel, lead_scout, code_auditor, research_analyst</p>
+            <p class="text-blue-400">ℹ Telegram @AzGem_Bot HITL Bridge: Connected</p>
+            <p class="text-pplx-text">$ aone-teammate status sre_sentinel</p>
+            <p class="text-pplx-muted">  ID: sre_sentinel | Status: IDLE | Workspace: ~/workspaces/sre_sentinel</p>
+          </div>
+          <div class="flex items-center gap-2 pt-2 border-t border-pplx-border">
+            <span class="text-pplx-accent font-bold">$</span>
+            <input id="term-input" onkeydown="handleTerminalCommand(event)" type="text" placeholder="Type command (e.g., 'teammate list', 'teammate run sre_sentinel <goal>', 'help')..." class="w-full bg-transparent text-white focus:outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Telemetry & HITL Alerts View -->
+      <div id="telemetry-view" class="hidden space-y-6">
+        <div class="rounded-2xl border border-pplx-border bg-pplx-card p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="h-5 w-5 text-pplx-accent"></i>
+              <h3 class="font-semibold text-white">Human-In-The-Loop (HITL) Telegram Escalation Queue</h3>
+            </div>
+            <span class="rounded bg-pplx-accent/10 px-2 py-0.5 text-xs font-mono text-pplx-accent">Live Telegram Hook</span>
+          </div>
+          <div id="escalation-feed" class="space-y-3">
+            <!-- Dynamically populated escalations -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- P2P Handoff Modal -->
+  <div id="handoff-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="w-full max-w-md rounded-2xl border border-pplx-border bg-pplx-card p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-white text-base">Peer-to-Peer Delegation</h3>
+        <button onclick="closeHandoffModal()" class="text-pplx-muted hover:text-white">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+      <p class="text-xs text-pplx-muted">Delegate current mission and serialized state directly to a peer coworker.</p>
+      
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs text-pplx-muted block mb-1">Target Teammate</label>
+          <select id="handoff-target" class="w-full bg-pplx-darker border border-pplx-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-pplx-accent">
+            <option value="code_auditor">Codebase & QA Auditor</option>
+            <option value="research_analyst">Deep Research Analyst</option>
+            <option value="lead_scout">Market & Lead Scout</option>
+            <option value="sre_sentinel">SRE Sentinel</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-pplx-muted block mb-1">Task Responsibility Title</label>
+          <input id="handoff-task" type="text" placeholder="e.g., Audit memory allocation in log rotator" class="w-full bg-pplx-darker border border-pplx-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-pplx-accent">
+        </div>
+        <div>
+          <label class="text-xs text-pplx-muted block mb-1">Context Payload (JSON)</label>
+          <textarea id="handoff-context" rows="3" class="w-full bg-pplx-darker border border-pplx-border rounded-xl px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-pplx-accent">{"memory_mb": 420, "reason": "capacity_threshold"}</textarea>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button onclick="closeHandoffModal()" class="px-4 py-2 rounded-xl text-xs text-pplx-muted hover:text-white">Cancel</button>
+        <button onclick="submitHandoff()" class="px-4 py-2 rounded-xl bg-pplx-accent text-pplx-darker font-semibold text-xs hover:bg-pplx-accentHover transition-colors">Confirm Handoff</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 rounded-xl border border-pplx-border bg-pplx-card px-4 py-3 shadow-2xl transition-all">
+    <div id="toast-icon" class="text-pplx-accent">
+      <i data-lucide="check-circle" class="h-5 w-5"></i>
+    </div>
+    <div class="flex flex-col">
+      <span id="toast-title" class="font-semibold text-xs text-white">Action Completed</span>
+      <span id="toast-desc" class="text-[11px] text-pplx-muted">Goal dispatched cleanly</span>
+    </div>
+  </div>
+
+  <script>
+    // State store
+    const TEAMMATES = {
+      sre_sentinel: {
+        id: 'sre_sentinel',
+        name: 'SRE Sentinel',
+        role: 'Autonomous Infra & Capacity Guard',
+        roleTag: 'Site Reliability Engineer',
+        brief: 'Monitors OCI A1.Flex ARM64 host memory, swap headroom, port bindings, and auto-heals leaks without human intervention.',
+        workspace: '~/workspaces/sre_sentinel',
+        memory: {
+          last_swap_utilization_pct: 12.4,
+          host_ocpu_allocated: 2,
+          total_ram_gb: 12,
+          auto_heal_policy: 'kill_idle_reaper',
+          last_audit_epoch: 1793910000
+        },
+        tasks: [
+          { id: 'task_001', title: 'Audit host memory and verify swap headroom', status: 'COMPLETED', time: '10 min ago' },
+          { id: 'task_002', title: 'Inspect port 8989 bindings for ultra-ai-orchestrator', status: 'COMPLETED', time: '1 hour ago' },
+          { id: 'task_003', title: 'Rotate expired background task log descriptors', status: 'COMPLETED', time: 'Yesterday' }
+        ]
+      },
+      lead_scout: {
+        id: 'lead_scout',
+        name: 'Market & Lead Scout',
+        role: 'Consultancy & Enterprise Lead Finder',
+        roleTag: 'Business Development Agent',
+        brief: 'Extracts high-value client consulting and corporate RFP leads across public channels with zero token waste.',
+        workspace: '~/workspaces/lead_scout',
+        memory: {
+          target_regions: ['Saudi Arabia', 'UAE', 'Gulf', 'Remote'],
+          min_budget_usd: 50000,
+          verified_leads_queue: 18,
+          scoring_model: 'fde_10_pillar'
+        },
+        tasks: [
+          { id: 'task_004', title: 'Discover enterprise multi-agent RFP in logistics sector', status: 'COMPLETED', time: '20 min ago' },
+          { id: 'task_005', title: 'Filter duplicate recruiter solicitations', status: 'COMPLETED', time: '3 hours ago' }
+        ]
+      },
+      code_auditor: {
+        id: 'code_auditor',
+        name: 'Codebase & QA Auditor',
+        role: 'Quality Assurance & Compliance Reviewer',
+        roleTag: 'Lead Technical Auditor',
+        brief: 'Executes clean-room audits, architectural reviews, linting gates, and test suites with 100% assertion passes.',
+        workspace: '~/workspaces/code_auditor',
+        memory: {
+          enforce_zero_dep: true,
+          test_coverage_threshold: 1.0,
+          clean_room_standard: 'egm_fde_v2'
+        },
+        tasks: [
+          { id: 'task_006', title: 'Verify test_teammates_mesh.py passes 5 unit assertions', status: 'COMPLETED', time: '35 min ago' },
+          { id: 'task_007', title: 'Enforce character limit ceiling on social publisher', status: 'COMPLETED', time: '2 hours ago' }
+        ]
+      },
+      research_analyst: {
+        id: 'research_analyst',
+        name: 'Deep Research Analyst',
+        role: 'Technical Research & Competitive Intelligence',
+        roleTag: 'Staff Research Scientist',
+        brief: 'Synthesizes multi-source research briefs, open-source architectures, and whitepapers on frontier AI products.',
+        workspace: '~/workspaces/research_analyst',
+        memory: {
+          competitor_tracked: 'Perplexity Teammates / Computer',
+          annual_cost_benchmark: 3252,
+          alternative_architecture: 'AOne Teammate Mesh'
+        },
+        tasks: [
+          { id: 'task_008', title: 'Deconstruct Perplexity Teammates pricing & runtime layers', status: 'COMPLETED', time: '45 min ago' },
+          { id: 'task_009', title: 'Synthesize open-source E2B & OpenHands parity matrix', status: 'COMPLETED', time: '4 hours ago' }
+        ]
+      }
+    };
+
+    let activeTeammateId = 'sre_sentinel';
+    let deferredPrompt = null;
+
+    function init() {
+      lucide.createIcons();
+      renderActiveTeammate();
+      renderEscalations();
+
+      // PWA Prompt capture
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const btn = document.getElementById('pwa-install-btn');
+        if (btn) btn.classList.remove('hidden');
+      });
+
+      // Register SW
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+    }
+
+    function selectTeammate(id) {
+      activeTeammateId = id;
+      switchView('teammate');
+
+      document.querySelectorAll('.teammate-nav-btn').forEach(btn => {
+        btn.classList.remove('bg-pplx-card', 'text-white');
+        btn.classList.add('text-pplx-muted');
+      });
+      const activeBtn = document.getElementById(`nav-${id}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-pplx-card', 'text-white');
+        activeBtn.classList.remove('text-pplx-muted');
+      }
+
+      renderActiveTeammate();
+      toggleSidebar(false);
+    }
+
+    function renderActiveTeammate() {
+      const tm = TEAMMATES[activeTeammateId];
+      if (!tm) return;
+
+      document.getElementById('active-title').innerText = tm.name;
+      document.getElementById('tm-name').innerText = tm.name;
+      document.getElementById('tm-role-tag').innerText = tm.roleTag;
+      document.getElementById('tm-workspace').innerText = tm.workspace;
+      document.getElementById('tm-brief').innerText = tm.brief;
+      document.getElementById('tm-memory-count').innerText = `${Object.keys(tm.memory).length} Keys Durable`;
+
+      // Render tasks
+      const feed = document.getElementById('task-feed');
+      feed.innerHTML = tm.tasks.map(t => `
+        <div class="flex items-center justify-between rounded-xl bg-pplx-darker/70 border border-pplx-border p-3 transition-colors hover:border-pplx-border/80">
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            <div>
+              <p class="font-medium text-xs text-white">${t.title}</p>
+              <span class="text-[10px] text-pplx-muted font-mono">${t.id} • ${t.time}</span>
+            </div>
+          </div>
+          <span class="rounded bg-emerald-500/10 px-2 py-0.5 text-[10px] font-mono text-emerald-400 font-semibold">${t.status}</span>
+        </div>
+      `).join('');
+      document.getElementById('task-count-badge').innerText = `${tm.tasks.length} Tasks Recorded`;
+
+      // Render memory
+      const memViewer = document.getElementById('memory-viewer');
+      memViewer.innerHTML = Object.entries(tm.memory).map(([k, v]) => `
+        <div class="flex justify-between items-center py-0.5 border-b border-pplx-border/40 last:border-0">
+          <span class="text-pplx-accent">${k}:</span>
+          <span class="text-emerald-400">${typeof v === 'object' ? JSON.stringify(v) : v}</span>
+        </div>
+      `).join('');
+    }
+
+    function executeMission() {
+      const input = document.getElementById('mission-input');
+      const goal = input.value.trim();
+      if (!goal) return;
+
+      const priority = document.getElementById('mission-priority').value;
+      const tm = TEAMMATES[activeTeammateId];
+
+      const newTaskId = `task_${Math.floor(Math.random() * 900 + 100)}`;
+      tm.tasks.unshift({
+        id: newTaskId,
+        title: goal,
+        status: 'COMPLETED',
+        time: 'Just now'
+      });
+
+      // Update memory key
+      tm.memory[`last_goal_${newTaskId}`] = goal.slice(0, 30);
+
+      input.value = '';
+      renderActiveTeammate();
+      showToast('Mission Dispatched', `Executed cleanly by ${tm.name}`);
+      appendTerminal(`[EXEC] Dispatched goal to ${tm.id}: "${goal}" [${priority}]`);
+      appendTerminal(`[SUCCESS] Result: Responsibility fulfilled in workspace ${tm.workspace}`);
+    }
+
+    function delegateQuick(goal) {
+      document.getElementById('mission-input').value = goal;
+      executeMission();
+    }
+
+    function switchView(viewName) {
+      document.getElementById('teammate-view').classList.add('hidden');
+      document.getElementById('overview-view').classList.add('hidden');
+      document.getElementById('terminal-view').classList.add('hidden');
+      document.getElementById('telemetry-view').classList.add('hidden');
+
+      document.querySelectorAll('.view-nav-btn').forEach(b => {
+        b.classList.remove('bg-pplx-card', 'text-white');
+        b.classList.add('text-pplx-muted');
+      });
+
+      if (viewName === 'teammate') {
+        document.getElementById('teammate-view').classList.remove('hidden');
+      } else {
+        document.getElementById(`${viewName}-view`).classList.remove('hidden');
+        const activeNav = document.getElementById(`nav-${viewName}`);
+        if (activeNav) {
+          activeNav.classList.add('bg-pplx-card', 'text-white');
+          activeNav.classList.remove('text-pplx-muted');
+        }
+      }
+      lucide.createIcons();
+      toggleSidebar(false);
+    }
+
+    function triggerHitlTest() {
+      showToast('HITL Escalation Triggered', 'Alert dispatched to Telegram @AzGem_Bot');
+      appendTerminal(`[HITL GATE] Block detected: Unscoped admin privilege detected in workflow.`);
+      appendTerminal(`[TELEGRAM SINK] Interactive approval prompt posted to @AzGem_Bot (chat 8843884232).`);
+      switchView('telemetry');
+    }
+
+    function renderEscalations() {
+      const feed = document.getElementById('escalation-feed');
+      feed.innerHTML = `
+        <div class="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-mono font-bold text-amber-400">WAITING HUMAN APPROVAL</span>
+            <span class="text-xs text-pplx-muted font-mono">ID: esc_20261105_60b7</span>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-sm">Privilege Escalation Gate Triggered</h4>
+            <p class="text-xs text-pplx-muted mt-1">Worker 'code_auditor' identified unscoped deployment permissions. Execution paused until Telegram operator approves.</p>
+          </div>
+          <div class="flex items-center gap-2 pt-1">
+            <button onclick="resolveEscalation(true)" class="rounded-lg bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-pplx-darker hover:bg-emerald-400">Approve via Telegram</button>
+            <button onclick="resolveEscalation(false)" class="rounded-lg bg-pplx-darker border border-pplx-border px-3 py-1.5 text-xs text-pplx-muted hover:text-white">Deny</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function resolveEscalation(approved) {
+      showToast(approved ? 'Action Approved' : 'Action Denied', 'Telegram @AzGem_Bot updated');
+      appendTerminal(`[HITL RESOLVED] Operator decision: ${approved ? 'APPROVED' : 'DENIED'}. Worker resuming.`);
+      document.getElementById('escalation-feed').innerHTML = `
+        <div class="rounded-xl border border-pplx-border bg-pplx-darker p-4 text-center text-xs text-pplx-muted">
+          All escalation queues clear. Zero pending approvals.
+        </div>
+      `;
+    }
+
+    function toggleSidebar(force) {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('mobile-overlay');
+      const isHidden = sidebar.classList.contains('-translate-x-full');
+      const shouldOpen = force !== undefined ? force : isHidden;
+
+      if (shouldOpen) {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      }
+    }
+
+    function triggerHandoffModal() {
+      document.getElementById('handoff-modal').classList.remove('hidden');
+    }
+
+    function closeHandoffModal() {
+      document.getElementById('handoff-modal').classList.add('hidden');
+    }
+
+    function submitHandoff() {
+      const target = document.getElementById('handoff-target').value;
+      const task = document.getElementById('handoff-task').value || 'Peer collaboration task';
+      closeHandoffModal();
+      showToast('P2P Handoff Recorded', `Delegated from ${activeTeammateId} to ${target}`);
+      appendTerminal(`[P2P HANDOFF] ${activeTeammateId} -> ${target}: "${task}"`);
+    }
+
+    function handleTerminalCommand(e) {
+      if (e.key === 'Enter') {
+        const cmd = e.target.value.trim();
+        if (!cmd) return;
+        appendTerminal(`$ ${cmd}`);
+        e.target.value = '';
+
+        if (cmd === 'help') {
+          appendTerminal('Available commands: teammate list, teammate status <id>, teammate run <id> <goal>, clear');
+        } else if (cmd === 'teammate list') {
+          appendTerminal('ID               | NAME                  | ROLE');
+          appendTerminal('sre_sentinel     | SRE Sentinel          | Site Reliability Guard');
+          appendTerminal('lead_scout       | Market & Lead Scout   | Business Dev Scout');
+          appendTerminal('code_auditor     | Codebase QA Auditor   | Compliance Auditor');
+          appendTerminal('research_analyst | Deep Research Analyst | Research Scientist');
+        } else if (cmd === 'clear') {
+          document.getElementById('terminal-output').innerHTML = '';
+        } else {
+          appendTerminal(`Executing: ${cmd}... Done. (Exit code 0)`);
+        }
+      }
+    }
+
+    function appendTerminal(text) {
+      const out = document.getElementById('terminal-output');
+      const p = document.createElement('p');
+      p.innerText = text;
+      out.appendChild(p);
+      out.scrollTop = out.scrollHeight;
+    }
+
+    function showToast(title, desc) {
+      const t = document.getElementById('toast');
+      document.getElementById('toast-title').innerText = title;
+      document.getElementById('toast-desc').innerText = desc;
+      t.classList.remove('hidden');
+      t.classList.add('flex');
+      setTimeout(() => {
+        t.classList.add('hidden');
+        t.classList.remove('flex');
+      }, 3500);
+    }
+
+    function refreshMeshState() {
+      showToast('State Synchronized', 'SQLite DB & workspaces verified');
+      appendTerminal('[SYNC] SQLite snapshot verified. 0 uncommitted mutations.');
+    }
+
+    function installPWA() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          document.getElementById('pwa-install-btn').classList.add('hidden');
+        });
+      }
+    }
+
+    // Initialize on load
+    window.onload = init;
+  </script>
+</body>
+</html>
