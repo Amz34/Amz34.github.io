@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Dhuyuf ar-Rahman | Haramain Hospitality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #faf8f4;
+      --card: #ffffff;
+      --ink: #161e19;
+      --ink-soft: #2d3830;
+      --muted: #647368;
+      --line: #e3ded2;
+      --line-strong: #c8c0af;
+      --emerald: #14462e;
+      --emerald-dark: #0d2f1f;
+      --emerald-tint: #edf4f0;
+      --emerald-hover: #1b5b3c;
+      --gold: #b38838;
+      --gold-dark: #8e6822;
+      --gold-tint: #faf4e6;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-arabic: 'Amiri', serif;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Sacred Top Banner */
+    .sacred-ribbon {
+      background: var(--gold-tint);
+      border-bottom: 1px solid #ebd9b8;
+      color: var(--gold-dark);
+      font-family: var(--font-arabic);
+      font-size: 17px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .sacred-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      opacity: 0.85;
+    }
+
+    /* Container */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+      max-width: 680px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Card styling */
+    .card-container {
+      width: 100%;
+      position: relative;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 24px rgba(20, 70, 46, 0.04), 0 1px 4px rgba(0,0,0,0.02);
+      display: none;
+      animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      width: 100%;
+      height: 4px;
+      background: var(--line);
+      border-radius: 2px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--emerald) 100%);
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    /* Typography */
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--emerald);
+      background: var(--emerald-tint);
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    p.lead {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Form Inputs */
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 15px;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      background: #fdfdfc;
+      color: var(--ink);
+      font-family: var(--font-body);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 3px rgba(20, 70, 46, 0.12);
+      background: #ffffff;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 540px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
+      h1 { font-size: 22px; }
+      h2 { font-size: 19px; }
+    }
+
+    /* Choice Cards / Pills */
+    .choice-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fdfdfc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      user-select: none;
+    }
+
+    .choice-card:hover {
+      border-color: var(--emerald);
+      background: var(--emerald-tint);
+    }
+
+    .choice-card.selected {
+      border-color: var(--emerald);
+      background: var(--emerald-tint);
+      box-shadow: 0 0 0 1px var(--emerald);
+    }
+
+    .choice-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .choice-text strong {
+      display: block;
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .choice-text span {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Checkbox list */
+    .check-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fdfdfc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      user-select: none;
+    }
+
+    .check-card:hover {
+      border-color: var(--emerald);
+      background: var(--emerald-tint);
+    }
+
+    .check-card.checked {
+      border-color: var(--emerald);
+      background: var(--emerald-tint);
+    }
+
+    .custom-check {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--line-strong);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .check-card.checked .custom-check {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: white;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--emerald-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      font-size: 16px;
+      padding: 16px 28px;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+      border-radius: 12px;
+      width: 100%;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb956;
+      transform: translateY(-1px);
+    }
+
+    /* Summary confirmation box */
+    .summary-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 14px;
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .summary-val {
+      color: var(--ink);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .error-msg {
+      color: #b91c1c;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sacred Banner -->
+  <div class="sacred-ribbon">
+    <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+    <span class="sacred-sub">• Dhuyuf ar-Rahman Hospitality • Makkah al-Mukarramah</span>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="card-container">
+      
+      <!-- Progress Line -->
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- CARD 0: Heartfelt Welcome -->
+      <div class="card active" id="card-0">
+        <div class="step-pill">Sacred Welcome</div>
+        <h1>Welcome, Honored Guest of Allah</h1>
+        <p class="lead">
+          Serving the pilgrims visiting the Two Holy Mosques is our deepest blessing and duty. My home and family in Makkah are open to welcome and host you sincerely with no commercial agenda.
+        </p>
+
+        <div class="choice-stack">
+          <div class="choice-card" style="cursor: default; background: var(--gold-tint); border-color: #ebd9b8;">
+            <div class="choice-icon">🤲</div>
+            <div class="choice-text">
+              <strong>Personal Hosting & Hospitality</strong>
+              <span>Overnight home stay, airport & train station pickup, home-cooked meals, and personal Umrah & Rawdah guidance.</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 24px;">
+          Please share a few brief details about your upcoming journey so I can prepare to receive you and your family.
+        </p>
+
+        <div class="btn-row" style="justify-content: flex-end;">
+          <button class="btn btn-primary" onclick="nextCard(0, 1)">
+            Begin Hospitality Request →
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 1: Name & Where they are traveling from -->
+      <div class="card" id="card-1">
+        <div class="step-pill">Step 1 of 5 • Guest Information</div>
+        <h2>Who is visiting us?</h2>
+        <p class="lead">Please share your name and the city or country you will be journeying from.</p>
+
+        <div class="input-group">
+          <label for="q_name">Your Full Name *</label>
+          <input type="text" id="q_name" placeholder="e.g. Ibrahim Al-Mansoor" required>
+          <div class="error-msg" id="err-1">Please enter your name.</div>
+        </div>
+
+        <div class="input-group">
+          <label for="q_country">City & Country Traveling From *</label>
+          <input type="text" id="q_country" placeholder="e.g. London, UK / Hyderabad, India / Toronto, Canada" required>
+          <div class="error-msg" id="err-1b">Please tell us where you are traveling from.</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(1, 0)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep1()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: Travel Dates -->
+      <div class="card" id="card-2">
+        <div class="step-pill">Step 2 of 5 • Journey Dates</div>
+        <h2>When are you arriving?</h2>
+        <p class="lead">Share your approximate dates in the Holy Lands so we can coordinate your hosting.</p>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="q_arrival">Estimated Arrival Date *</label>
+            <input type="date" id="q_arrival" required>
+            <div class="error-msg" id="err-2a">Please select an arrival date.</div>
+          </div>
+          <div class="input-group">
+            <label for="q_departure">Estimated Departure Date *</label>
+            <input type="date" id="q_departure" required>
+            <div class="error-msg" id="err-2b">Please select a departure date.</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(2, 1)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep2()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Party Type & Count -->
+      <div class="card" id="card-3">
+        <div class="step-pill">Step 3 of 5 • Traveling Companions</div>
+        <h2>Who will be traveling with you?</h2>
+        <p class="lead">This helps us ensure proper, comfortable family accommodation and space.</p>
+
+        <div class="choice-stack">
+          <div class="choice-card" onclick="selectParty('Solo Brother', this)">
+            <div class="choice-icon">👤</div>
+            <div class="choice-text">
+              <strong>Solo Brother</strong>
+              <span>Traveling alone on pilgrimage</span>
+            </div>
+          </div>
+          <div class="choice-card" onclick="selectParty('Couple / Family with Children', this)">
+            <div class="choice-icon">👨‍👩‍👧‍👦</div>
+            <div class="choice-text">
+              <strong>Family / Couple</strong>
+              <span>Traveling with spouse, parents, or children</span>
+            </div>
+          </div>
+          <div class="choice-card" onclick="selectParty('Group of Friends / Pilgrims', this)">
+            <div class="choice-icon">👥</div>
+            <div class="choice-text">
+              <strong>Group of Pilgrims</strong>
+              <span>Traveling together in a group</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group" style="max-width: 260px;">
+          <label for="q_count">Total Number of People in Party</label>
+          <select id="q_count">
+            <option value="1">1 Person</option>
+            <option value="2">2 People</option>
+            <option value="3">3 People</option>
+            <option value="4">4 People</option>
+            <option value="5+">5+ People</option>
+          </select>
+        </div>
+
+        <div class="error-msg" id="err-3" style="margin-bottom: 12px;">Please select who is traveling with you.</div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(3, 2)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep3()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: Hospitality Needs -->
+      <div class="card" id="card-4">
+        <div class="step-pill">Step 4 of 5 • Hospitality Support</div>
+        <h2>How may we host and assist you?</h2>
+        <p class="lead">Select everything you would appreciate having during your stay (select all that apply):</p>
+
+        <div class="choice-stack">
+          <div class="check-card" onclick="toggleNeed('Overnight Home Lodging in Makkah', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Overnight Home Lodging in Makkah</strong>
+              <span>A peaceful, clean family home stay during your days in Makkah</span>
+            </div>
+          </div>
+
+          <div class="check-card" onclick="toggleNeed('Airport or Haramain Train Station Pickup', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Airport / Train Station Pickup</strong>
+              <span>Personal pickup from Jeddah (JED) Airport or Makkah Train Station</span>
+            </div>
+          </div>
+
+          <div class="check-card" onclick="toggleNeed('Home-Cooked Family Meals & Qahwa', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Home-Cooked Meals & Arabic Coffee</strong>
+              <span>Join our family table for authentic home meals, tea, and hospitality</span>
+            </div>
+          </div>
+
+          <div class="check-card" onclick="toggleNeed('Personal Umrah, Rawdah & Ziyarah Guidance', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Umrah, Rawdah & Ziyarah Guidance</strong>
+              <span>Local advice to avoid crowds, Nusuk app support, and sacred sites visits</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(4, 3)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep4()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- CARD 5: WhatsApp & Note -->
+      <div class="card" id="card-5">
+        <div class="step-pill">Step 5 of 5 • Direct Connection</div>
+        <h2>How can Brother Aamir reach you?</h2>
+        <p class="lead">Please provide your WhatsApp number so we can coordinate your arrival directly.</p>
+
+        <div class="input-group">
+          <label for="q_phone">WhatsApp Phone Number (with Country Code) *</label>
+          <input type="tel" id="q_phone" placeholder="e.g. +44 7911 123456 or +91 98765 43210" required>
+          <div class="error-msg" id="err-5">Please enter a valid phone number with country code.</div>
+        </div>
+
+        <div class="input-group">
+          <label for="q_note">Any special notes, flight info, or du'a requests (Optional)</label>
+          <textarea id="q_note" rows="3" placeholder="Tell us if you have elderly family members, specific arrival times, or anything else..."></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(5, 4)">← Back</button>
+          <button class="btn btn-primary" id="submitBtn" onclick="submitHospitality()">
+            Complete & Connect with Brother Aamir →
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 6: Confirmation & Fast-Track WhatsApp -->
+      <div class="card" id="card-6">
+        <div style="font-size: 42px; margin-bottom: 12px; color: var(--emerald);">🤲</div>
+        <div class="step-pill" style="background: #e8f7ee; color: #15803d;">Received with Honor</div>
+        <h2>Jazakum Allahu Khairan, <span id="conf_name"></span>!</h2>
+        <p class="lead" style="margin-bottom: 16px;">
+          Your hospitality request has been submitted directly to <strong>Brother Aamir</strong>. May Allah make your journey easy and accepted.
+        </p>
+
+        <div class="summary-box">
+          <div class="summary-row">
+            <span class="summary-label">Guest & Origin</span>
+            <span class="summary-val" id="sum_name_origin"></span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Estimated Dates</span>
+            <span class="summary-val" id="sum_dates"></span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Party</span>
+            <span class="summary-val" id="sum_party"></span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Hospitality Desired</span>
+            <span class="summary-val" id="sum_needs" style="max-width: 280px;"></span>
+          </div>
+        </div>
+
+        <p style="font-size: 14px; color: var(--ink-soft); font-weight: 500; margin-bottom: 16px;">
+          You can also tap below to open WhatsApp directly with Brother Aamir with your details pre-filled:
+        </p>
+
+        <a id="waDirectBtn" href="#" target="_blank" class="btn btn-whatsapp">
+          💬 Open WhatsApp to Message Brother Aamir
+        </a>
+
+        <div style="margin-top: 24px;">
+          <button class="btn btn-secondary" onclick="restartForm()">Submit Another Journey Request</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div style="max-width: 680px; margin: 0 auto;">
+      <p style="margin-bottom: 6px; font-weight: 600; color: var(--emerald);">Khadim Dhuyuf ar-Rahman • Hospitality in the Two Holy Mosques</p>
+      <p>This is a sincere, non-commercial personal hosting initiative in honor of the pilgrims of Allah.</p>
+    </div>
+  </footer>
+
+  <script>
+    const state = {
+      full_name: '',
+      country: '',
+      arrival_date: '',
+      departure_date: '',
+      party_type: '',
+      guest_count: '1',
+      needs: [],
+      phone: '',
+      note: ''
+    };
+
+    function updateProgress(step) {
+      const bar = document.getElementById('progressBar');
+      const percentage = (step / 5) * 100;
+      bar.style.width = Math.min(percentage, 100) + '%';
+    }
+
+    function showCard(id) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      const target = document.getElementById('card-' + id);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function nextCard(from, to) {
+      showCard(to);
+      updateProgress(to);
+    }
+
+    function prevCard(from, to) {
+      showCard(to);
+      updateProgress(to);
+    }
+
+    function handleStep1() {
+      const name = document.getElementById('q_name').value.trim();
+      const country = document.getElementById('q_country').value.trim();
+      let hasErr = false;
+
+      if (!name) {
+        document.getElementById('err-1').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-1').style.display = 'none';
+      }
+
+      if (!country) {
+        document.getElementById('err-1b').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-1b').style.display = 'none';
+      }
+
+      if (hasErr) return;
+
+      state.full_name = name;
+      state.country = country;
+      nextCard(1, 2);
+    }
+
+    function handleStep2() {
+      const arr = document.getElementById('q_arrival').value;
+      const dep = document.getElementById('q_departure').value;
+      let hasErr = false;
+
+      if (!arr) {
+        document.getElementById('err-2a').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-2a').style.display = 'none';
+      }
+
+      if (!dep) {
+        document.getElementById('err-2b').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-2b').style.display = 'none';
+      }
+
+      if (hasErr) return;
+
+      state.arrival_date = arr;
+      state.departure_date = dep;
+      nextCard(2, 3);
+    }
+
+    function selectParty(type, el) {
+      state.party_type = type;
+      document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('err-3').style.display = 'none';
+    }
+
+    function handleStep3() {
+      if (!state.party_type) {
+        document.getElementById('err-3').style.display = 'block';
+        return;
+      }
+      state.guest_count = document.getElementById('q_count').value;
+      nextCard(3, 4);
+    }
+
+    function toggleNeed(item, el) {
+      el.classList.toggle('checked');
+      if (el.classList.contains('checked')) {
+        if (!state.needs.includes(item)) state.needs.push(item);
+      } else {
+        state.needs = state.needs.filter(n => n !== item);
+      }
+    }
+
+    function handleStep4() {
+      nextCard(4, 5);
+    }
+
+    async function submitHospitality() {
+      const phone = document.getElementById('q_phone').value.trim();
+      if (!phone || phone.length < 7) {
+        document.getElementById('err-5').style.display = 'block';
+        return;
+      }
+      document.getElementById('err-5').style.display = 'none';
+      state.phone = phone;
+      state.note = document.getElementById('q_note').value.trim();
+
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = 'Submitting...';
+      btn.disabled = true;
+
+      const needsText = state.needs.length ? state.needs.map(n => `  • ${n}`).join('\n') : '  • General hospitality & advice';
+      const tgMessage = 
+        `🕋 *New Guest of the Haramain (Dhuyuf ar-Rahman)*\n\n` +
+        `👤 *Guest:* ${state.full_name}\n` +
+        `🌍 *Traveling from:* ${state.country}\n` +
+        `🗓 *Dates:* ${state.arrival_date} → ${state.departure_date}\n` +
+        `👥 *Party:* ${state.party_type} (${state.guest_count} guest${state.guest_count !== '1' ? 's' : ''})\n\n` +
+        `🤝 *Hospitality Requested:*\n${needsText}\n\n` +
+        `📱 *WhatsApp:* \`${state.phone}\`\n` +
+        (state.note ? `💬 *Note / Du'a:* ${state.note}\n\n` : '') +
+        `🌐 *Submitted via:* amz34.github.io/haramain/`;
+
+      // 1. Direct Telegram Notification via Bot API
+      try {
+        await fetch('https://api.telegram.org/bot8821683733:AAH-YsOdr5XkSwmvm6Vekcpq72fkWCeimWk/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: '8843884232',
+            text: tgMessage,
+            parse_mode: 'Markdown'
+          })
+        });
+      } catch (err) {
+        console.warn('Telegram notice:', err);
+      }
+
+      // Also try local API if accessible
+      try {
+        await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state)
+        });
+      } catch (_) {}
+
+      // 2. Populate confirmation card
+      document.getElementById('conf_name').innerText = state.full_name;
+      document.getElementById('sum_name_origin').innerText = `${state.full_name} (${state.country})`;
+      document.getElementById('sum_dates').innerText = `${state.arrival_date} to ${state.departure_date}`;
+      document.getElementById('sum_party').innerText = `${state.party_type} (${state.guest_count})`;
+      document.getElementById('sum_needs').innerText = state.needs.length ? state.needs.join(', ') : 'General hospitality & advice';
+
+      // 3. Format WhatsApp link
+      const waNeeds = state.needs.length ? state.needs.map(n => `- ${n}`).join('\n') : '- General hospitality & advice';
+      const waText = encodeURIComponent(
+        `Assalamu Alaikum Brother Aamir,\n\n` +
+        `This is ${state.full_name} from ${state.country}.\n` +
+        `I have submitted a journey request to be hosted in Makkah:\n\n` +
+        `🗓 Dates: ${state.arrival_date} to ${state.departure_date}\n` +
+        `👥 Party: ${state.party_type} (${state.guest_count})\n` +
+        `🤝 Support needed:\n${waNeeds}\n\n` +
+        (state.note ? `💬 Note: ${state.note}\n\n` : '') +
+        `Looking forward to connecting!`
+      );
+
+      const waBtn = document.getElementById('waDirectBtn');
+      waBtn.href = `https://wa.me/966574268856?text=${waText}`;
+
+      showCard(6);
+      updateProgress(5);
+    }
+
+    function restartForm() {
+      showCard(0);
+      updateProgress(0);
+      document.getElementById('submitBtn').innerText = 'Complete & Connect with Brother Aamir →';
+      document.getElementById('submitBtn').disabled = false;
+    }
+  </script>
+</body>
+</html>
