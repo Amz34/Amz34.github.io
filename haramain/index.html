@@ -6,24 +6,24 @@
   <title>Welcome Dhuyuf ar-Rahman | Haramain Hospitality</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #faf8f4;
       --card: #ffffff;
-      --ink: #161e19;
-      --ink-soft: #2d3830;
-      --muted: #647368;
-      --line: #e3ded2;
-      --line-strong: #c8c0af;
-      --emerald: #14462e;
-      --emerald-dark: #0d2f1f;
-      --emerald-tint: #edf4f0;
-      --emerald-hover: #1b5b3c;
-      --gold: #b38838;
-      --gold-dark: #8e6822;
-      --gold-tint: #faf4e6;
-      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ink: #141c17;
+      --ink-soft: #28332b;
+      --muted: #536257;
+      --line: #ded8cb;
+      --line-strong: #bfb7a3;
+      --emerald: #113d28;
+      --emerald-dark: #0a2619;
+      --emerald-tint: #ecf3ef;
+      --emerald-hover: #175236;
+      --gold: #a67c2e;
+      --gold-dark: #7a5818;
+      --gold-tint: #fbf5e8;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-arabic: 'Amiri', serif;
       --font-display: 'Space Grotesk', system-ui, sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
@@ -39,33 +39,43 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* Sacred Top Banner */
     .sacred-ribbon {
       background: var(--gold-tint);
-      border-bottom: 1px solid #ebd9b8;
+      border-bottom: 1.5px solid #ebd9b8;
       color: var(--gold-dark);
-      font-family: var(--font-arabic);
-      font-size: 17px;
-      padding: 10px 16px;
+      padding: 14px 20px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       position: sticky;
       top: 0;
       z-index: 100;
       text-align: center;
     }
 
+    .sacred-arabic {
+      font-family: var(--font-arabic);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
     .sacred-sub {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--gold-dark);
-      opacity: 0.85;
+      font-weight: 600;
+      opacity: 0.9;
     }
 
     /* Container */
@@ -75,8 +85,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 28px 16px;
-      max-width: 680px;
+      padding: 36px 20px;
+      max-width: 740px;
       margin: 0 auto;
       width: 100%;
     }
@@ -89,10 +99,10 @@
 
     .card {
       background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 36px 32px;
-      box-shadow: 0 4px 24px rgba(20, 70, 46, 0.04), 0 1px 4px rgba(0,0,0,0.02);
+      border: 1.5px solid var(--line);
+      border-radius: 22px;
+      padding: 44px 38px;
+      box-shadow: 0 6px 30px rgba(17, 61, 40, 0.05), 0 2px 6px rgba(0,0,0,0.02);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -102,17 +112,17 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Progress bar */
     .progress-wrap {
       width: 100%;
-      height: 4px;
+      height: 6px;
       background: var(--line);
-      border-radius: 2px;
-      margin-bottom: 24px;
+      border-radius: 3px;
+      margin-bottom: 28px;
       overflow: hidden;
     }
 
@@ -123,62 +133,63 @@
       transition: width 0.35s ease;
     }
 
-    /* Typography */
+    /* Typography - Extra Large & High Visibility */
     .step-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 13px;
       color: var(--emerald);
       background: var(--emerald-tint);
-      padding: 4px 10px;
-      border-radius: 20px;
+      padding: 6px 14px;
+      border-radius: 30px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-      margin-bottom: 14px;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid rgba(17, 61, 40, 0.15);
     }
 
     h1 {
       font-family: var(--font-display);
-      font-size: 26px;
-      line-height: 1.3;
+      font-size: 34px;
+      line-height: 1.25;
       color: var(--ink);
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
 
     h2 {
       font-family: var(--font-display);
-      font-size: 22px;
-      line-height: 1.35;
+      font-size: 28px;
+      line-height: 1.3;
       color: var(--ink);
       font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      letter-spacing: -0.015em;
     }
 
     p.lead {
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 24px;
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 28px;
     }
 
-    /* Form Inputs */
+    /* Form Inputs - Extra Large Touch Targets */
     .input-group {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-align: left;
     }
 
     label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--ink-soft);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     input[type="text"],
@@ -187,14 +198,14 @@
     textarea,
     select {
       width: 100%;
-      padding: 14px 16px;
-      font-size: 15px;
-      border: 1.5px solid var(--line);
-      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 18px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
       background: #fdfdfc;
       color: var(--ink);
       font-family: var(--font-body);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
 
     input:focus,
@@ -202,38 +213,46 @@
     select:focus {
       outline: none;
       border-color: var(--emerald);
-      box-shadow: 0 0 0 3px rgba(20, 70, 46, 0.12);
+      box-shadow: 0 0 0 4px rgba(17, 61, 40, 0.14);
       background: #ffffff;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 20px;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 600px) {
+      body { font-size: 16px; }
       .grid-2 { grid-template-columns: 1fr; }
-      .card { padding: 24px 20px; }
-      h1 { font-size: 22px; }
-      h2 { font-size: 19px; }
+      .card { padding: 30px 22px; border-radius: 18px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 23px; }
+      p.lead { font-size: 16px; margin-bottom: 22px; }
+      .sacred-arabic { font-size: 20px; }
+      .sacred-sub { font-size: 11px; }
+      input[type="text"], input[type="tel"], input[type="date"], textarea, select {
+        padding: 14px 16px;
+        font-size: 16px;
+      }
     }
 
-    /* Choice Cards / Pills */
+    /* Choice Cards - Large, Tactile & Hospitable */
     .choice-stack {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
     .choice-card {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 16px 18px;
-      border: 1.5px solid var(--line);
-      border-radius: 12px;
+      gap: 18px;
+      padding: 20px 22px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
       background: #fdfdfc;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -249,36 +268,38 @@
     .choice-card.selected {
       border-color: var(--emerald);
       background: var(--emerald-tint);
-      box-shadow: 0 0 0 1px var(--emerald);
+      box-shadow: 0 0 0 2px var(--emerald);
     }
 
     .choice-icon {
-      font-size: 22px;
+      font-size: 30px;
       line-height: 1;
+      flex-shrink: 0;
     }
 
     .choice-text strong {
       display: block;
-      font-size: 15px;
+      font-size: 18px;
       color: var(--ink);
-      font-weight: 600;
-      margin-bottom: 2px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
     .choice-text span {
       display: block;
-      font-size: 13px;
+      font-size: 15px;
       color: var(--muted);
+      line-height: 1.5;
     }
 
-    /* Checkbox list */
+    /* Checkbox list - Large Touch targets */
     .check-card {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 16px 18px;
-      border: 1.5px solid var(--line);
-      border-radius: 12px;
+      gap: 16px;
+      padding: 18px 22px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
       background: #fdfdfc;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -297,10 +318,10 @@
     }
 
     .custom-check {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--line-strong);
-      border-radius: 6px;
+      width: 26px;
+      height: 26px;
+      border: 2.5px solid var(--line-strong);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -308,91 +329,102 @@
       flex-shrink: 0;
       transition: all 0.2s;
       background: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      color: transparent;
     }
 
     .check-card.checked .custom-check {
       background: var(--emerald);
       border-color: var(--emerald);
-      color: white;
+      color: #ffffff;
     }
 
-    /* Buttons */
+    /* Buttons - Extra Large & Accessible */
     .btn-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 13px 24px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 10px;
+      gap: 10px;
+      padding: 16px 28px;
+      font-size: 17px;
+      font-weight: 700;
+      border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
       border: none;
       font-family: var(--font-body);
     }
 
     .btn-primary {
       background: var(--emerald);
-      color: white;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(17, 61, 40, 0.2);
     }
 
     .btn-primary:hover {
       background: var(--emerald-hover);
       transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(17, 61, 40, 0.25);
     }
 
     .btn-secondary {
       background: transparent;
       color: var(--muted);
-      border: 1px solid var(--line);
+      border: 2px solid var(--line);
     }
 
     .btn-secondary:hover {
       color: var(--ink);
       border-color: var(--line-strong);
+      background: #f7f5ef;
     }
 
     .btn-whatsapp {
-      background: #25D366;
-      color: white;
-      font-size: 16px;
-      padding: 16px 28px;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-      border-radius: 12px;
+      background: #1f9d55;
+      color: #ffffff;
+      font-size: 19px;
+      font-weight: 700;
+      padding: 20px 32px;
+      box-shadow: 0 6px 20px rgba(31, 157, 85, 0.28);
+      border-radius: 14px;
       width: 100%;
+      text-align: center;
     }
 
     .btn-whatsapp:hover {
-      background: #1eb956;
+      background: #178345;
       transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(31, 157, 85, 0.35);
     }
 
     /* Summary confirmation box */
     .summary-box {
       background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
       text-align: left;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
-      padding: 8px 0;
+      align-items: flex-start;
+      padding: 10px 0;
       border-bottom: 1px dashed var(--line);
-      font-size: 14px;
+      font-size: 16px;
+      gap: 16px;
     }
 
     .summary-row:last-child {
@@ -401,29 +433,31 @@
 
     .summary-label {
       color: var(--muted);
-      font-weight: 500;
+      font-weight: 600;
+      flex-shrink: 0;
     }
 
     .summary-val {
       color: var(--ink);
-      font-weight: 600;
+      font-weight: 700;
       text-align: right;
     }
 
     .error-msg {
       color: #b91c1c;
-      font-size: 13px;
-      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 8px;
       display: none;
     }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 24px 16px;
-      font-size: 12px;
+      padding: 32px 20px;
+      font-size: 14px;
       color: var(--muted);
-      border-top: 1px solid var(--line);
+      border-top: 1.5px solid var(--line);
       background: var(--paper);
     }
   </style>
@@ -432,7 +466,7 @@
 
   <!-- Top Sacred Banner -->
   <div class="sacred-ribbon">
-    <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+    <span class="sacred-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
     <span class="sacred-sub">• Dhuyuf ar-Rahman Hospitality • Makkah al-Mukarramah</span>
   </div>
 
@@ -457,12 +491,12 @@
             <div class="choice-icon">🤲</div>
             <div class="choice-text">
               <strong>Personal Hosting & Hospitality</strong>
-              <span>Overnight home stay, airport & train station pickup, home-cooked meals, and personal Umrah & Rawdah guidance.</span>
+              <span>Overnight home stay in Makkah, airport & Haramain train station pickup, home-cooked family meals, and personal Umrah & Rawdah guidance.</span>
             </div>
           </div>
         </div>
 
-        <p style="font-size: 13px; color: var(--muted); margin-bottom: 24px;">
+        <p style="font-size: 16px; color: var(--muted); margin-bottom: 28px; line-height: 1.6;">
           Please share a few brief details about your upcoming journey so I can prepare to receive you and your family.
         </p>
 
@@ -552,7 +586,7 @@
           </div>
         </div>
 
-        <div class="input-group" style="max-width: 260px;">
+        <div class="input-group" style="max-width: 320px;">
           <label for="q_count">Total Number of People in Party</label>
           <select id="q_count">
             <option value="1">1 Person</option>
@@ -563,7 +597,7 @@
           </select>
         </div>
 
-        <div class="error-msg" id="err-3" style="margin-bottom: 12px;">Please select who is traveling with you.</div>
+        <div class="error-msg" id="err-3" style="margin-bottom: 14px;">Please select who is traveling with you.</div>
 
         <div class="btn-row">
           <button class="btn btn-secondary" onclick="prevCard(3, 2)">← Back</button>
@@ -644,10 +678,10 @@
 
       <!-- CARD 6: Confirmation & Fast-Track WhatsApp -->
       <div class="card" id="card-6">
-        <div style="font-size: 42px; margin-bottom: 12px; color: var(--emerald);">🤲</div>
-        <div class="step-pill" style="background: #e8f7ee; color: #15803d;">Received with Honor</div>
+        <div style="font-size: 48px; margin-bottom: 14px; color: var(--emerald);">🤲</div>
+        <div class="step-pill" style="background: #e8f7ee; color: #15803d; border-color: #86efac;">Received with Honor</div>
         <h2>Jazakum Allahu Khairan, <span id="conf_name"></span>!</h2>
-        <p class="lead" style="margin-bottom: 16px;">
+        <p class="lead" style="margin-bottom: 20px;">
           Your hospitality request has been submitted directly to <strong>Brother Aamir</strong>. May Allah make your journey easy and accepted.
         </p>
 
@@ -666,11 +700,11 @@
           </div>
           <div class="summary-row">
             <span class="summary-label">Hospitality Desired</span>
-            <span class="summary-val" id="sum_needs" style="max-width: 280px;"></span>
+            <span class="summary-val" id="sum_needs" style="max-width: 320px;"></span>
           </div>
         </div>
 
-        <p style="font-size: 14px; color: var(--ink-soft); font-weight: 500; margin-bottom: 16px;">
+        <p style="font-size: 16px; color: var(--ink-soft); font-weight: 600; margin-bottom: 20px;">
           You can also tap below to open WhatsApp directly with Brother Aamir with your details pre-filled:
         </p>
 
@@ -678,7 +712,7 @@
           💬 Open WhatsApp to Message Brother Aamir
         </a>
 
-        <div style="margin-top: 24px;">
+        <div style="margin-top: 28px;">
           <button class="btn btn-secondary" onclick="restartForm()">Submit Another Journey Request</button>
         </div>
       </div>
@@ -687,8 +721,8 @@
   </div>
 
   <footer>
-    <div style="max-width: 680px; margin: 0 auto;">
-      <p style="margin-bottom: 6px; font-weight: 600; color: var(--emerald);">Khadim Dhuyuf ar-Rahman • Hospitality in the Two Holy Mosques</p>
+    <div style="max-width: 740px; margin: 0 auto;">
+      <p style="margin-bottom: 8px; font-weight: 700; font-size: 15px; color: var(--emerald);">Khadim Dhuyuf ar-Rahman • Hospitality in the Two Holy Mosques</p>
       <p>This is a sincere, non-commercial personal hosting initiative in honor of the pilgrims of Allah.</p>
     </div>
   </footer>
