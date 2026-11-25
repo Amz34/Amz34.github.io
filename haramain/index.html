@@ -32,7 +32,9 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--paper);
+      background: 
+        linear-gradient(180deg, rgba(250, 248, 244, 0.90) 0%, rgba(247, 244, 237, 0.93) 35%, rgba(244, 240, 232, 0.96) 100%),
+        url('makkah_bg.jpg') center top / cover no-repeat fixed;
       color: var(--ink);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -98,11 +100,13 @@
     }
 
     .card {
-      background: var(--card);
-      border: 1.5px solid var(--line);
-      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(222, 216, 203, 0.85);
+      border-radius: 24px;
       padding: 44px 38px;
-      box-shadow: 0 6px 30px rgba(17, 61, 40, 0.05), 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 12px 40px rgba(17, 61, 40, 0.08), 0 2px 8px rgba(0,0,0,0.03);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -483,21 +487,21 @@
         <div class="step-pill">Sacred Welcome</div>
         <h1>Welcome, Honored Guest of Allah</h1>
         <p class="lead">
-          Serving the pilgrims visiting the Two Holy Mosques is our deepest blessing and duty. My home and family in Makkah are open to welcome and host you sincerely with no commercial agenda.
+          Serving the pilgrims visiting the Two Holy Mosques is our deepest blessing and honor. As local residents living here in Makkah, we are here to assist you with genuine hotel options near the Haram, arrival transit, and sincere hospitality with zero commercial agenda.
         </p>
 
         <div class="choice-stack">
           <div class="choice-card" style="cursor: default; background: var(--gold-tint); border-color: #ebd9b8;">
-            <div class="choice-icon">🤲</div>
+            <div class="choice-icon">🕋</div>
             <div class="choice-text">
-              <strong>Personal Hosting & Hospitality</strong>
-              <span>Overnight home stay in Makkah, airport & Haramain train station pickup, home-cooked family meals, and personal Umrah & Rawdah guidance.</span>
+              <strong>Direct Haram Hotel Guidance & Hospitality</strong>
+              <span>Transparent advice on genuine, un-inflated hotel bookings within walking distance of the Kaaba, arrival assistance, and authentic local hospitality.</span>
             </div>
           </div>
         </div>
 
         <p style="font-size: 16px; color: var(--muted); margin-bottom: 28px; line-height: 1.6;">
-          Please share a few brief details about your upcoming journey so I can prepare to receive you and your family.
+          Please share a few brief details about your upcoming journey so I can coordinate assistance and prepare to welcome your family.
         </p>
 
         <div class="btn-row" style="justify-content: flex-end;">
@@ -515,13 +519,13 @@
 
         <div class="input-group">
           <label for="q_name">Your Full Name *</label>
-          <input type="text" id="q_name" placeholder="e.g. Ibrahim Al-Mansoor" required>
+          <input type="text" id="q_name" placeholder="e.g. Ibrahim Al-Mansoor" autocomplete="off" required>
           <div class="error-msg" id="err-1">Please enter your name.</div>
         </div>
 
         <div class="input-group">
           <label for="q_country">City & Country Traveling From *</label>
-          <input type="text" id="q_country" placeholder="e.g. London, UK / Hyderabad, India / Toronto, Canada" required>
+          <input type="text" id="q_country" placeholder="e.g. London, UK / Hyderabad, India / Toronto, Canada" autocomplete="off" required>
           <div class="error-msg" id="err-1b">Please tell us where you are traveling from.</div>
         </div>
 
@@ -540,12 +544,12 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="q_arrival">Estimated Arrival Date *</label>
-            <input type="date" id="q_arrival" required>
+            <input type="date" id="q_arrival" autocomplete="off" required>
             <div class="error-msg" id="err-2a">Please select an arrival date.</div>
           </div>
           <div class="input-group">
             <label for="q_departure">Estimated Departure Date *</label>
-            <input type="date" id="q_departure" required>
+            <input type="date" id="q_departure" autocomplete="off" required>
             <div class="error-msg" id="err-2b">Please select a departure date.</div>
           </div>
         </div>
@@ -612,11 +616,11 @@
         <p class="lead">Select everything you would appreciate having during your stay (select all that apply):</p>
 
         <div class="choice-stack">
-          <div class="check-card" onclick="toggleNeed('Overnight Home Lodging in Makkah', this)">
+          <div class="check-card" onclick="toggleNeed('Nearby Haram Hotel Booking & Fair Pricing Support', this)">
             <div class="custom-check">✓</div>
             <div class="choice-text">
-              <strong>Overnight Home Lodging in Makkah</strong>
-              <span>A peaceful, clean family home stay during your days in Makkah</span>
+              <strong>Nearby Haram Hotel Booking & Fair Pricing Support</strong>
+              <span>Guidance on verified hotels within steps of the Haram courtyard—navigating genuine local rates, elder-accessible towers, and avoiding booking traps</span>
             </div>
           </div>
 
@@ -659,13 +663,13 @@
 
         <div class="input-group">
           <label for="q_phone">WhatsApp Phone Number (with Country Code) *</label>
-          <input type="tel" id="q_phone" placeholder="e.g. +44 7911 123456 or +91 98765 43210" required>
+          <input type="tel" id="q_phone" placeholder="e.g. +44 7911 123456 or +91 98765 43210" autocomplete="off" required>
           <div class="error-msg" id="err-5">Please enter a valid phone number with country code.</div>
         </div>
 
         <div class="input-group">
           <label for="q_note">Any special notes, flight info, or du'a requests (Optional)</label>
-          <textarea id="q_note" rows="3" placeholder="Tell us if you have elderly family members, specific arrival times, or anything else..."></textarea>
+          <textarea id="q_note" rows="3" placeholder="Tell us if you have elderly family members, specific arrival times, or anything else..." autocomplete="off"></textarea>
         </div>
 
         <div class="btn-row">
@@ -923,12 +927,51 @@
       updateProgress(5);
     }
 
+    function resetFormState() {
+      state.full_name = '';
+      state.country = '';
+      state.arrival_date = '';
+      state.departure_date = '';
+      state.party_type = '';
+      state.guest_count = '1';
+      state.needs = [];
+      state.phone = '';
+      state.note = '';
+
+      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_note'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+
+      const countEl = document.getElementById('q_count');
+      if (countEl) countEl.value = '1';
+
+      document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('#card-4 .check-card').forEach(c => c.classList.remove('checked'));
+      document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+
+      const submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) {
+        submitBtn.innerText = 'Complete & Connect with Brother Aamir →';
+        submitBtn.disabled = false;
+      }
+    }
+
     function restartForm() {
+      resetFormState();
       showCard(0);
       updateProgress(0);
-      document.getElementById('submitBtn').innerText = 'Complete & Connect with Brother Aamir →';
-      document.getElementById('submitBtn').disabled = false;
     }
+
+    // Always ensure fresh, clean inputs on initial load and back/forward navigation
+    window.addEventListener('DOMContentLoaded', () => {
+      resetFormState();
+    });
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        resetFormState();
+      }
+    });
   </script>
 </body>
 </html>
