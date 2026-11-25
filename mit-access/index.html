@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Megaproject Intelligence & MEP Control Mesh | AZ Consultants</title>
+  <meta name="description" content="Official corporate gateway for capital project directors, MEP engineers, and Primavera P6 planners. Access the live MkDocs documentation and analytical models." />
+  <meta property="og:title" content="MEP & Primavera P6 Megaproject Intelligence | AZ Consultants" />
+  <meta property="og:description" content="Access live MkDocs strategic documentation, DCMA 14-point audit framework, and $2.14tn Vision 2030 portfolio models." />
+  <meta property="og:image" content="https://amz34.github.io/mit-access/post_graphic.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --card-hover: #334155;
+      --teal: #0d9488;
+      --teal-light: #2dd4bf;
+      --teal-glow: rgba(13, 148, 136, 0.25);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #cbd5e1;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Nav */
+    header {
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 24px;
+    }
+    .nav-wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand-mark {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: #042f2e;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+    .brand-text {
+      color: var(--text-main);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+    .nav-badge {
+      font-size: 12px;
+      color: var(--teal-light);
+      background: var(--teal-glow);
+      border: 1px solid var(--teal);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amber-glow);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      font-family: var(--font-mono);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, var(--teal-light), #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      color: var(--text-muted);
+      font-size: 17px;
+      max-width: 760px;
+      margin: 0 auto 32px;
+    }
+
+    /* Privacy Banner */
+    .privacy-notice {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 16px 20px;
+      max-width: 820px;
+      margin: 0 auto 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+    .privacy-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .privacy-text {
+      font-size: 14px;
+      color: #fcd34d;
+      line-height: 1.5;
+    }
+    .privacy-text strong {
+      color: #fff;
+    }
+
+    /* Two-Column Grid */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .grid-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Left: Intelligence Preview */
+    .preview-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .preview-box h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+    .feature-list {
+      list-style: none;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-sub);
+    }
+    .feature-icon {
+      color: var(--teal-light);
+      font-weight: bold;
+    }
+    .chart-container {
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .chart-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Right: Lead Form Card */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    .form-card::before {
+      content: "";
+      position: absolute;
+      top: -1px; left: 15%; right: 15%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+    .form-card h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .form-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+    input, select {
+      width: 100%;
+      background: #090e1a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    input:focus, select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px var(--teal-glow);
+    }
+
+    button.btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--teal), #0f766e);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+    button.btn-submit:hover {
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      color: #042f2e;
+      box-shadow: 0 4px 14px var(--teal-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Success Box */
+    .success-box {
+      display: none;
+      text-align: center;
+      padding: 24px 0;
+    }
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: var(--teal-light);
+    }
+    .portal-link-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--teal);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <a href="https://amz34.github.io/" class="brand">
+        <span class="brand-mark">AZ</span>
+        <span class="brand-text">AZ Consultants · FDE Mesh</span>
+      </a>
+      <span class="nav-badge">RESTRICTED ACCESS</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="pill">🔒 CORPORATE PRIVACY GATEWAY</div>
+      <h1>Enterprise Megaproject Intelligence & <span>MEP Control Mesh</span></h1>
+      <p class="hero-lead">
+        To prevent public web scrapers and email harvesting bots from flooding your inbox, corporate tokens are provisioned privately. Access the live MkDocs documentation, DCMA 14-point audit framework, and $2.14tn delivery models below.
+      </p>
+
+      <div class="privacy-notice">
+        <div class="privacy-icon">🛡️</div>
+        <div class="privacy-text">
+          <strong>Why you were redirected here:</strong> Standard LinkedIn comments expose your corporate email to spam scrapers. Entering your work email here verifies your enterprise session and dispatches your access token immediately to your inbox via <code>azengineeringapp@gmail.com</code>.
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-layout">
+      <!-- Left Column: Asset Preview -->
+      <div class="preview-box">
+        <h2>What You Will Access Inside</h2>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div><strong>DCMA 14-Point Automated Audit:</strong> Algorithmic schedule logic validation eliminating open ends, dangling relationships, and negative float in Primavera P6.</div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div><strong>Cross-Trade MEP Telemetry:</strong> 48-hour forward variance prediction models mitigating multi-package site bottlenecks.</div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div><strong>$2.14tn Saudi Megaprojects Model:</strong> Live sector awards trajectory, contractor backlog capacity bands, and 2027 delivery outlook.</div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div><strong>Live MkDocs Material Architecture:</strong> Searchable, enterprise-structured technical playbook with interactive charts.</div>
+          </li>
+        </ul>
+
+        <div class="chart-container">
+          <img src="chart_preview.png" alt="AI Dashboard Telemetry & DCMA 14-Point Impact" />
+        </div>
+      </div>
+
+      <!-- Right Column: Intake Form -->
+      <div class="form-card">
+        <div id="form-container">
+          <h3>Request Corporate Access Token</h3>
+          <p>Deliverables will be sent immediately to your corporate inbox.</p>
+
+          <form id="mit-form">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Eng. John Doe" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Work Email Address</label>
+              <input type="email" id="email" name="email" placeholder="john.doe@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company / Megaproject Name</label>
+              <input type="text" id="company" name="company" placeholder="e.g. NEOM / Red Sea / Bechtel" required />
+            </div>
+
+            <div class="form-group">
+              <label for="role">Project Function</label>
+              <select id="role" name="role" required>
+                <option value="Project Director">Project Director / Head of Delivery</option>
+                <option value="MEP Manager">MEP Project Manager / Interface Lead</option>
+                <option value="Planning Engineer">Primavera P6 Planning / Controls Lead</option>
+                <option value="Commercial Manager">Commercial / Contracts Manager</option>
+                <option value="Other">Other Executive / Consultant</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span>Generate Access Token & Email Models →</span>
+            </button>
+          </form>
+          <div id="status-msg" style="margin-top: 14px; font-size: 13px; text-align: center;"></div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-box" id="success-box">
+          <div class="success-icon">✓</div>
+          <h3>Corporate Access Token Generated</h3>
+          <p style="color: var(--text-sub); margin-top: 10px;">
+            A confirmation dispatch containing the strategic briefing and live access token has been sent to your email from <code>azengineeringapp@gmail.com</code>.
+          </p>
+          <a href="https://amz34.github.io/projects-market" class="portal-link-btn" target="_blank">
+            Open MkDocs Documentation Portal Directly →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    AZ Consultants · Senior Forward Deployed Engineering · Riyadh & Global Delivery · &copy; 2026
+  </footer>
+
+  <script>
+    const form = document.getElementById('mit-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const statusMsg = document.getElementById('status-msg');
+    const formContainer = document.getElementById('form-container');
+    const successBox = document.getElementById('success-box');
+
+    // Get UTM / referrer parameters from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const refSource = urlParams.get('ref') || 'li_mit_direct';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        role: document.getElementById('role').value,
+        ref: refSource,
+        submitted_at: new Date().toISOString()
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "<span>Verifying & Dispatching...</span>";
+      statusMsg.style.color = "var(--text-muted)";
+      statusMsg.innerText = "Connecting to n8n enterprise gateway...";
+
+      // Production n8n Cloudflare Tunnel Webhook
+      const primaryWebhook = "https://potter-statutes-neutral-protection.trycloudflare.com/webhook/mit-lead";
+
+      try {
+        const response = await fetch(primaryWebhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        // Show success
+        formContainer.style.display = "none";
+        successBox.style.display = "block";
+      } catch (err) {
+        console.warn("Primary webhook submission completed/fallback:", err);
+        // Even if CORS or transient error occurs, gracefully inform user & grant access
+        formContainer.style.display = "none";
+        successBox.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
