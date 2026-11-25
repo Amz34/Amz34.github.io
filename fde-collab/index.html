@@ -10,15 +10,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Official LinkedIn Badge Library -->
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
   <style>
     :root {
       --paper: #faf8f4;
       --card: #ffffff;
       --ink: #141c17;
       --ink-soft: #28332b;
-      --muted: #536257;
-      --line: #ded8cb;
-      --line-strong: #bfb7a3;
+      --muted: #4b5850;
+      --line: #dcd4c3;
+      --line-strong: #b5ac97;
       --emerald: #113d28;
       --emerald-dark: #0a2619;
       --emerald-tint: #ecf3ef;
@@ -26,6 +28,8 @@
       --gold: #a67c2e;
       --gold-dark: #7a5818;
       --gold-tint: #fbf5e8;
+      --linkedin-blue: #0A66C2;
+      --linkedin-hover: #084e96;
       --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-display: 'Space Grotesk', system-ui, sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
@@ -36,7 +40,7 @@
     body {
       background-color: #f2f6f3;
       background-image: 
-        radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 70%),
+        radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.7) 0%, transparent 70%),
         linear-gradient(168deg, #f5f8f5 0%, #ebf2ec 50%, #e2ece4 100%),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23113d28' stroke-width='0.85' stroke-opacity='0.04'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40'/%3E%3Cpath d='M0 0 L80 80 M80 0 L0 80'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='24'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='80' cy='0' r='16'/%3E%3Ccircle cx='0' cy='80' r='16'/%3E%3Ccircle cx='80' cy='80' r='16'/%3E%3C/g%3E%3C/svg%3E");
       color: var(--ink);
@@ -45,6 +49,7 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      font-size: 18px;
     }
 
     /* Top Corporate Ribbon */
@@ -52,12 +57,12 @@
       background: #fbf6ec;
       border-bottom: 1.5px solid #ebd9b8;
       color: var(--gold-dark);
-      padding: 12px 24px;
+      padding: 14px 28px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -66,43 +71,61 @@
 
     .ribbon-title {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .ribbon-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       background: var(--gold);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--gold);
+      box-shadow: 0 0 10px var(--gold);
     }
 
-    .ribbon-gh {
+    .ribbon-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ribbon-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--emerald-dark);
-      background: #ffffff;
-      border: 1px solid #ebd9b8;
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 30px;
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       transition: all 0.2s ease;
     }
 
+    .ribbon-gh {
+      color: var(--emerald-dark);
+      background: #ffffff;
+      border: 1.5px solid #ebd9b8;
+    }
     .ribbon-gh:hover {
       background: var(--emerald-tint);
       border-color: var(--emerald);
       color: var(--emerald);
+    }
+
+    .ribbon-li {
+      color: #ffffff;
+      background: var(--linkedin-blue);
+      border: 1.5px solid var(--linkedin-blue);
+    }
+    .ribbon-li:hover {
+      background: var(--linkedin-hover);
+      border-color: var(--linkedin-hover);
     }
 
     /* Main Container */
@@ -112,8 +135,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 36px 20px;
-      max-width: 760px;
+      padding: 40px 20px;
+      max-width: 820px;
       margin: 0 auto;
       width: 100%;
     }
@@ -125,10 +148,10 @@
 
     .card {
       background: #ffffff;
-      border: 1.5px solid rgba(17, 61, 40, 0.12);
-      border-radius: 24px;
-      padding: 44px 38px;
-      box-shadow: 0 12px 36px rgba(17, 61, 40, 0.07), 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1.5px solid rgba(17, 61, 40, 0.14);
+      border-radius: 28px;
+      padding: 48px 42px;
+      box-shadow: 0 14px 40px rgba(17, 61, 40, 0.08), 0 2px 8px rgba(0, 0, 0, 0.02);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -138,17 +161,17 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Progress bar */
     .progress-wrap {
       width: 100%;
-      height: 6px;
+      height: 8px;
       background: var(--line);
-      border-radius: 3px;
-      margin-bottom: 28px;
+      border-radius: 4px;
+      margin-bottom: 32px;
       overflow: hidden;
     }
 
@@ -163,62 +186,62 @@
     .step-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 14px;
       color: var(--emerald);
       background: var(--emerald-tint);
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 30px;
       text-transform: uppercase;
       letter-spacing: 0.07em;
       font-weight: 700;
-      margin-bottom: 18px;
-      border: 1px solid rgba(17, 61, 40, 0.15);
+      margin-bottom: 22px;
+      border: 1.5px solid rgba(17, 61, 40, 0.15);
     }
 
     h1 {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 38px;
       line-height: 1.25;
       color: var(--ink);
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       letter-spacing: -0.02em;
     }
 
     h2 {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 30px;
       line-height: 1.3;
       color: var(--ink);
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       letter-spacing: -0.015em;
     }
 
     p.lead {
       color: var(--muted);
-      font-size: 17px;
+      font-size: 19px;
       line-height: 1.65;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     /* Tactile Choice Cards */
     .choice-stack {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin-bottom: 32px;
     }
 
     .choice-card {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
+      gap: 18px;
+      padding: 20px 24px;
       border: 2px solid var(--line);
-      border-radius: 16px;
+      border-radius: 18px;
       background: #fdfdfc;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -228,47 +251,47 @@
     .choice-card:hover {
       border-color: var(--emerald);
       background: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(17, 61, 40, 0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(17, 61, 40, 0.08);
     }
 
     .choice-card.selected {
       border-color: var(--emerald);
       background: var(--emerald-tint);
-      box-shadow: 0 0 0 1px var(--emerald);
+      box-shadow: 0 0 0 1.5px var(--emerald);
     }
 
     .choice-icon {
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1;
       padding-top: 2px;
     }
 
     .choice-text strong {
       display: block;
-      font-size: 16px;
+      font-size: 19px;
       color: var(--ink);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .choice-text span {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.5;
     }
 
     /* Form Inputs */
     .input-group {
-      margin-bottom: 22px;
+      margin-bottom: 26px;
       text-align: left;
     }
 
     label {
       display: block;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--ink-soft);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     label span.req {
@@ -282,10 +305,10 @@
     textarea,
     select {
       width: 100%;
-      padding: 15px 18px;
-      font-size: 16px;
+      padding: 16px 20px;
+      font-size: 19px;
       border: 2px solid var(--line);
-      border-radius: 12px;
+      border-radius: 14px;
       background: #fdfdfc;
       color: var(--ink);
       font-family: var(--font-body);
@@ -297,28 +320,27 @@
     select:focus {
       outline: none;
       border-color: var(--emerald);
-      box-shadow: 0 0 0 4px rgba(17, 61, 40, 0.12);
+      box-shadow: 0 0 0 4px rgba(17, 61, 40, 0.14);
       background: #ffffff;
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 130px;
       resize: vertical;
+      line-height: 1.5;
+    }
+
+    .field-hint {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    @media (max-width: 600px) {
-      .grid-2 { grid-template-columns: 1fr; }
-      .card { padding: 30px 20px; border-radius: 18px; }
-      h1 { font-size: 26px; }
-      h2 { font-size: 22px; }
-      p.lead { font-size: 15px; }
-      .choice-card { padding: 14px 16px; }
+      gap: 20px;
     }
 
     /* Buttons */
@@ -326,19 +348,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      margin-top: 28px;
+      gap: 16px;
+      margin-top: 32px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 16px 28px;
-      font-size: 16px;
+      gap: 12px;
+      padding: 18px 32px;
+      font-size: 19px;
       font-weight: 700;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -349,85 +371,93 @@
     .btn-primary {
       background: var(--emerald);
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(17, 61, 40, 0.2);
+      box-shadow: 0 4px 14px rgba(17, 61, 40, 0.25);
     }
 
     .btn-primary:hover {
       background: var(--emerald-hover);
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(17, 61, 40, 0.25);
+      box-shadow: 0 6px 20px rgba(17, 61, 40, 0.32);
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--muted);
+      background: #ffffff;
+      color: var(--ink-soft);
       border: 2px solid var(--line);
     }
 
     .btn-secondary:hover {
-      color: var(--ink);
-      border-color: var(--line-strong);
-      background: #f7f5ef;
+      background: #f5f5f3;
+      border-color: var(--ink-soft);
     }
 
-    .btn-gh-funnel {
-      background: #113d28;
-      color: #ffffff;
-      font-size: 18px;
+    /* Extra Large LinkedIn Subscribe Button (Option 1) */
+    .btn-linkedin-xl {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      background-color: var(--linkedin-blue);
+      color: #ffffff !important;
+      font-family: var(--font-body);
+      font-size: 19px;
       font-weight: 700;
-      padding: 18px 28px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(17, 61, 40, 0.25);
-      width: 100%;
-      text-align: center;
       text-decoration: none;
+      border-radius: 36px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(10, 102, 194, 0.35);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .btn-linkedin-xl:hover {
+      background-color: var(--linkedin-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(10, 102, 194, 0.45);
+    }
+
+    /* GitHub Funnel Button */
+    .btn-gh-funnel {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin-top: 14px;
+      width: 100%;
+      padding: 18px 28px;
+      background: #181717;
+      color: #ffffff !important;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
       transition: all 0.2s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      margin-top: 14px;
     }
 
     .btn-gh-funnel:hover {
-      background: #175236;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(17, 61, 40, 0.35);
+      background: #000000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     }
 
-    /* Privacy Banner */
-    .privacy-box {
-      background: var(--gold-tint);
-      border: 1.5px solid #ebd9b8;
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 24px;
-      font-size: 13px;
-      color: var(--gold-dark);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      line-height: 1.5;
-    }
-
-    /* Summary confirmation box */
+    /* Summary Card Review */
     .summary-box {
       background: var(--paper);
-      border: 1.5px solid var(--line);
-      border-radius: 14px;
-      padding: 22px;
-      margin: 22px 0;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 24px 0;
       text-align: left;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
       padding: 10px 0;
-      border-bottom: 1px dashed var(--line);
-      font-size: 15px;
-      gap: 16px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      font-size: 17px;
     }
 
     .summary-row:last-child {
@@ -435,267 +465,305 @@
     }
 
     .summary-label {
+      font-weight: 700;
       color: var(--muted);
-      font-weight: 600;
-      flex-shrink: 0;
     }
 
     .summary-val {
       color: var(--ink);
-      font-weight: 700;
+      font-weight: 600;
       text-align: right;
     }
 
-    .error-msg {
-      color: #b91c1c;
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 6px;
-      display: none;
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 20px;
+      justify-content: center;
     }
 
-    /* Footer */
+    /* Official LinkedIn Profile Badge Container (Option 2) */
+    .badge-card-wrap {
+      background: #ffffff;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 22px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    .badge-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
     footer {
       text-align: center;
-      padding: 30px 20px;
-      font-size: 13px;
+      padding: 36px 20px;
+      font-size: 15px;
       color: var(--muted);
-      border-top: 1.5px solid rgba(17, 61, 40, 0.1);
-      background: #f4f8f5;
+      border-top: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.4);
+      margin-top: 40px;
+      line-height: 1.8;
     }
 
     footer a {
       color: var(--emerald);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     footer a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .card { padding: 32px 22px; border-radius: 20px; }
+      h1 { font-size: 30px; }
+      h2 { font-size: 24px; }
+      p.lead { font-size: 17px; }
+      .btn { font-size: 17px; padding: 15px 24px; }
+      .btn-linkedin-xl { font-size: 17px; padding: 14px 26px; }
+      .choice-card { padding: 16px 18px; }
+      .corporate-ribbon { padding: 10px 16px; }
     }
   </style>
 </head>
 <body>
 
   <!-- Top Corporate Ribbon -->
-  <div class="corporate-ribbon">
+  <header class="corporate-ribbon">
     <div class="ribbon-title">
-      <span class="ribbon-dot"></span>
-      AZ Consultants &middot; Forward Deployed AI Architecture
+      <div class="ribbon-dot"></div>
+      AZ Engineering · Senior Forward Deployed Infrastructure
     </div>
-    <a href="https://github.com/Amz34" target="_blank" class="ribbon-gh">
-      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-      Aamir Zameer (@Amz34)
-    </a>
-  </div>
+    <div class="ribbon-actions">
+      <!-- One-Click Subscribe on LinkedIn in Ribbon -->
+      <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=aamirzameer" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="ribbon-btn ribbon-li"
+         title="Follow Engr. Aamir Zameer on LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+        </svg>
+        Subscribe on LinkedIn
+      </a>
+      <a href="https://github.com/Amz34" target="_blank" rel="noopener noreferrer" class="ribbon-btn ribbon-gh">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+        github.com/Amz34
+      </a>
+    </div>
+  </header>
 
-  <div class="main-wrapper">
+  <main class="main-wrapper">
     <div class="card-container">
-      
-      <!-- Progress Line -->
+
+      <!-- Progress bar -->
       <div class="progress-wrap">
         <div class="progress-bar" id="progressBar"></div>
       </div>
 
-      <!-- CARD 0: Executive Welcome & Invariants -->
+      <!-- CARD 0: Executive Welcome -->
       <div class="card active" id="card-0">
-        <div class="step-pill">Corporate Briefing &middot; Confidential Intake</div>
-        <h1>Enterprise AI Collaboration Gateway</h1>
+        <div class="step-pill">
+          <span>🛡️</span> Corporate Collaboration Gateway
+        </div>
+        <h1>Forward Deployed AI Engineering & Strategic Architecture</h1>
         <p class="lead">
-          Ninety-five percent of generative AI pilots never reach production due to data drift, token spikes, and fragile downstreams. We partner with ambitious software teams, agencies, and enterprise builders to harden production systems with deterministic evaluation gates.
+          We collaborate with engineering teams, development agencies, and technical executives deploying high-throughput agent systems, deterministic evaluation gates, and enterprise AI infra.
         </p>
 
-        <div class="choice-stack">
-          <div class="choice-card" style="cursor: default; background: var(--emerald-tint); border-color: rgba(17, 61, 40, 0.2);">
-            <div class="choice-icon">🛡️</div>
-            <div class="choice-text">
-              <strong>Deterministic Regression Gates</strong>
-              <span>Automate PROMOTE, REVIEW, or BLOCK gates over live traffic traces and synthetic golden sets before bad payloads escape to downstream users.</span>
-            </div>
-          </div>
-          <div class="choice-card" style="cursor: default; background: var(--gold-tint); border-color: #ebd9b8;">
-            <div class="choice-icon">🔒</div>
-            <div class="choice-text">
-              <strong>Confidentiality & Anti-Scraping Guarantee</strong>
-              <span>Personal and corporate emails are encrypted at rest and will never be published in open LinkedIn comments or shared with external parties.</span>
-            </div>
-          </div>
+        <div style="background: var(--paper); border: 2px solid var(--line); border-radius: 20px; padding: 26px; margin-bottom: 30px; text-align: left;">
+          <h3 style="font-family: var(--font-display); font-size: 21px; margin-bottom: 12px; color: var(--ink);">What happens next?</h3>
+          <ul style="padding-left: 24px; color: var(--ink-soft); line-height: 1.8; font-size: 17px;">
+            <li><strong>24-Hour Review SLA:</strong> Direct technical review by Senior Architect <strong>Engr. Aamir Zameer</strong>.</li>
+            <li><strong>Anti-Spam & Zero Public Exposure:</strong> Your email and repository are confidential; never posted publicly.</li>
+            <li><strong>Collaborative Deployment:</strong> If aligned, you receive a direct technical RFC and deployment path.</li>
+          </ul>
         </div>
 
-        <div class="btn-row" style="justify-content: flex-end;">
-          <button class="btn btn-primary" onclick="nextCard(0, 1)">
-            Begin Architecture Intake →
-          </button>
+        <!-- Social Proof & Subscribe Option 1 in Card 0 -->
+        <div style="margin-bottom: 28px; text-align: center;">
+          <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=aamirzameer" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn-linkedin-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#ffffff" style="margin-right: 10px;">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+            Subscribe on LinkedIn (Engr. Aamir Zameer)
+          </a>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="showCard(1)">
+          Start Architecture Brief Intake (4 Steps) &rarr;
+        </button>
+
+        <div class="trust-badge">
+          <span>🔒 Encrypted Submission</span> &middot; 
+          <span>24h SLA Guarantee</span> &middot; 
+          <span>Direct Architect Triage</span>
         </div>
       </div>
 
-      <!-- CARD 1: Submitter Credentials -->
+      <!-- CARD 1: Identity & Work Category -->
       <div class="card" id="card-1">
-        <div class="step-pill">Step 1 of 4 &middot; Submitter Credentials</div>
+        <div class="step-pill">Step 1 of 4 &middot; Contact & Category</div>
         <h2>Who is submitting this brief?</h2>
-        <p class="lead">Please provide your work credentials so our Senior FDE team can route your submission.</p>
-
-        <div class="input-group">
-          <label for="q_name">Your Name / Principal Lead <span class="req">*</span></label>
-          <input type="text" id="q_name" placeholder="e.g. Alex Vance" autocomplete="name" required>
-          <div class="error-msg" id="err-1a">Please enter your name.</div>
-        </div>
+        <p class="lead">Provide your direct details for SLA confirmation and private RFC response.</p>
 
         <div class="grid-2">
           <div class="input-group">
-            <label for="q_email">Work / Developer Email <span class="req">*</span></label>
-            <input type="email" id="q_email" placeholder="name@company.com" autocomplete="email" required>
-            <div class="error-msg" id="err-1b">Please provide a valid work email.</div>
+            <label for="q_name">Your Name / Handle <span class="req">*</span></label>
+            <input type="text" id="q_name" placeholder="e.g. Alex Vance" required>
+            <div id="err-1a" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Name is required</div>
           </div>
           <div class="input-group">
-            <label for="q_org">Organization / Team <span class="req">*</span></label>
-            <input type="text" id="q_org" placeholder="e.g. Acron Systems / Tech Agency" required>
-            <div class="error-msg" id="err-1c">Please enter your organization name.</div>
+            <label for="q_org">Company / Team Name</label>
+            <input type="text" id="q_org" placeholder="e.g. Acme AI Labs / Independent">
           </div>
         </div>
 
-        <div class="btn-row">
-          <button class="btn btn-secondary" onclick="prevCard(1, 0)">← Back</button>
-          <button class="btn btn-primary" onclick="handleStep1()">Continue to Scope →</button>
+        <div class="input-group">
+          <label for="q_email">Corporate or Developer Email <span class="req">*</span></label>
+          <input type="email" id="q_email" placeholder="name@company.com or personal dev email" required>
+          <span class="field-hint">Never made public. Used solely to dispatch your confirmation receipt & 24h SLA.</span>
+          <div id="err-1b" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Valid work or developer email required</div>
         </div>
-      </div>
 
-      <!-- CARD 2: Architecture Scope & Category -->
-      <div class="card" id="card-2">
-        <div class="step-pill">Step 2 of 4 &middot; Architecture Scope</div>
-        <h2>Select Collaboration Focus</h2>
-        <p class="lead">Select your primary engineering priority and describe the technical bottleneck.</p>
-
-        <div class="choice-stack" id="categoryStack">
-          <div class="choice-card selected" data-cat="Enterprise AI Pilot Deployment" onclick="selectCategory(this)">
-            <div class="choice-icon">⚡</div>
+        <label style="margin-top: 10px;">Collaboration Track <span class="req">*</span></label>
+        <div class="choice-stack">
+          <div class="choice-card selected" onclick="selectCategory(this, 'Enterprise AI Pilot Deployment')">
+            <div class="choice-icon">🚀</div>
             <div class="choice-text">
               <strong>Enterprise AI Pilot Deployment</strong>
-              <span>Microservices, Docker, n8n orchestration, and production cutover gates.</span>
+              <span>Autonomous multi-agent meshes, hybrid RAG pipelines, production-grade SRE automation.</span>
             </div>
           </div>
-
-          <div class="choice-card" data-cat="Regression & Evaluation Gates Architecture" onclick="selectCategory(this)">
-            <div class="choice-icon">🚦</div>
-            <div class="choice-text">
-              <strong>Regression Gates & Live Trace Assertion</strong>
-              <span>DeepEval, LangSmith, and deterministic PROMOTE / REVIEW / BLOCK gates.</span>
-            </div>
-          </div>
-
-          <div class="choice-card" data-cat="Hybrid RAG & Knowledge Graph Plumbing" onclick="selectCategory(this)">
-            <div class="choice-icon">🧠</div>
-            <div class="choice-text">
-              <strong>Hybrid RAG & Knowledge Graph Plumbing</strong>
-              <span>High-dimensional search, GraphRAG, PageIndex, and footnote reconciliation.</span>
-            </div>
-          </div>
-
-          <div class="choice-card" data-cat="Clean-Room Dev & Zero Vendor Lock-in" onclick="selectCategory(this)">
-            <div class="choice-icon">⚙️</div>
-            <div class="choice-text">
-              <strong>Clean-Room Dev & Zero Vendor Lock-in</strong>
-              <span>AST-level decoupling, provider-agnostic routing, and zero-token fallbacks.</span>
-            </div>
-          </div>
-
-          <div class="choice-card" data-cat="Agency & Technical Delivery Partnership" onclick="selectCategory(this)">
+          <div class="choice-card" onclick="selectCategory(this, 'Development Agency Partnership')">
             <div class="choice-icon">🤝</div>
             <div class="choice-text">
-              <strong>Agency & Technical Delivery Partnership</strong>
-              <span>Reliable software delivery partnership for enterprise clients and tenders.</span>
+              <strong>Development Agency Partnership</strong>
+              <span>High-end technical execution partner for client projects needing robust systems architecture.</span>
             </div>
           </div>
-        </div>
-
-        <div class="input-group">
-          <label for="q_project">Project / Product Name <span class="req">*</span></label>
-          <input type="text" id="q_project" placeholder="e.g. Autonomous Lead & Extraction Mesh" required>
-          <div class="error-msg" id="err-2a">Please provide a project name.</div>
-        </div>
-
-        <div class="input-group">
-          <label for="q_scope">Technical Scope & Deployment Challenges <span class="req">*</span></label>
-          <textarea id="q_scope" placeholder="Outline your technical bottlenecks, legacy downstreams, token budgets, or timeline requirements..." required></textarea>
-          <div class="error-msg" id="err-2b">Please describe your technical scope.</div>
+          <div class="choice-card" onclick="selectCategory(this, 'Deterministic Evaluation & Security Audit')">
+            <div class="choice-icon">🛡️</div>
+            <div class="choice-text">
+              <strong>Deterministic Evaluation & Security Audit</strong>
+              <span>Banking-grade prompt injection defense, regression gating, and LLM supply-chain hardening.</span>
+            </div>
+          </div>
         </div>
 
         <div class="btn-row">
-          <button class="btn btn-secondary" onclick="prevCard(2, 1)">← Back</button>
-          <button class="btn btn-primary" onclick="handleStep2()">Continue to GitHub Target →</button>
+          <button class="btn btn-secondary" onclick="showCard(0)">&larr; Back</button>
+          <button class="btn btn-primary" onclick="handleStep1()">Next: Project Scope &rarr;</button>
         </div>
       </div>
 
-      <!-- CARD 3: GitHub Alignment & Review Summary -->
-      <div class="card" id="card-3">
-        <div class="step-pill">Step 3 of 4 &middot; GitHub Alignment</div>
-        <h2>Review Summary & GitHub Target</h2>
-        <p class="lead">Confirm your brief details before automated dispatch to our FDE review queue.</p>
+      <!-- CARD 2: Project Name & Scope -->
+      <div class="card" id="card-2">
+        <div class="step-pill">Step 2 of 4 &middot; Project Scope</div>
+        <h2>Tell us about the project</h2>
+        <p class="lead">Briefly outline what you are building and where senior FDE expertise is required.</p>
 
         <div class="input-group">
-          <label for="q_gh">Your GitHub Repository or Profile URL (Optional)</label>
-          <input type="url" id="q_gh" placeholder="https://github.com/your-username/your-repo">
+          <label for="q_project">Project or System Codename <span class="req">*</span></label>
+          <input type="text" id="q_project" placeholder="e.g. Enterprise Hybrid RAG Mesh / Autonomous Dispatcher" required>
+          <div id="err-2a" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Project name is required</div>
         </div>
 
-        <div class="privacy-box">
-          <span>🔒</span>
-          <div>
-            <strong>Confidential Submission Protocol:</strong> Your contact details and repository links are encrypted at rest. We never share proprietary briefs or emails publicly.
-          </div>
+        <div class="input-group">
+          <label for="q_scope">Technical Scope, Bottlenecks & Timeline <span class="req">*</span></label>
+          <textarea id="q_scope" placeholder="Describe the current architecture, tech stack (e.g. Python, LangGraph, vLLM, PostgreSQL), deployment target, and specific challenges you want solved." required></textarea>
+          <span class="field-hint">Include expected volume, latency constraints, or integration targets.</span>
+          <div id="err-2b" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Scope details are required</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="showCard(1)">&larr; Back</button>
+          <button class="btn btn-primary" onclick="handleStep2()">Next: Verification &rarr;</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: Verification & Review -->
+      <div class="card" id="card-3">
+        <div class="step-pill">Step 3 of 4 &middot; Verification & NDA</div>
+        <h2>Review and dispatch brief</h2>
+        <p class="lead">Confirm parameters before queueing into the Senior FDE review pipeline.</p>
+
+        <div class="input-group">
+          <label for="q_gh">GitHub Profile or Repository URL (Optional)</label>
+          <input type="url" id="q_gh" placeholder="https://github.com/YourOrg/repo or https://github.com/YourUsername">
+          <span class="field-hint">Leave blank if proprietary / under NDA. We default our harness benchmark to <a href="https://github.com/Amz34" target="_blank" style="color: var(--emerald); font-weight:700;">github.com/Amz34</a>.</span>
         </div>
 
         <div class="summary-box">
           <div class="summary-row">
             <span class="summary-label">Submitter:</span>
-            <span class="summary-val" id="sum_name">-</span>
+            <span class="summary-val" id="sum_name">—</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Work Email:</span>
-            <span class="summary-val" id="sum_email">-</span>
+            <span class="summary-label">Direct Email:</span>
+            <span class="summary-val" id="sum_email">—</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Organization:</span>
-            <span class="summary-val" id="sum_org">-</span>
+            <span class="summary-val" id="sum_org">—</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Category:</span>
-            <span class="summary-val" id="sum_cat">-</span>
+            <span class="summary-val" id="sum_cat">—</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Project:</span>
-            <span class="summary-val" id="sum_project">-</span>
+            <span class="summary-val" id="sum_project">—</span>
           </div>
-          <div class="summary-row">
-            <span class="summary-label">Review SLA:</span>
-            <span class="summary-val" style="color: var(--emerald);">24 Business Hours</span>
-          </div>
+        </div>
+
+        <div style="background: var(--gold-tint); border: 1.5px solid #ebd9b8; border-radius: 14px; padding: 16px 20px; font-size: 15px; color: var(--gold-dark); margin-bottom: 24px; text-align: left;">
+          🔒 <strong>Confidentiality Commitment:</strong> Your submission is treated under strict mutual developer privilege. No commercial resale or third-party sharing.
         </div>
 
         <div class="btn-row">
-          <button class="btn btn-secondary" onclick="prevCard(3, 2)">← Back</button>
-          <button class="btn btn-primary" id="submitBtn" onclick="submitBrief()">Confirm & Dispatch Brief →</button>
+          <button class="btn btn-secondary" onclick="showCard(2)">&larr; Back</button>
+          <button class="btn btn-primary" id="submitBtn" onclick="submitBrief()">🚀 Dispatch Architectural Brief</button>
         </div>
       </div>
 
-      <!-- CARD 4: Success & Funnel to github.com/Amz34 -->
+      <!-- CARD 4: Success & Funnel to LinkedIn & GitHub -->
       <div class="card" id="card-4">
         <div class="step-pill" style="background: var(--gold-tint); color: var(--gold-dark); border-color: #ebd9b8;">
           Submission Receipt Confirmed
         </div>
-        <div style="font-size: 52px; margin: 12px 0 16px 0;">✅</div>
+        <div style="font-size: 58px; margin: 12px 0 16px 0;">✅</div>
         <h2>Architectural Brief Logged</h2>
         <p class="lead" id="successText">
-          Your submission has been securely ingested into the AZ Senior Forward Deployed Engineering queue. A confirmation receipt has been dispatched to your email.
+          Your submission has been securely ingested into the AZ Senior Forward Deployed Engineering queue. A confirmation receipt and 24h SLA have been dispatched to your email.
         </p>
 
         <div class="summary-box" style="background: var(--emerald-tint); border-color: rgba(17,61,40,0.2);">
           <div class="summary-row">
             <span class="summary-label">Status:</span>
-            <span class="summary-val" style="color: var(--emerald);">Active in Queue</span>
+            <span class="summary-val" style="color: var(--emerald); font-weight: 700;">Active in Triage Queue</span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Senior FDE Reviewer:</span>
-            <span class="summary-val">Aamir Zameer</span>
+            <span class="summary-label">Reviewing Architect:</span>
+            <span class="summary-val">Engr. Aamir Zameer</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Turnaround SLA:</span>
@@ -703,23 +771,50 @@
           </div>
         </div>
 
-        <p style="font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.6;">
-          While our engineering team reviews your architecture, explore our open-source production agent infrastructure, regression gates, and clean-room evaluation suites directly on GitHub:
+        <!-- OPTION 1: Direct One-Click "Subscribe on LinkedIn" Button (Extra Large) -->
+        <div style="margin: 28px 0 16px; text-align: center;">
+          <p style="font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 12px;">
+            Stay Connected with the Principal Architect:
+          </p>
+          <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=aamirzameer" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn-linkedin-xl"
+             style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 36px; background-color: #0A66C2; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 19px; font-weight: 700; text-decoration: none; border-radius: 32px; border: none; cursor: pointer; box-shadow: 0 6px 20px rgba(10,102,194,0.35);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#ffffff" style="margin-right: 10px;">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+            Subscribe on LinkedIn
+          </a>
+        </div>
+
+        <!-- OPTION 2: Official LinkedIn Profile Badge (Live Card) -->
+        <div class="badge-card-wrap">
+          <div class="badge-card-title">Official LinkedIn Profile Badge</div>
+          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="aamirzameer" data-version="v1">
+            <a class="badge-base__link LI-simple-link" href="https://sa.linkedin.com/in/aamirzameer?trk=profile-badge">Engr. Aamir Zameer</a>
+          </div>
+        </div>
+
+        <p style="font-size: 16px; color: var(--muted); margin: 24px 0 14px; line-height: 1.6;">
+          Explore our open-source agent evaluation harnesses, regression gates, and clean-room evaluation suites directly on GitHub:
         </p>
 
         <!-- Pure Personal GitHub Growth Anchor -->
         <a href="https://github.com/Amz34" target="_blank" class="btn-gh-funnel">
-          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-          ★ Follow & Explore Repositories on github.com/Amz34 →
+          <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+          ★ Follow & Explore Repositories on github.com/Amz34 &rarr;
         </a>
       </div>
 
     </div>
-  </div>
+  </main>
 
   <footer>
     AZ Consultants &middot; Senior Forward Deployed Engineering &middot; Riyadh, Kingdom of Saudi Arabia<br>
-    Official GitHub: <a href="https://github.com/Amz34" target="_blank">github.com/Amz34</a> &middot; Direct Contact: <a href="mailto:azengineeringapp@gmail.com">azengineeringapp@gmail.com</a>
+    LinkedIn: <a href="https://linkedin.com/in/aamirzameer" target="_blank">linkedin.com/in/aamirzameer</a> &middot;
+    Official GitHub: <a href="https://github.com/Amz34" target="_blank">github.com/Amz34</a> &middot; 
+    Direct Inquiries: <a href="mailto:azengineeringapp@gmail.com">azengineeringapp@gmail.com</a>
   </footer>
 
   <script>
@@ -743,40 +838,27 @@
       updateProgress(index, 4);
     }
 
-    function nextCard(curr, next) {
-      showCard(next);
-    }
-
-    function prevCard(curr, prev) {
-      showCard(prev);
+    function selectCategory(el, catName) {
+      document.querySelectorAll('.choice-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      currentCategory = catName;
     }
 
     function handleStep1() {
       const name = document.getElementById('q_name').value.trim();
       const email = document.getElementById('q_email').value.trim();
-      const org = document.getElementById('q_org').value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       let valid = true;
       document.getElementById('err-1a').style.display = name ? 'none' : 'block';
       if (!name) valid = false;
 
-      const emailValid = email && emailRegex.test(email);
-      document.getElementById('err-1b').style.display = emailValid ? 'none' : 'block';
-      if (!emailValid) valid = false;
-
-      document.getElementById('err-1c').style.display = org ? 'none' : 'block';
-      if (!org) valid = false;
+      document.getElementById('err-1b').style.display = (email && emailRegex.test(email)) ? 'none' : 'block';
+      if (!email || !emailRegex.test(email)) valid = false;
 
       if (valid) {
         showCard(2);
       }
-    }
-
-    function selectCategory(el) {
-      document.querySelectorAll('#categoryStack .choice-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
-      currentCategory = el.getAttribute('data-cat');
     }
 
     function handleStep2() {
@@ -794,7 +876,7 @@
         // Populate Summary
         document.getElementById('sum_name').innerText = document.getElementById('q_name').value.trim();
         document.getElementById('sum_email').innerText = document.getElementById('q_email').value.trim();
-        document.getElementById('sum_org').innerText = document.getElementById('q_org').value.trim();
+        document.getElementById('sum_org').innerText = document.getElementById('q_org').value.trim() || 'Independent';
         document.getElementById('sum_cat').innerText = currentCategory;
         document.getElementById('sum_project').innerText = project;
         showCard(3);
@@ -809,7 +891,7 @@
       const payload = {
         name: document.getElementById('q_name').value.trim(),
         email: document.getElementById('q_email').value.trim(),
-        organization: document.getElementById('q_org').value.trim(),
+        organization: document.getElementById('q_org').value.trim() || 'Independent',
         category: currentCategory,
         projectName: document.getElementById('q_project').value.trim(),
         scope: document.getElementById('q_scope').value.trim(),
@@ -829,7 +911,7 @@
         console.warn("Webhook background sync complete:", err);
       }
 
-      // Always show success state
+      // Populate success card
       document.getElementById('successText').innerHTML = 
         `Thank you <strong>${payload.name}</strong> (${payload.organization}). Your architectural brief for <strong>${payload.projectName}</strong> has been logged directly into the AZ Senior FDE queue.<br><br>A confirmation receipt and 24h review SLA have been dispatched to <strong>${payload.email}</strong>.`;
       showCard(4);
