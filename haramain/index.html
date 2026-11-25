@@ -885,18 +885,30 @@
         `🌐 *Submitted via:* amz34.github.io/haramain/`;
 
       // 1. Direct Telegram Notification via Bot API
+      // Send to dedicated channel first (Dhuyuf Ar Rahman), with backup DM
+      const sendTg = async (chatId) => {
+        try {
+          await fetch('https://api.telegram.org/bot8821683733:AAH-YsOdr5XkSwmvm6Vekcpq72fkWCeimWk/sendMessage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: tgMessage,
+              parse_mode: 'Markdown'
+            })
+          });
+        } catch (err) {
+          console.warn('Telegram notice error:', err);
+        }
+      };
+
       try {
-        await fetch('https://api.telegram.org/bot8821683733:AAH-YsOdr5XkSwmvm6Vekcpq72fkWCeimWk/sendMessage', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: '8843884232',
-            text: tgMessage,
-            parse_mode: 'Markdown'
-          })
-        });
+        await Promise.allSettled([
+          sendTg('-1005928292422'), // Primary: Dedicated Dhuyuf Ar Rahman Channel
+          sendTg('8843884232')       // Secondary: Direct Personal Backup
+        ]);
       } catch (err) {
-        console.warn('Telegram notice:', err);
+        console.warn('Telegram delivery:', err);
       }
 
       // Also try local API if accessible
