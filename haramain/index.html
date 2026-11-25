@@ -31,50 +31,12 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Dynamic Full-Screen Background Stage */
-    .bg-stage {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-      background-color: #0b1a12;
-    }
-
-    .bg-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      opacity: 0;
-      transform: scale(1.03);
-      transition: opacity 0.8s ease-in-out, transform 1.2s ease-out;
-    }
-
-    .bg-layer.active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Balanced Sacred Overlay: vibrant photography clearly visible */
-    .bg-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(10, 25, 18, 0.18) 0%, rgba(5, 15, 10, 0.32) 100%);
-    }
-
     body {
-      background: transparent;
+      background-color: #f2f6f3;
+      background-image: 
+        radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 70%),
+        linear-gradient(168deg, #f5f8f5 0%, #ebf2ec 50%, #e2ece4 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23113d28' stroke-width='0.85' stroke-opacity='0.04'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40'/%3E%3Cpath d='M0 0 L80 80 M80 0 L0 80'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='24'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='80' cy='0' r='16'/%3E%3Ccircle cx='0' cy='80' r='16'/%3E%3Ccircle cx='80' cy='80' r='16'/%3E%3C/g%3E%3C/svg%3E");
       color: var(--ink);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -88,10 +50,8 @@
 
     /* Sacred Top Banner */
     .sacred-ribbon {
-      background: rgba(251, 245, 232, 0.94);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1.5px solid rgba(235, 217, 184, 0.85);
+      background: #fbf6ec;
+      border-bottom: 1.5px solid #ebd9b8;
       color: var(--gold-dark);
       padding: 14px 20px;
       display: flex;
@@ -142,13 +102,11 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1.5px solid rgba(255, 255, 255, 0.85);
-      border-radius: 26px;
+      background: #ffffff;
+      border: 1.5px solid rgba(17, 61, 40, 0.12);
+      border-radius: 24px;
       padding: 44px 38px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 2px 10px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 36px rgba(17, 61, 40, 0.07), 0 2px 8px rgba(0, 0, 0, 0.02);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -503,24 +461,12 @@
       padding: 32px 20px;
       font-size: 14px;
       color: var(--muted);
-      border-top: 1.5px solid var(--line);
-      background: var(--paper);
+      border-top: 1.5px solid rgba(17, 61, 40, 0.1);
+      background: #f4f8f5;
     }
   </style>
 </head>
 <body>
-
-  <!-- Dynamic Full-Screen Background Stage -->
-  <div class="bg-stage">
-    <div class="bg-layer active" id="bg-0" style="background-image: url('img/bg_0_kaaba.jpg');"></div>
-    <div class="bg-layer" id="bg-1" style="background-image: url('img/bg_1_clocktower.jpg');"></div>
-    <div class="bg-layer" id="bg-2" style="background-image: url('img/bg_2_madinah.jpg');"></div>
-    <div class="bg-layer" id="bg-3" style="background-image: url('img/bg_3_courtyard.jpg');"></div>
-    <div class="bg-layer" id="bg-4" style="background-image: url('img/bg_4_transit.jpg');"></div>
-    <div class="bg-layer" id="bg-5" style="background-image: url('img/bg_5_night.jpg');"></div>
-    <div class="bg-layer" id="bg-6" style="background-image: url('img/bg_6_peace.jpg');"></div>
-    <div class="bg-overlay"></div>
-  </div>
 
   <!-- Top Sacred Banner -->
   <div class="sacred-ribbon">
@@ -819,13 +765,6 @@
         target.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-
-      // Dynamic Vibrant Haramain Background per Card
-      document.querySelectorAll('.bg-layer').forEach(l => l.classList.remove('active'));
-      const targetBg = document.getElementById('bg-' + id);
-      if (targetBg) {
-        targetBg.classList.add('active');
-      }
     }
 
     function nextCard(from, to) {
@@ -1018,10 +957,6 @@
       document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
       document.querySelectorAll('#card-4 .check-card').forEach(c => c.classList.remove('checked'));
       document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
-
-      document.querySelectorAll('.bg-layer').forEach(l => l.classList.remove('active'));
-      const initialBg = document.getElementById('bg-0');
-      if (initialBg) initialBg.classList.add('active');
 
       const submitBtn = document.getElementById('submitBtn');
       if (submitBtn) {
