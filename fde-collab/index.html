@@ -57,12 +57,12 @@
       background: #fbf6ec;
       border-bottom: 1.5px solid #ebd9b8;
       color: var(--gold-dark);
-      padding: 14px 28px;
+      padding: 16px 32px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -71,38 +71,40 @@
 
     .ribbon-title {
       font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: #1e293b;
     }
 
     .ribbon-dot {
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background: var(--gold);
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--gold);
+      box-shadow: 0 0 12px var(--gold);
     }
 
     .ribbon-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .ribbon-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
+      gap: 10px;
+      padding: 11px 22px;
       border-radius: 30px;
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
       transition: all 0.2s ease;
     }
@@ -116,16 +118,20 @@
       background: var(--emerald-tint);
       border-color: var(--emerald);
       color: var(--emerald);
+      transform: translateY(-1px);
     }
 
     .ribbon-li {
       color: #ffffff;
       background: var(--linkedin-blue);
       border: 1.5px solid var(--linkedin-blue);
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.25);
     }
     .ribbon-li:hover {
       background: var(--linkedin-hover);
       border-color: var(--linkedin-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(10, 102, 194, 0.4);
     }
 
     /* Main Container */
