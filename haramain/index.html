@@ -640,6 +640,14 @@
             </div>
           </div>
 
+          <div class="check-card" onclick="toggleNeed('Transportation Throughout the Journey', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Transportation Throughout the Journey</strong>
+              <span>Dedicated transfers and travel coordination between Makkah, Madinah, and sacred landmarks throughout your stay</span>
+            </div>
+          </div>
+
           <div class="check-card" onclick="toggleNeed('Home-Cooked Family Meals & Qahwa', this)">
             <div class="custom-check">✓</div>
             <div class="choice-text">
@@ -673,6 +681,12 @@
           <label for="q_phone">WhatsApp Phone Number (with Country Code) *</label>
           <input type="tel" id="q_phone" placeholder="e.g. +44 7911 123456 or +91 98765 43210" autocomplete="off" required>
           <div class="error-msg" id="err-5">Please enter a valid phone number with country code.</div>
+        </div>
+
+        <div class="input-group">
+          <label for="q_email">Email Address *</label>
+          <input type="email" id="q_email" placeholder="e.g. pilgrim@example.com" autocomplete="off" required>
+          <div class="error-msg" id="err-5-email">Please enter a valid email address.</div>
         </div>
 
         <div class="input-group">
@@ -749,6 +763,7 @@
       guest_count: '1',
       needs: [],
       phone: '',
+      email: '',
       note: ''
     };
 
@@ -860,12 +875,28 @@
 
     async function submitHospitality() {
       const phone = document.getElementById('q_phone').value.trim();
+      const email = document.getElementById('q_email').value.trim();
+      let hasErr = false;
+
       if (!phone || phone.length < 7) {
         document.getElementById('err-5').style.display = 'block';
-        return;
+        hasErr = true;
+      } else {
+        document.getElementById('err-5').style.display = 'none';
       }
-      document.getElementById('err-5').style.display = 'none';
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        document.getElementById('err-5-email').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-5-email').style.display = 'none';
+      }
+
+      if (hasErr) return;
+
       state.phone = phone;
+      state.email = email;
       state.note = document.getElementById('q_note').value.trim();
 
       const btn = document.getElementById('submitBtn');
@@ -881,37 +912,38 @@
         `👥 *Party:* ${state.party_type} (${state.guest_count} guest${state.guest_count !== '1' ? 's' : ''})\n\n` +
         `🤝 *Hospitality Requested:*\n${needsText}\n\n` +
         `📱 *WhatsApp:* \`${state.phone}\`\n` +
+        `✉️ *Email:* \`${state.email}\`\n` +
         (state.note ? `💬 *Note / Du'a:* ${state.note}\n\n` : '') +
         `🌐 *Submitted via:* amz34.github.io/haramain/`;
 
-      // 1. Direct Telegram Notification via Bot API
-      // Send to dedicated channel first (Dhuyuf Ar Rahman), with backup DM
-      const sendTg = async (chatId) => {
-        try {
-          await fetch('https://api.telegram.org/bot8821683733:AAH-YsOdr5XkSwmvm6Vekcpq72fkWCeimWk/sendMessage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: tgMessage,
-              parse_mode: 'Markdown'
-            })
-          });
-        } catch (err) {
-          console.warn('Telegram notice error:', err);
-        }
-      };
-
+      // 1. Direct Telegram Notification ONLY to Dedicated Channel (Dhuyuf Ar Rahman)
       try {
-        await Promise.allSettled([
-          sendTg('-1005928292422'), // Primary: Dedicated Dhuyuf Ar Rahman Channel
-          sendTg('8843884232')       // Secondary: Direct Personal Backup
-        ]);
+        await fetch('https://api.telegram.org/bot8821683733:AAH-YsOdr5XkSwmvm6Vekcpq72fkWCeimWk/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: '-1005928292422',
+            text: tgMessage,
+            parse_mode: 'Markdown'
+          })
+        });
       } catch (err) {
-        console.warn('Telegram delivery:', err);
+        console.warn('Telegram notice error:', err);
       }
 
-      // Also try local API if accessible
+      // 2. Direct Sync to Google Sheets
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbzJ_TSD7qiB7HB6hH4elKB_NMf1frsS374CWGxXZx7bWnA0a6wxvY-QMSAyEVxuFSc3qg/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state)
+        });
+      } catch (err) {
+        console.warn('Google Sheet sync notice:', err);
+      }
+
+      // 3. Also try local API if accessible
       try {
         await fetch('/api/submit', {
           method: 'POST',
@@ -920,14 +952,14 @@
         });
       } catch (_) {}
 
-      // 2. Populate confirmation card
+      // 4. Populate confirmation card
       document.getElementById('conf_name').innerText = state.full_name;
       document.getElementById('sum_name_origin').innerText = `${state.full_name} (${state.country})`;
       document.getElementById('sum_dates').innerText = `${state.arrival_date} to ${state.departure_date}`;
       document.getElementById('sum_party').innerText = `${state.party_type} (${state.guest_count})`;
       document.getElementById('sum_needs').innerText = state.needs.length ? state.needs.join(', ') : 'General hospitality & advice';
 
-      // 3. Format WhatsApp link
+      // 5. Format WhatsApp link
       const waNeeds = state.needs.length ? state.needs.map(n => `- ${n}`).join('\n') : '- General hospitality & advice';
       const waText = encodeURIComponent(
         `Assalamu Alaikum Brother Aamir,\n\n` +
@@ -936,6 +968,7 @@
         `🗓 Dates: ${state.arrival_date} to ${state.departure_date}\n` +
         `👥 Party: ${state.party_type} (${state.guest_count})\n` +
         `🤝 Support needed:\n${waNeeds}\n\n` +
+        `✉️ Email: ${state.email}\n` +
         (state.note ? `💬 Note: ${state.note}\n\n` : '') +
         `Looking forward to connecting!`
       );
@@ -956,9 +989,10 @@
       state.guest_count = '1';
       state.needs = [];
       state.phone = '';
+      state.email = '';
       state.note = '';
 
-      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_note'].forEach(id => {
+      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_email', 'q_note'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
