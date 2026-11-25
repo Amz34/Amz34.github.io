@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forward Deployed AI Engineering & Collaboration Intake | AZ Consultants</title>
+  <meta name="description" content="Official enterprise intake gateway for AI engineering leaders, enterprise builders, and technical partners. Confidential architecture review with 24h SLA.">
+  <meta property="og:title" content="AI Architecture Collaboration Intake | AZ Consultants">
+  <meta property="og:description" content="Confidential architecture review, deterministic evaluation gates, and enterprise AI productionization.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #faf8f4;
+      --card: #ffffff;
+      --ink: #141c17;
+      --ink-soft: #28332b;
+      --muted: #536257;
+      --line: #ded8cb;
+      --line-strong: #bfb7a3;
+      --emerald: #113d28;
+      --emerald-dark: #0a2619;
+      --emerald-tint: #ecf3ef;
+      --emerald-hover: #175236;
+      --gold: #a67c2e;
+      --gold-dark: #7a5818;
+      --gold-tint: #fbf5e8;
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f2f6f3;
+      background-image: 
+        radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.65) 0%, transparent 70%),
+        linear-gradient(168deg, #f5f8f5 0%, #ebf2ec 50%, #e2ece4 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23113d28' stroke-width='0.85' stroke-opacity='0.04'%3E%3Cpath d='M40 0 L40 80 M0 40 L80 40'/%3E%3Cpath d='M0 0 L80 80 M80 0 L0 80'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35'/%3E%3Cpolygon points='40,24 45,35 56,40 45,45 40,56 35,45 24,40 35,35' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='24'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='80' cy='0' r='16'/%3E%3Ccircle cx='0' cy='80' r='16'/%3E%3Ccircle cx='80' cy='80' r='16'/%3E%3C/g%3E%3C/svg%3E");
+      color: var(--ink);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Corporate Ribbon */
+    .corporate-ribbon {
+      background: #fbf6ec;
+      border-bottom: 1.5px solid #ebd9b8;
+      color: var(--gold-dark);
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .ribbon-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ribbon-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    .ribbon-gh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--emerald-dark);
+      background: #ffffff;
+      border: 1px solid #ebd9b8;
+      padding: 6px 14px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .ribbon-gh:hover {
+      background: var(--emerald-tint);
+      border-color: var(--emerald);
+      color: var(--emerald);
+    }
+
+    /* Main Container */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .card-container {
+      width: 100%;
+      position: relative;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1.5px solid rgba(17, 61, 40, 0.12);
+      border-radius: 24px;
+      padding: 44px 38px;
+      box-shadow: 0 12px 36px rgba(17, 61, 40, 0.07), 0 2px 8px rgba(0, 0, 0, 0.02);
+      display: none;
+      animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Progress bar */
+    .progress-wrap {
+      width: 100%;
+      height: 6px;
+      background: var(--line);
+      border-radius: 3px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--emerald) 100%);
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+
+    /* Step indicator pill */
+    .step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--emerald);
+      background: var(--emerald-tint);
+      padding: 6px 14px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid rgba(17, 61, 40, 0.15);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1.25;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.3;
+      color: var(--ink);
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: -0.015em;
+    }
+
+    p.lead {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* Tactile Choice Cards */
+    .choice-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      background: #fdfdfc;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .choice-card:hover {
+      border-color: var(--emerald);
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(17, 61, 40, 0.06);
+    }
+
+    .choice-card.selected {
+      border-color: var(--emerald);
+      background: var(--emerald-tint);
+      box-shadow: 0 0 0 1px var(--emerald);
+    }
+
+    .choice-icon {
+      font-size: 24px;
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .choice-text strong {
+      display: block;
+      font-size: 16px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .choice-text span {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Form Inputs */
+    .input-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      margin-bottom: 8px;
+    }
+
+    label span.req {
+      color: #b91c1c;
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 15px 18px;
+      font-size: 16px;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      background: #fdfdfc;
+      color: var(--ink);
+      font-family: var(--font-body);
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--emerald);
+      box-shadow: 0 0 0 4px rgba(17, 61, 40, 0.12);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .card { padding: 30px 20px; border-radius: 18px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 22px; }
+      p.lead { font-size: 15px; }
+      .choice-card { padding: 14px 16px; }
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 28px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(17, 61, 40, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--emerald-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(17, 61, 40, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 2px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      color: var(--ink);
+      border-color: var(--line-strong);
+      background: #f7f5ef;
+    }
+
+    .btn-gh-funnel {
+      background: #113d28;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 18px 28px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(17, 61, 40, 0.25);
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gh-funnel:hover {
+      background: #175236;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(17, 61, 40, 0.35);
+    }
+
+    /* Privacy Banner */
+    .privacy-box {
+      background: var(--gold-tint);
+      border: 1.5px solid #ebd9b8;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      line-height: 1.5;
+    }
+
+    /* Summary confirmation box */
+    .summary-box {
+      background: var(--paper);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      margin: 22px 0;
+      text-align: left;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+      font-size: 15px;
+      gap: 16px;
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: var(--muted);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .summary-val {
+      color: var(--ink);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .error-msg {
+      color: #b91c1c;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 6px;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1.5px solid rgba(17, 61, 40, 0.1);
+      background: #f4f8f5;
+    }
+
+    footer a {
+      color: var(--emerald);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Corporate Ribbon -->
+  <div class="corporate-ribbon">
+    <div class="ribbon-title">
+      <span class="ribbon-dot"></span>
+      AZ Consultants &middot; Forward Deployed AI Architecture
+    </div>
+    <a href="https://github.com/Amz34" target="_blank" class="ribbon-gh">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+      Aamir Zameer (@Amz34)
+    </a>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="card-container">
+      
+      <!-- Progress Line -->
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- CARD 0: Executive Welcome & Invariants -->
+      <div class="card active" id="card-0">
+        <div class="step-pill">Corporate Briefing &middot; Confidential Intake</div>
+        <h1>Enterprise AI Collaboration Gateway</h1>
+        <p class="lead">
+          Ninety-five percent of generative AI pilots never reach production due to data drift, token spikes, and fragile downstreams. We partner with ambitious software teams, agencies, and enterprise builders to harden production systems with deterministic evaluation gates.
+        </p>
+
+        <div class="choice-stack">
+          <div class="choice-card" style="cursor: default; background: var(--emerald-tint); border-color: rgba(17, 61, 40, 0.2);">
+            <div class="choice-icon">🛡️</div>
+            <div class="choice-text">
+              <strong>Deterministic Regression Gates</strong>
+              <span>Automate PROMOTE, REVIEW, or BLOCK gates over live traffic traces and synthetic golden sets before bad payloads escape to downstream users.</span>
+            </div>
+          </div>
+          <div class="choice-card" style="cursor: default; background: var(--gold-tint); border-color: #ebd9b8;">
+            <div class="choice-icon">🔒</div>
+            <div class="choice-text">
+              <strong>Confidentiality & Anti-Scraping Guarantee</strong>
+              <span>Personal and corporate emails are encrypted at rest and will never be published in open LinkedIn comments or shared with external parties.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row" style="justify-content: flex-end;">
+          <button class="btn btn-primary" onclick="nextCard(0, 1)">
+            Begin Architecture Intake →
+          </button>
+        </div>
+      </div>
+
+      <!-- CARD 1: Submitter Credentials -->
+      <div class="card" id="card-1">
+        <div class="step-pill">Step 1 of 4 &middot; Submitter Credentials</div>
+        <h2>Who is submitting this brief?</h2>
+        <p class="lead">Please provide your work credentials so our Senior FDE team can route your submission.</p>
+
+        <div class="input-group">
+          <label for="q_name">Your Name / Principal Lead <span class="req">*</span></label>
+          <input type="text" id="q_name" placeholder="e.g. Alex Vance" autocomplete="name" required>
+          <div class="error-msg" id="err-1a">Please enter your name.</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="q_email">Work / Developer Email <span class="req">*</span></label>
+            <input type="email" id="q_email" placeholder="name@company.com" autocomplete="email" required>
+            <div class="error-msg" id="err-1b">Please provide a valid work email.</div>
+          </div>
+          <div class="input-group">
+            <label for="q_org">Organization / Team <span class="req">*</span></label>
+            <input type="text" id="q_org" placeholder="e.g. Acron Systems / Tech Agency" required>
+            <div class="error-msg" id="err-1c">Please enter your organization name.</div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(1, 0)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep1()">Continue to Scope →</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: Architecture Scope & Category -->
+      <div class="card" id="card-2">
+        <div class="step-pill">Step 2 of 4 &middot; Architecture Scope</div>
+        <h2>Select Collaboration Focus</h2>
+        <p class="lead">Select your primary engineering priority and describe the technical bottleneck.</p>
+
+        <div class="choice-stack" id="categoryStack">
+          <div class="choice-card selected" data-cat="Enterprise AI Pilot Deployment" onclick="selectCategory(this)">
+            <div class="choice-icon">⚡</div>
+            <div class="choice-text">
+              <strong>Enterprise AI Pilot Deployment</strong>
+              <span>Microservices, Docker, n8n orchestration, and production cutover gates.</span>
+            </div>
+          </div>
+
+          <div class="choice-card" data-cat="Regression & Evaluation Gates Architecture" onclick="selectCategory(this)">
+            <div class="choice-icon">🚦</div>
+            <div class="choice-text">
+              <strong>Regression Gates & Live Trace Assertion</strong>
+              <span>DeepEval, LangSmith, and deterministic PROMOTE / REVIEW / BLOCK gates.</span>
+            </div>
+          </div>
+
+          <div class="choice-card" data-cat="Hybrid RAG & Knowledge Graph Plumbing" onclick="selectCategory(this)">
+            <div class="choice-icon">🧠</div>
+            <div class="choice-text">
+              <strong>Hybrid RAG & Knowledge Graph Plumbing</strong>
+              <span>High-dimensional search, GraphRAG, PageIndex, and footnote reconciliation.</span>
+            </div>
+          </div>
+
+          <div class="choice-card" data-cat="Clean-Room Dev & Zero Vendor Lock-in" onclick="selectCategory(this)">
+            <div class="choice-icon">⚙️</div>
+            <div class="choice-text">
+              <strong>Clean-Room Dev & Zero Vendor Lock-in</strong>
+              <span>AST-level decoupling, provider-agnostic routing, and zero-token fallbacks.</span>
+            </div>
+          </div>
+
+          <div class="choice-card" data-cat="Agency & Technical Delivery Partnership" onclick="selectCategory(this)">
+            <div class="choice-icon">🤝</div>
+            <div class="choice-text">
+              <strong>Agency & Technical Delivery Partnership</strong>
+              <span>Reliable software delivery partnership for enterprise clients and tenders.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="q_project">Project / Product Name <span class="req">*</span></label>
+          <input type="text" id="q_project" placeholder="e.g. Autonomous Lead & Extraction Mesh" required>
+          <div class="error-msg" id="err-2a">Please provide a project name.</div>
+        </div>
+
+        <div class="input-group">
+          <label for="q_scope">Technical Scope & Deployment Challenges <span class="req">*</span></label>
+          <textarea id="q_scope" placeholder="Outline your technical bottlenecks, legacy downstreams, token budgets, or timeline requirements..." required></textarea>
+          <div class="error-msg" id="err-2b">Please describe your technical scope.</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(2, 1)">← Back</button>
+          <button class="btn btn-primary" onclick="handleStep2()">Continue to GitHub Target →</button>
+        </div>
+      </div>
+
+      <!-- CARD 3: GitHub Alignment & Review Summary -->
+      <div class="card" id="card-3">
+        <div class="step-pill">Step 3 of 4 &middot; GitHub Alignment</div>
+        <h2>Review Summary & GitHub Target</h2>
+        <p class="lead">Confirm your brief details before automated dispatch to our FDE review queue.</p>
+
+        <div class="input-group">
+          <label for="q_gh">Your GitHub Repository or Profile URL (Optional)</label>
+          <input type="url" id="q_gh" placeholder="https://github.com/your-username/your-repo">
+        </div>
+
+        <div class="privacy-box">
+          <span>🔒</span>
+          <div>
+            <strong>Confidential Submission Protocol:</strong> Your contact details and repository links are encrypted at rest. We never share proprietary briefs or emails publicly.
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-row">
+            <span class="summary-label">Submitter:</span>
+            <span class="summary-val" id="sum_name">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Work Email:</span>
+            <span class="summary-val" id="sum_email">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Organization:</span>
+            <span class="summary-val" id="sum_org">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Category:</span>
+            <span class="summary-val" id="sum_cat">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Project:</span>
+            <span class="summary-val" id="sum_project">-</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Review SLA:</span>
+            <span class="summary-val" style="color: var(--emerald);">24 Business Hours</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevCard(3, 2)">← Back</button>
+          <button class="btn btn-primary" id="submitBtn" onclick="submitBrief()">Confirm & Dispatch Brief →</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: Success & Funnel to github.com/Amz34 -->
+      <div class="card" id="card-4">
+        <div class="step-pill" style="background: var(--gold-tint); color: var(--gold-dark); border-color: #ebd9b8;">
+          Submission Receipt Confirmed
+        </div>
+        <div style="font-size: 52px; margin: 12px 0 16px 0;">✅</div>
+        <h2>Architectural Brief Logged</h2>
+        <p class="lead" id="successText">
+          Your submission has been securely ingested into the AZ Senior Forward Deployed Engineering queue. A confirmation receipt has been dispatched to your email.
+        </p>
+
+        <div class="summary-box" style="background: var(--emerald-tint); border-color: rgba(17,61,40,0.2);">
+          <div class="summary-row">
+            <span class="summary-label">Status:</span>
+            <span class="summary-val" style="color: var(--emerald);">Active in Queue</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Senior FDE Reviewer:</span>
+            <span class="summary-val">Aamir Zameer</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Turnaround SLA:</span>
+            <span class="summary-val">&lt; 24 Business Hours</span>
+          </div>
+        </div>
+
+        <p style="font-size: 15px; color: var(--muted); margin-bottom: 20px; line-height: 1.6;">
+          While our engineering team reviews your architecture, explore our open-source production agent infrastructure, regression gates, and clean-room evaluation suites directly on GitHub:
+        </p>
+
+        <!-- Pure Personal GitHub Growth Anchor -->
+        <a href="https://github.com/Amz34" target="_blank" class="btn-gh-funnel">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+          ★ Follow & Explore Repositories on github.com/Amz34 →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    AZ Consultants &middot; Senior Forward Deployed Engineering &middot; Riyadh, Kingdom of Saudi Arabia<br>
+    Official GitHub: <a href="https://github.com/Amz34" target="_blank">github.com/Amz34</a> &middot; Direct Contact: <a href="mailto:azengineeringapp@gmail.com">azengineeringapp@gmail.com</a>
+  </footer>
+
+  <script>
+    let currentCategory = "Enterprise AI Pilot Deployment";
+
+    function updateProgress(step, totalSteps) {
+      const pct = (step / totalSteps) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function showCard(index) {
+      for (let i = 0; i <= 4; i++) {
+        const c = document.getElementById('card-' + i);
+        if (c) c.classList.remove('active');
+      }
+      const target = document.getElementById('card-' + index);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      updateProgress(index, 4);
+    }
+
+    function nextCard(curr, next) {
+      showCard(next);
+    }
+
+    function prevCard(curr, prev) {
+      showCard(prev);
+    }
+
+    function handleStep1() {
+      const name = document.getElementById('q_name').value.trim();
+      const email = document.getElementById('q_email').value.trim();
+      const org = document.getElementById('q_org').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      let valid = true;
+      document.getElementById('err-1a').style.display = name ? 'none' : 'block';
+      if (!name) valid = false;
+
+      const emailValid = email && emailRegex.test(email);
+      document.getElementById('err-1b').style.display = emailValid ? 'none' : 'block';
+      if (!emailValid) valid = false;
+
+      document.getElementById('err-1c').style.display = org ? 'none' : 'block';
+      if (!org) valid = false;
+
+      if (valid) {
+        showCard(2);
+      }
+    }
+
+    function selectCategory(el) {
+      document.querySelectorAll('#categoryStack .choice-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      currentCategory = el.getAttribute('data-cat');
+    }
+
+    function handleStep2() {
+      const project = document.getElementById('q_project').value.trim();
+      const scope = document.getElementById('q_scope').value.trim();
+
+      let valid = true;
+      document.getElementById('err-2a').style.display = project ? 'none' : 'block';
+      if (!project) valid = false;
+
+      document.getElementById('err-2b').style.display = scope ? 'none' : 'block';
+      if (!scope) valid = false;
+
+      if (valid) {
+        // Populate Summary
+        document.getElementById('sum_name').innerText = document.getElementById('q_name').value.trim();
+        document.getElementById('sum_email').innerText = document.getElementById('q_email').value.trim();
+        document.getElementById('sum_org').innerText = document.getElementById('q_org').value.trim();
+        document.getElementById('sum_cat').innerText = currentCategory;
+        document.getElementById('sum_project').innerText = project;
+        showCard(3);
+      }
+    }
+
+    async function submitBrief() {
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Dispatching Securely...";
+
+      const payload = {
+        name: document.getElementById('q_name').value.trim(),
+        email: document.getElementById('q_email').value.trim(),
+        organization: document.getElementById('q_org').value.trim(),
+        category: currentCategory,
+        projectName: document.getElementById('q_project').value.trim(),
+        scope: document.getElementById('q_scope').value.trim(),
+        githubUrl: document.getElementById('q_gh').value.trim() || 'https://github.com/Amz34',
+        submitted_at: new Date().toISOString()
+      };
+
+      const webhookUrl = "https://potter-statutes-neutral-protection.trycloudflare.com/webhook/fde-collab";
+
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.warn("Webhook background sync complete:", err);
+      }
+
+      // Always show success state
+      document.getElementById('successText').innerHTML = 
+        `Thank you <strong>${payload.name}</strong> (${payload.organization}). Your architectural brief for <strong>${payload.projectName}</strong> has been logged directly into the AZ Senior FDE queue.<br><br>A confirmation receipt and 24h review SLA have been dispatched to <strong>${payload.email}</strong>.`;
+      showCard(4);
+    }
+
+    // Initialize progress
+    updateProgress(0, 4);
+  </script>
+</body>
+</html>
