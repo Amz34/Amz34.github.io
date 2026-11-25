@@ -31,10 +31,50 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Dynamic Full-Screen Background Stage */
+    .bg-stage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background-color: #0b1a12;
+    }
+
+    .bg-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1.03);
+      transition: opacity 0.8s ease-in-out, transform 1.2s ease-out;
+    }
+
+    .bg-layer.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Balanced Sacred Overlay: vibrant photography clearly visible */
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(10, 25, 18, 0.18) 0%, rgba(5, 15, 10, 0.32) 100%);
+    }
+
     body {
-      background: 
-        linear-gradient(180deg, rgba(250, 248, 244, 0.90) 0%, rgba(247, 244, 237, 0.93) 35%, rgba(244, 240, 232, 0.96) 100%),
-        url('makkah_bg.jpg') center top / cover no-repeat fixed;
+      background: transparent;
       color: var(--ink);
       font-family: var(--font-body);
       min-height: 100vh;
@@ -48,8 +88,10 @@
 
     /* Sacred Top Banner */
     .sacred-ribbon {
-      background: var(--gold-tint);
-      border-bottom: 1.5px solid #ebd9b8;
+      background: rgba(251, 245, 232, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid rgba(235, 217, 184, 0.85);
       color: var(--gold-dark);
       padding: 14px 20px;
       display: flex;
@@ -100,13 +142,13 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.97);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid rgba(222, 216, 203, 0.85);
-      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      border-radius: 26px;
       padding: 44px 38px;
-      box-shadow: 0 12px 40px rgba(17, 61, 40, 0.08), 0 2px 8px rgba(0,0,0,0.03);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 2px 10px rgba(0,0,0,0.12);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -468,6 +510,18 @@
 </head>
 <body>
 
+  <!-- Dynamic Full-Screen Background Stage -->
+  <div class="bg-stage">
+    <div class="bg-layer active" id="bg-0" style="background-image: url('img/bg_0_kaaba.jpg');"></div>
+    <div class="bg-layer" id="bg-1" style="background-image: url('img/bg_1_clocktower.jpg');"></div>
+    <div class="bg-layer" id="bg-2" style="background-image: url('img/bg_2_madinah.jpg');"></div>
+    <div class="bg-layer" id="bg-3" style="background-image: url('img/bg_3_courtyard.jpg');"></div>
+    <div class="bg-layer" id="bg-4" style="background-image: url('img/bg_4_transit.jpg');"></div>
+    <div class="bg-layer" id="bg-5" style="background-image: url('img/bg_5_night.jpg');"></div>
+    <div class="bg-layer" id="bg-6" style="background-image: url('img/bg_6_peace.jpg');"></div>
+    <div class="bg-overlay"></div>
+  </div>
+
   <!-- Top Sacred Banner -->
   <div class="sacred-ribbon">
     <span class="sacred-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
@@ -624,6 +678,14 @@
             </div>
           </div>
 
+          <div class="check-card" onclick="toggleNeed('Flight & Haramain Train (HHR) Booking Support', this)">
+            <div class="custom-check">✓</div>
+            <div class="choice-text">
+              <strong>Flight & Haramain Train (HHR) Booking Support</strong>
+              <span>Navigating optimal flight routes into Jeddah/Madinah, direct Haramain High-Speed Train bookings, and avoiding third-party ticketing markups</span>
+            </div>
+          </div>
+
           <div class="check-card" onclick="toggleNeed('Airport or Haramain Train Station Pickup', this)">
             <div class="custom-check">✓</div>
             <div class="choice-text">
@@ -756,6 +818,13 @@
       if (target) {
         target.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Dynamic Vibrant Haramain Background per Card
+      document.querySelectorAll('.bg-layer').forEach(l => l.classList.remove('active'));
+      const targetBg = document.getElementById('bg-' + id);
+      if (targetBg) {
+        targetBg.classList.add('active');
       }
     }
 
@@ -949,6 +1018,10 @@
       document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
       document.querySelectorAll('#card-4 .check-card').forEach(c => c.classList.remove('checked'));
       document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+
+      document.querySelectorAll('.bg-layer').forEach(l => l.classList.remove('active'));
+      const initialBg = document.getElementById('bg-0');
+      if (initialBg) initialBg.classList.add('active');
 
       const submitBtn = document.getElementById('submitBtn');
       if (submitBtn) {
