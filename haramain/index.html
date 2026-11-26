@@ -4,6 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Haramain Guests • Dhuyuf ar-Rahman Hospitality</title>
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="./img/az_logo.svg">
+  <link rel="alternate icon" type="image/png" href="./img/az_logo.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Haramain Guests • Dhuyuf ar-Rahman Hospitality">
+  <meta name="description" content="Personal arrival greeting, local resident guidance, and sincere brotherly hosting in Makkah & Madinah with zero commercial agenda.">
+  <meta name="theme-color" content="#0b3d24">
+
+  <!-- Open Graph / WhatsApp / LinkedIn / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amz34.github.io/haramain/">
+  <meta property="og:title" content="Haramain Guests • Dhuyuf ar-Rahman Hospitality">
+  <meta property="og:description" content="Personal arrival greeting, local resident guidance, and sincere brotherly hosting in Makkah & Madinah with zero commercial agenda.">
+  <meta property="og:image" content="https://amz34.github.io/haramain/img/az_og_banner.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://amz34.github.io/haramain/">
+  <meta name="twitter:title" content="Haramain Guests • Dhuyuf ar-Rahman Hospitality">
+  <meta name="twitter:description" content="Personal arrival greeting, local resident guidance, and sincere brotherly hosting in Makkah & Madinah with zero commercial agenda.">
+  <meta name="twitter:image" content="https://amz34.github.io/haramain/img/az_og_banner.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -771,6 +798,78 @@
       color: var(--emerald-hover);
     }
 
+    /* AZ Official Emblem & Seal */
+    .ribbon-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ribbon-brand:hover {
+      transform: scale(1.06);
+    }
+    .ribbon-logo {
+      width: 36px;
+      height: 36px;
+      display: block;
+      border-radius: 50%;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.12));
+    }
+
+    .footer-seal-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .footer-seal-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      border-radius: 50%;
+    }
+    .footer-seal-link:hover {
+      transform: translateY(-2px) scale(1.08);
+    }
+    .footer-seal-img {
+      width: 58px;
+      height: 58px;
+      display: block;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(11, 61, 36, 0.18);
+    }
+    .footer-az-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1.5px solid #dfcba4;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--emerald);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      vertical-align: middle;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .footer-az-badge:hover {
+      background: var(--gold-tint);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+    .footer-az-badge img {
+      width: 20px;
+      height: 20px;
+      display: block;
+      border-radius: 50%;
+    }
+
     /* Mobile Viewport Optimizations */
     @media (max-width: 640px) {
       body {
@@ -779,9 +878,28 @@
       }
 
       .sacred-ribbon {
-        padding: 12px 14px;
+        padding: 10px 14px;
         gap: 6px;
         flex-direction: column;
+      }
+
+      .ribbon-brand {
+        margin-bottom: 2px;
+      }
+
+      .ribbon-logo {
+        width: 32px;
+        height: 32px;
+      }
+
+      .footer-seal-img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .footer-az-badge {
+        font-size: 14px;
+        padding: 4px 12px;
       }
 
       .sacred-arabic {
@@ -1001,6 +1119,9 @@
 
   <!-- Top Sacred Banner -->
   <div class="sacred-ribbon">
+    <a href="https://amz34.github.io/haramain/" class="ribbon-brand" title="Dhuyuf ar-Rahman Hospitality • Makkah al-Mukarramah">
+      <img src="./img/az_logo.svg" alt="AZ Royal Emblem" class="ribbon-logo" width="36" height="36">
+    </a>
     <span class="sacred-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
     <span class="sacred-sub">• Dhuyuf ar-Rahman Hospitality • Makkah al-Mukarramah</span>
   </div>
@@ -1382,12 +1503,22 @@
 
   <footer>
     <div style="max-width: 880px; margin: 0 auto; line-height: 1.8;">
+      <div class="footer-seal-wrap">
+        <a href="https://www.linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="footer-seal-link" title="Brother Aamir Zameer (AZ) • Khadim Dhuyuf ar-Rahman">
+          <img src="./img/az_logo.svg" alt="AZ Royal Seal" class="footer-seal-img" width="58" height="58">
+        </a>
+      </div>
       <p style="font-size: 19px; font-weight: 800; color: var(--emerald); margin-bottom: 8px;">
         Made with luv from Makkah-tul-Mukarramah ❤️
       </p>
       <p style="font-size: 16px; margin-bottom: 8px;">
         Connect with Brother Aamir on LinkedIn: 
-        <a href="https://www.linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="footer-link">linkedin.com/in/aamirzameer</a>
+        <a href="https://www.linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <span class="footer-az-badge">
+            <img src="./img/az_logo.svg" alt="AZ">
+            linkedin.com/in/aamirzameer
+          </span>
+        </a>
       </p>
       <p style="font-size: 15px; color: var(--muted);">
         Khadim Dhuyuf ar-Rahman • Sincere brotherly hospitality with zero commercial agenda.

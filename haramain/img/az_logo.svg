@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <!-- Sacred Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0d0" />
+      <stop offset="30%" stop-color="#dfb76c" />
+      <stop offset="70%" stop-color="#b8860b" />
+      <stop offset="100%" stop-color="#7a5508" />
+    </linearGradient>
+
+    <!-- Deep Emerald Radial -->
+    <radialGradient id="emeraldGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f4d2f" />
+      <stop offset="75%" stop-color="#0b3d24" />
+      <stop offset="100%" stop-color="#041f11" />
+    </radialGradient>
+
+    <!-- Subtle Shadow -->
+    <filter id="sealShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Outer Shadow & Base -->
+  <g filter="url(#sealShadow)">
+    <!-- 8-Pointed Star Outer Ring -->
+    <polygon points="100,6 122,26 152,14 164,44 194,56 182,86 200,110 178,130 186,160 156,168 144,196 114,188 90,200 76,174 46,186 38,156 8,144 20,114 2,90 24,70 16,40 46,32 58,4 88,12" 
+             fill="url(#goldGrad)" opacity="0.95" />
+
+    <!-- Main Outer Circle -->
+    <circle cx="100" cy="100" r="88" fill="url(#emeraldGrad)" stroke="url(#goldGrad)" stroke-width="3" />
+
+    <!-- Inner Beaded Ring -->
+    <circle cx="100" cy="100" r="80" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="2,3" opacity="0.75" />
+    <circle cx="100" cy="100" r="74" fill="none" stroke="url(#goldGrad)" stroke-width="1.8" />
+
+    <!-- Top Crescent & Star Symbol of Makkah -->
+    <g transform="translate(100, 42) scale(0.7)">
+      <path d="M 0,-10 A 10,10 0 1,1 -6,6 A 8,8 0 1,0 0,-10 Z" fill="url(#goldGrad)" />
+      <polygon points="3,-2 4.5,1 8,1.5 5.5,4 6,7.5 3,6 0,7.5 0.5,4 -2,1.5 1.5,1" fill="url(#goldGrad)" />
+    </g>
+
+    <!-- Monogram AZ - Prestigious Architectural Lettering -->
+    <g id="monogram" transform="translate(100, 114)">
+      <!-- Drop shadow for lettering -->
+      <text x="0" y="0" 
+            text-anchor="middle" 
+            font-family="'Space Grotesk', 'Plus Jakarta Sans', Georgia, serif" 
+            font-size="64" 
+            font-weight="800" 
+            letter-spacing="-0.04em" 
+            fill="#02120a" 
+            dy="2">AZ</text>
+      <!-- Main Gold Gradient Lettering -->
+      <text x="0" y="0" 
+            text-anchor="middle" 
+            font-family="'Space Grotesk', 'Plus Jakarta Sans', Georgia, serif" 
+            font-size="64" 
+            font-weight="800" 
+            letter-spacing="-0.04em" 
+            fill="url(#goldGrad)">AZ</text>
+    </g>
+
+    <!-- Lower Inscription Arc: MAKKAH AL-MUKARRAMAH -->
+    <g id="bottomText" transform="translate(100, 156)">
+      <text x="0" y="0" 
+            text-anchor="middle" 
+            font-family="'IBM Plex Mono', 'Plus Jakarta Sans', monospace" 
+            font-size="9.5" 
+            font-weight="700" 
+            letter-spacing="0.18em" 
+            fill="url(#goldGrad)">MAKKAH AL-MUKARRAMAH</text>
+      <text x="0" y="11" 
+            text-anchor="middle" 
+            font-family="'IBM Plex Mono', 'Plus Jakarta Sans', monospace" 
+            font-size="7.5" 
+            font-weight="700" 
+            letter-spacing="0.15em" 
+            fill="#d2b06e" 
+            opacity="0.85">DHUYUF AR-RAHMAN</text>
+    </g>
+  </g>
+</svg>
