@@ -56,7 +56,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Sacred Top Ribbon - Extra Prominent Neuromarketing Scale */
+    /* Sacred Top Ribbon */
     .sacred-ribbon {
       background: #fdf7ec;
       border-bottom: 2px solid #e9d6b2;
@@ -92,7 +92,7 @@
       opacity: 0.95;
     }
 
-    /* Main Container - Adaptive Dynamic Width */
+    /* Main Container */
     .main-wrapper {
       flex: 1;
       display: flex;
@@ -103,11 +103,6 @@
       max-width: 780px;
       margin: 0 auto;
       width: 100%;
-      transition: max-width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .main-wrapper.wide-layout {
-      max-width: 1060px;
     }
 
     /* Card styling */
@@ -152,7 +147,7 @@
       transition: width 0.35s ease;
     }
 
-    /* Typography - Neuro-Marketing Grade Extra Large Scale */
+    /* Typography */
     .step-pill {
       display: inline-flex;
       align-items: center;
@@ -194,30 +189,30 @@
       color: var(--muted);
       font-size: 20px;
       line-height: 1.65;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
       font-weight: 500;
     }
 
-    /* Form Inputs - Extra Large High-Touch Controls */
+    /* Form Inputs */
     .input-group {
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       text-align: left;
     }
 
     label {
       display: block;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: var(--ink-soft);
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       letter-spacing: -0.01em;
     }
 
     .input-subtext {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--muted);
-      margin-top: -6px;
-      margin-bottom: 10px;
+      margin-top: -5px;
+      margin-bottom: 9px;
       font-weight: 500;
     }
 
@@ -229,8 +224,10 @@
     textarea,
     select {
       width: 100%;
-      padding: 18px 22px;
-      font-size: 19px;
+      max-width: 100%;
+      min-width: 0;
+      padding: 17px 20px;
+      font-size: 18px;
       border: 2.5px solid var(--line);
       border-radius: 14px;
       background: #fdfdfc;
@@ -238,6 +235,7 @@
       font-family: var(--font-body);
       font-weight: 600;
       transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+      cursor: pointer;
     }
 
     input:focus,
@@ -252,10 +250,23 @@
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 18px;
     }
 
-    /* Choice Cards */
+    /* Form Section Header (Step 4) */
+    .form-section-header {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--emerald-dark);
+      margin: 20px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--emerald-tint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Choice Cards (Step 3) */
     .choice-stack {
       display: flex;
       flex-direction: column;
@@ -410,179 +421,13 @@
       border: 1px solid rgba(11, 61, 36, 0.2);
     }
 
-    /* STEP 4: TWO-SIDED 2-COLUMN GRID SYSTEM */
-    .services-2col-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-      margin-bottom: 24px;
-    }
-
-    .service-column {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .col-header-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--emerald-dark);
-      background: #edf5f0;
-      padding: 10px 18px;
-      border-radius: 12px;
-      border-left: 4px solid var(--emerald);
-      letter-spacing: -0.01em;
-    }
-
-    /* Expandable Service Cards (Step 4) */
-    .service-card {
-      border: 2.5px solid var(--line);
-      border-radius: 16px;
-      background: #fdfdfc;
-      transition: all 0.2s ease;
-      overflow: hidden;
-    }
-
-    .service-card.checked {
-      border-color: var(--emerald);
-      background: #ffffff;
-      box-shadow: 0 6px 22px rgba(11, 61, 36, 0.1);
-    }
-
-    .service-trigger {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 22px 20px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.15s ease;
-    }
-
-    .service-trigger:hover {
-      background: var(--emerald-tint);
-    }
-
-    .custom-check {
-      width: 30px;
-      height: 30px;
-      border: 2.5px solid var(--line-strong);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-      flex-shrink: 0;
-      transition: all 0.2s;
-      background: #fff;
-      font-size: 18px;
-      font-weight: 800;
-      color: transparent;
-    }
-
-    .service-card.checked .custom-check {
-      background: var(--emerald);
-      border-color: var(--emerald);
-      color: #ffffff;
-    }
-
-    .service-text strong {
-      display: block;
-      font-size: 20px;
-      color: var(--ink);
-      font-weight: 800;
-      margin-bottom: 5px;
-      line-height: 1.3;
-    }
-
-    .service-text span {
-      display: block;
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .service-content {
-      display: none;
-      padding: 0 20px 24px;
-      border-top: 1.5px dashed var(--line);
-      margin-top: 2px;
-      background: #fafaf8;
-      animation: fadeIn 0.2s ease;
-    }
-
-    .service-card.checked .service-content {
-      display: block;
-    }
-
-    .sub-section-title {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--ink);
-      margin: 18px 0 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Quick Preference Pills */
-    .pill-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .pill-opt {
-      padding: 10px 16px;
-      border: 2px solid var(--line);
-      border-radius: 10px;
-      background: #ffffff;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--ink-soft);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      user-select: none;
-    }
-
-    .pill-opt:hover {
-      border-color: var(--emerald);
-      color: var(--emerald);
-    }
-
-    .pill-opt.active {
-      border-color: var(--emerald);
-      background: var(--emerald-tint);
-      color: var(--emerald-dark);
-      font-weight: 800;
-    }
-
-    /* Diplomatic Food Box Styling */
-    .food-narrative-note {
-      font-size: 15px;
-      color: var(--muted);
-      font-weight: 600;
-      line-height: 1.5;
-      margin-bottom: 12px;
-      background: #fbf5e6;
-      border: 1px solid #ebd8b6;
-      border-radius: 8px;
-      padding: 10px 14px;
-    }
-
     /* Buttons */
     .btn-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-top: 36px;
+      margin-top: 34px;
     }
 
     .btn {
@@ -687,42 +532,6 @@
       display: none;
     }
 
-    /* Elite Network Narrative Box */
-    .network-badge-box {
-      background: var(--gold-tint);
-      border: 2px solid #ebd8b6;
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin-bottom: 28px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      text-align: left;
-      box-shadow: 0 4px 14px rgba(158, 117, 41, 0.06);
-    }
-
-    .network-badge-icon {
-      font-size: 32px;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .network-badge-text strong {
-      display: block;
-      font-size: 19px;
-      color: var(--gold-dark);
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .network-badge-text p {
-      font-size: 16px;
-      color: var(--ink-soft);
-      line-height: 1.6;
-      font-weight: 500;
-      margin: 0;
-    }
-
     /* Footer */
     footer {
       text-align: center;
@@ -744,23 +553,8 @@
       color: var(--emerald-hover);
     }
 
-    @media (max-width: 900px) {
-      .services-2col-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .main-wrapper.wide-layout {
-        max-width: 780px;
-      }
-    }
-
+    /* Responsive Mobile Overrides */
     @media (max-width: 640px) {
-      html, body {
-        overflow-x: hidden;
-        width: 100%;
-        max-width: 100vw;
-      }
-
       body {
         font-size: 17px;
         line-height: 1.55;
@@ -782,8 +576,7 @@
         letter-spacing: 0.06em;
       }
 
-      .main-wrapper,
-      .main-wrapper.wide-layout {
+      .main-wrapper {
         padding: 16px 12px 36px;
         width: 100%;
         max-width: 100%;
@@ -842,7 +635,7 @@
       textarea,
       select {
         padding: 15px 16px;
-        font-size: 17px; /* >= 16px strictly prevents iOS Safari auto-zoom */
+        font-size: 17px;
         border-radius: 12px;
         border-width: 2px;
         min-height: 52px;
@@ -911,86 +704,11 @@
         font-size: 19px;
       }
 
-      .network-badge-box {
-        padding: 16px 16px;
-        gap: 12px;
-        border-radius: 14px;
-        margin-bottom: 22px;
-        border-width: 1.5px;
-      }
-
-      .network-badge-icon {
-        font-size: 26px;
-      }
-
-      .network-badge-text strong {
-        font-size: 17px;
-      }
-
-      .network-badge-text p {
-        font-size: 14px;
-        line-height: 1.5;
-      }
-
-      .col-header-pill {
-        font-size: 15px;
-        padding: 8px 14px;
-      }
-
-      .service-card {
-        border-radius: 14px;
-        border-width: 2px;
-      }
-
-      .service-trigger {
-        padding: 16px 14px;
-        gap: 12px;
-      }
-
-      .custom-check {
-        width: 26px;
-        height: 26px;
+      .form-section-header {
         font-size: 16px;
-        border-radius: 7px;
+        margin: 16px 0 10px;
       }
 
-      .service-text strong {
-        font-size: 18px;
-        margin-bottom: 3px;
-      }
-
-      .service-text span {
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .service-content {
-        padding: 0 14px 18px;
-      }
-
-      .sub-section-title {
-        font-size: 15px;
-        margin: 14px 0 8px;
-      }
-
-      .pill-group {
-        gap: 8px;
-      }
-
-      .pill-opt {
-        padding: 10px 12px;
-        font-size: 14px;
-        min-height: 44px;
-        flex: 1 1 auto;
-      }
-
-      .food-narrative-note {
-        font-size: 13px;
-        padding: 8px 10px;
-        margin-bottom: 10px;
-      }
-
-      /* Stack buttons on mobile for effortless thumb tap and no side-by-side overflow */
       .btn-row {
         flex-direction: column-reverse;
         gap: 10px;
@@ -1034,15 +752,10 @@
         padding: 28px 16px;
         font-size: 14px;
       }
-
-      footer p:first-child {
-        font-size: 16px !important;
-      }
     }
 
     @media (max-width: 360px) {
-      .main-wrapper,
-      .main-wrapper.wide-layout {
+      .main-wrapper {
         padding: 12px 8px 24px;
       }
 
@@ -1051,18 +764,9 @@
         border-radius: 14px;
       }
 
-      h1 {
-        font-size: 25px;
-      }
-
-      h2 {
-        font-size: 21px;
-      }
-
-      .btn {
-        padding: 15px 16px;
-        font-size: 16px;
-      }
+      h1 { font-size: 25px; }
+      h2 { font-size: 21px; }
+      .btn { padding: 15px 16px; font-size: 16px; }
     }
   </style>
 </head>
@@ -1230,233 +934,98 @@
         </div>
       </div>
 
-      <!-- CARD 4: 2-SIDED SIDE-BY-SIDE HOSPITALITY SERVICES -->
+      <!-- CARD 4: CONCISE SINGLE-PAGE ALIGNED DROPDOWNS -->
       <div class="card" id="card-4">
-        <div class="step-pill">Step 4 of 5 • Hospitality Support</div>
+        <div class="step-pill">Step 4 of 5 • Hospitality & Guidance</div>
         <h2>How may we host and assist you?</h2>
-        <p class="lead">Tap the main services you would like assistance with. All details below are optional:</p>
+        <p class="lead">Select whatever you would appreciate guidance with. Everything is flexible and personal:</p>
 
-        <!-- Resident Network Narrative Hook -->
-        <div class="network-badge-box">
-          <div class="network-badge-icon">🤝</div>
-          <div class="network-badge-text">
-            <strong>Direct Local Resident Network</strong>
-            <p>We connect you directly through our trusted local network to verified courtyard hotels, genuine high-speed train bookings, and private transfers at fair rates — with zero commercial markup.</p>
+        <!-- SECTION 1: HOTEL GUIDANCE -->
+        <div class="form-section-header">🏨 Hotel Guidance in Makkah & Madinah</div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="dd_hotel_makkah">Makkah Hotel Preference</label>
+            <select id="dd_hotel_makkah">
+              <option value="Haram Courtyard (Walkable / 5-Star)">Haram Courtyard (Walkable / 5-Star)</option>
+              <option value="Comfort with Shuttle (Economy)">Comfort with Shuttle (Economy)</option>
+              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="dd_hotel_madinah">Madinah Hotel Preference</label>
+            <select id="dd_hotel_madinah">
+              <option value="Central Markaziyah (Walkable to Rawdah)">Central Markaziyah (Walkable to Rawdah)</option>
+              <option value="Comfort with Shuttle (Economy)">Comfort with Shuttle (Economy)</option>
+              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
+            </select>
           </div>
         </div>
 
-        <!-- 2-SIDED SIDE-BY-SIDE GRID -->
-        <div class="services-2col-grid">
-          
-          <!-- COLUMN 1: SACRED STAY & LIVING IN MAKKAH -->
-          <div class="service-column">
-            <div class="col-header-pill">🏨 Sacred Stay & Living in the Holy Lands</div>
+        <div class="input-group">
+          <label for="dd_hotel_rooms">Rooms & Bed Arrangement</label>
+          <select id="dd_hotel_rooms">
+            <option value="1 Room • Double / King Bed">1 Room • Double / King Bed</option>
+            <option value="1 Room • Twin Beds">1 Room • Twin Beds</option>
+            <option value="2 Rooms • Family Setup">2 Rooms • Family Setup</option>
+            <option value="3+ Rooms • Group / Custom">3+ Rooms • Group / Custom</option>
+            <option value="Not needed">Not needed</option>
+          </select>
+        </div>
 
-            <!-- SERVICE 1: Hotel Booking Support -->
-            <div class="service-card" id="srv_hotel">
-              <div class="service-trigger" onclick="toggleService('hotel')">
-                <div class="custom-check" id="chk_hotel">✓</div>
-                <div class="service-text">
-                  <strong>Nearby Haram Hotel Booking Support</strong>
-                  <span>Verified hotels within steps of the Haram courtyard or comfortable shuttle options at genuine local rates</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_hotel">
-                
-                <!-- Makkah Hotel Section -->
-                <div class="sub-section-title">🕋 Makkah Hotel Stay (Optional)</div>
-                <div class="grid-2">
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Makkah Check-In</label>
-                    <input type="date" id="q_makkah_checkin">
-                  </div>
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Makkah Check-Out</label>
-                    <input type="date" id="q_makkah_checkout">
-                  </div>
-                </div>
-                <label style="font-size: 15px; margin-bottom: 8px;">Makkah Hotel Preference</label>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('makkah_tier', 'Haram Courtyard (Walkable / 5-Star)', this)">Haram Courtyard (Walkable / 5-Star)</div>
-                  <div class="pill-opt" onclick="selectPill('makkah_tier', 'Comfort with Shuttle (Economy)', this)">Comfort with Shuttle (Economy)</div>
-                </div>
-
-                <!-- Madinah Hotel Section -->
-                <div class="sub-section-title" style="margin-top: 18px;">🕌 Madinah Hotel Stay (Optional)</div>
-                <div class="grid-2">
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Madinah Check-In</label>
-                    <input type="date" id="q_madinah_checkin">
-                  </div>
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Madinah Check-Out</label>
-                    <input type="date" id="q_madinah_checkout">
-                  </div>
-                </div>
-                <label style="font-size: 15px; margin-bottom: 8px;">Madinah Hotel Preference</label>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('madinah_tier', 'Central Markaziyah (Walkable to Rawdah)', this)">Central Markaziyah (Walkable)</div>
-                  <div class="pill-opt" onclick="selectPill('madinah_tier', 'Nearby with Shuttle (Economy)', this)">Nearby with Shuttle</div>
-                </div>
-
-                <!-- Rooms & Bedding Setup -->
-                <div class="sub-section-title" style="margin-top: 18px;">🛏️ Rooms & Bed Arrangement</div>
-                <div class="grid-2">
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Number of Rooms</label>
-                    <select id="q_rooms_count">
-                      <option value="1 Room">1 Room</option>
-                      <option value="2 Rooms">2 Rooms</option>
-                      <option value="3 Rooms">3 Rooms</option>
-                      <option value="4+ Rooms">4+ Rooms</option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <label style="font-size: 15px;">Preferred Bed Setup</label>
-                    <select id="q_bed_setup">
-                      <option value="1 King / Double Bed">1 King / Double Bed</option>
-                      <option value="2 Twin Beds">2 Twin Beds</option>
-                      <option value="3 Triple Beds">3 Triple Beds</option>
-                      <option value="4 Quad / Family Setup">4 Quad / Family Setup</option>
-                    </select>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- SERVICE 2: Home-Cooked Meals & Arabic Qahwa -->
-            <div class="service-card" id="srv_meals">
-              <div class="service-trigger" onclick="toggleService('meals')">
-                <div class="custom-check" id="chk_meals">✓</div>
-                <div class="service-text">
-                  <strong>Home-Cooked Family Meals & Arabic Qahwa</strong>
-                  <span>Join our family table in Makkah for authentic homemade meals, hot tea, and brotherly hosting</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_meals">
-                <div class="food-narrative-note">
-                  Honored guests are welcome at our family table in Makkah. Tell us your meal timings and preferred dishes throughout the day so we can arrange heartfelt hospitality suited to your family.
-                </div>
-
-                <div class="sub-section-title">🍽️ Preferred Meal Coverage & Timings</div>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('meal_timing', 'Breakfast', this)">Breakfast</div>
-                  <div class="pill-opt" onclick="selectPill('meal_timing', 'Lunch', this)">Lunch</div>
-                  <div class="pill-opt" onclick="selectPill('meal_timing', 'Dinner', this)">Dinner</div>
-                  <div class="pill-opt" onclick="selectPill('meal_timing', 'All Day Meals & Evening Qahwa', this)">All Day Meals & Evening Qahwa</div>
-                </div>
-
-                <div class="input-group" style="margin-top: 14px; margin-bottom: 0;">
-                  <label style="font-size: 15px;">Favorite Home Dishes & Dietary Preferences (Free-Text)</label>
-                  <textarea id="q_meals_freetext" rows="3" placeholder="e.g. Traditional Hijazi Mandi/Kabsa, Desi Home-style Biryani/Roti, Mild spice for children or elders, Morning Karak Chai & Evening Qahwa..."></textarea>
-                </div>
-              </div>
-            </div>
-
-            <!-- SERVICE 3: Umrah & Rawdah Guidance -->
-            <div class="service-card" id="srv_guidance">
-              <div class="service-trigger" onclick="toggleService('guidance')">
-                <div class="custom-check" id="chk_guidance">✓</div>
-                <div class="service-text">
-                  <strong>Personal Umrah, Rawdah & Ziyarah Guidance</strong>
-                  <span>Local tips on crowd-timing, Nusuk permit booking, and visits to sacred historical landmarks</span>
-                </div>
-              </div>
-            </div>
-
+        <!-- SECTION 2: TRANSIT, TRAIN & TRANSFERS -->
+        <div class="form-section-header">🚄 Travel, Train & Local Transfers</div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="dd_flight">Flight Arrival Route</label>
+            <select id="dd_flight">
+              <option value="Jeddah Airport (JED)">Jeddah Airport (JED)</option>
+              <option value="Madinah Airport (MED)">Madinah Airport (MED)</option>
+              <option value="Taif or other route">Taif or other route</option>
+              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
+            </select>
           </div>
-
-          <!-- COLUMN 2: TRANSIT, TRAVEL & LOGISTICS -->
-          <div class="service-column">
-            <div class="col-header-pill">🚗 Transit, Travel & Route Logistics</div>
-
-            <!-- SERVICE 4: Flight Booking & Route Guidance -->
-            <div class="service-card" id="srv_flight">
-              <div class="service-trigger" onclick="toggleService('flight')">
-                <div class="custom-check" id="chk_flight">✓</div>
-                <div class="service-text">
-                  <strong>Flight Booking & Route Guidance</strong>
-                  <span>Optimal flight routes into Jeddah or Madinah and avoiding third-party markup</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_flight">
-                <div class="sub-section-title">✈️ Arrival Airport Preference (Optional)</div>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('flight_port', 'Jeddah Airport (JED)', this)">Jeddah (JED)</div>
-                  <div class="pill-opt" onclick="selectPill('flight_port', 'Madinah Airport (MED)', this)">Madinah (MED)</div>
-                  <div class="pill-opt" onclick="selectPill('flight_port', 'Taif / Other Airport', this)">Taif / Other</div>
-                </div>
-                <div class="input-group" style="margin-top: 10px; margin-bottom: 0;">
-                  <input type="text" id="q_flight_notes" placeholder="Optional: Airline preference, flight numbers, or arrival timing">
-                </div>
-              </div>
-            </div>
-
-            <!-- SERVICE 5: Haramain Bullet Train (HHR) -->
-            <div class="service-card" id="srv_train">
-              <div class="service-trigger" onclick="toggleService('train')">
-                <div class="custom-check" id="chk_train">✓</div>
-                <div class="service-text">
-                  <strong>Haramain High-Speed Train (HHR) Booking Support</strong>
-                  <span>Direct bullet train tickets between Makkah, Madinah & Jeddah Airport with official schedules</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_train">
-                <div class="sub-section-title">🚄 Train Route Needed (Optional)</div>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('train_route', 'Makkah ⇄ Madinah', this)">Makkah ⇄ Madinah</div>
-                  <div class="pill-opt" onclick="selectPill('train_route', 'Jeddah Airport ⇄ Makkah', this)">Jeddah Airport ⇄ Makkah</div>
-                  <div class="pill-opt" onclick="selectPill('train_route', 'Jeddah Airport ⇄ Madinah', this)">Jeddah Airport ⇄ Madinah</div>
-                </div>
-                <label style="font-size: 15px; margin-bottom: 8px;">Class Preference</label>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('train_class', 'Economy Class', this)">Economy Class</div>
-                  <div class="pill-opt" onclick="selectPill('train_class', 'Business Class', this)">Business Class</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SERVICE 6: Airport or Train Station Pickup -->
-            <div class="service-card" id="srv_pickup">
-              <div class="service-trigger" onclick="toggleService('pickup')">
-                <div class="custom-check" id="chk_pickup">✓</div>
-                <div class="service-text">
-                  <strong>Airport or Train Station Pickup</strong>
-                  <span>Personal meet & greet arrival transfer from Jeddah Airport or Makkah / Madinah train stations</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_pickup">
-                <div class="sub-section-title">🚗 Arrival Point for Pickup (Optional)</div>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('pickup_loc', 'Jeddah Airport (JED)', this)">Jeddah Airport (JED)</div>
-                  <div class="pill-opt" onclick="selectPill('pickup_loc', 'Makkah Train Station (Rusaifah)', this)">Makkah Train Station</div>
-                  <div class="pill-opt" onclick="selectPill('pickup_loc', 'Madinah Airport / Station', this)">Madinah Airport/Station</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- SERVICE 7: Transportation Throughout Journey -->
-            <div class="service-card" id="srv_journey_trans">
-              <div class="service-trigger" onclick="toggleService('journey_trans')">
-                <div class="custom-check" id="chk_journey_trans">✓</div>
-                <div class="service-text">
-                  <strong>Transportation Throughout the Journey</strong>
-                  <span>Dedicated private vehicle coordination for daily prayers, intercity travel & sacred Ziyarah</span>
-                </div>
-              </div>
-              <div class="service-content" id="content_journey_trans">
-                <div class="sub-section-title">🚐 Vehicle Preference (Optional)</div>
-                <div class="pill-group">
-                  <div class="pill-opt active" onclick="selectPill('trans_vehicle', 'Private Sedan (1-3 Pax)', this)">Private Sedan (1-3 Pax)</div>
-                  <div class="pill-opt" onclick="selectPill('trans_vehicle', 'Family SUV / GMC (4-6 Pax)', this)">Family SUV / GMC (4-6 Pax)</div>
-                  <div class="pill-opt" onclick="selectPill('trans_vehicle', 'HiAce Van (7+ Pax)', this)">HiAce Van (7+ Pax)</div>
-                </div>
-              </div>
-            </div>
-
+          <div class="input-group">
+            <label for="dd_train">Haramain High-Speed Train (HHR)</label>
+            <select id="dd_train">
+              <option value="Makkah ⇄ Madinah Bullet Train">Makkah ⇄ Madinah Bullet Train</option>
+              <option value="Jeddah Airport ⇄ Makkah">Jeddah Airport ⇄ Makkah</option>
+              <option value="Jeddah Airport ⇄ Madinah">Jeddah Airport ⇄ Madinah</option>
+              <option value="Not needed / Private car preferred">Not needed / Private car preferred</option>
+            </select>
           </div>
+        </div>
 
+        <div class="input-group">
+          <label for="dd_transport">Local Transportation Assistance</label>
+          <select id="dd_transport">
+            <option value="Airport / Train Station Arrival Pickup">Airport / Train Station Arrival Pickup</option>
+            <option value="Dedicated Family Vehicle Throughout Stay">Dedicated Family Vehicle Throughout Stay</option>
+            <option value="Sacred Ziyarah & Intercity Transfers Only">Sacred Ziyarah & Intercity Transfers Only</option>
+            <option value="Not needed">Not needed</option>
+          </select>
+        </div>
+
+        <!-- SECTION 3: FAMILY TABLE & SACRED GUIDANCE -->
+        <div class="form-section-header">🤲 Family Table & Sacred Guidance</div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="dd_meals">Home Meals & Arabic Qahwa</label>
+            <select id="dd_meals">
+              <option value="Join us for authentic family dinner & Qahwa">Join us for authentic family dinner & Qahwa</option>
+              <option value="Welcome tea & Arabic Qahwa only">Welcome tea & Arabic Qahwa only</option>
+              <option value="Daily home-cooked breakfast / meals">Daily home-cooked breakfast / meals</option>
+              <option value="Not needed">Not needed</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="dd_guidance">Sacred Guidance & Ziyarah</label>
+            <select id="dd_guidance">
+              <option value="Personal Umrah, Nusuk & Rawdah Advice">Personal Umrah, Nusuk & Rawdah Advice</option>
+              <option value="Makkah & Madinah Historical Sites (Ziyarah)">Makkah & Madinah Historical Sites (Ziyarah)</option>
+              <option value="Full Personal Guidance & Historic Visits">Full Personal Guidance & Historic Visits</option>
+              <option value="Not needed">Not needed</option>
+            </select>
+          </div>
         </div>
 
         <div class="btn-row">
@@ -1525,7 +1094,7 @@
             <span class="summary-val" id="sum_party"></span>
           </div>
           <div class="summary-row">
-            <span class="summary-label">Services Desired</span>
+            <span class="summary-label">Hospitality Desired</span>
             <span class="summary-val" id="sum_needs" style="max-width: 360px;"></span>
           </div>
         </div>
@@ -1571,35 +1140,15 @@
       adults: 2,
       kids: 0,
       guest_count: '2 Guests (2 Adults, 0 Kids)',
+      hotel_makkah: '',
+      hotel_madinah: '',
+      hotel_rooms: '',
+      flight: '',
+      train: '',
+      transport: '',
+      meals: '',
+      guidance: '',
       services: [],
-      hotel_details: {
-        makkah_checkin: '',
-        makkah_checkout: '',
-        makkah_tier: 'Haram Courtyard (Walkable / 5-Star)',
-        madinah_checkin: '',
-        madinah_checkout: '',
-        madinah_tier: 'Central Markaziyah (Walkable)',
-        rooms: '1 Room',
-        beds: '1 King / Double Bed'
-      },
-      meals_details: {
-        timing: 'Breakfast',
-        freetext: ''
-      },
-      flight_details: {
-        airport: 'Jeddah Airport (JED)',
-        notes: ''
-      },
-      train_details: {
-        route: 'Makkah ⇄ Madinah',
-        class: 'Economy Class'
-      },
-      pickup_details: {
-        location: 'Jeddah Airport (JED)'
-      },
-      journey_trans_details: {
-        vehicle: 'Private Sedan (1-3 Pax)'
-      },
       phone: '',
       email: '',
       linkedin: '',
@@ -1610,16 +1159,6 @@
       const bar = document.getElementById('progressBar');
       const percentage = (step / 5) * 100;
       bar.style.width = Math.min(percentage, 100) + '%';
-
-      // Dynamic adaptive width: expand on step 4
-      const wrapper = document.getElementById('mainWrapper');
-      if (wrapper) {
-        if (step === 4) {
-          wrapper.classList.add('wide-layout');
-        } else {
-          wrapper.classList.remove('wide-layout');
-        }
-      }
     }
 
     function showCard(id) {
@@ -1690,13 +1229,6 @@
 
       state.arrival_date = arr;
       state.departure_date = dep;
-
-      // Auto pre-populate hotel dates if empty
-      const mIn = document.getElementById('q_makkah_checkin');
-      const mOut = document.getElementById('q_makkah_checkout');
-      if (mIn && !mIn.value) mIn.value = arr;
-      if (mOut && !mOut.value) mOut.value = dep;
-
       nextCard(2, 3);
     }
 
@@ -1744,68 +1276,41 @@
       nextCard(3, 4);
     }
 
-    function toggleService(serviceId) {
-      const card = document.getElementById('srv_' + serviceId);
-      if (!card) return;
-      card.classList.toggle('checked');
-      syncServicesState();
-    }
-
-    function selectPill(category, value, el) {
-      const parent = el.parentElement;
-      parent.querySelectorAll('.pill-opt').forEach(p => p.classList.remove('active'));
-      el.classList.add('active');
-
-      if (category === 'makkah_tier') state.hotel_details.makkah_tier = value;
-      if (category === 'madinah_tier') state.hotel_details.madinah_tier = value;
-      if (category === 'meal_timing') state.meals_details.timing = value;
-      if (category === 'flight_port') state.flight_details.airport = value;
-      if (category === 'train_route') state.train_details.route = value;
-      if (category === 'train_class') state.train_details.class = value;
-      if (category === 'pickup_loc') state.pickup_details.location = value;
-      if (category === 'trans_vehicle') state.journey_trans_details.vehicle = value;
-    }
-
-    function syncServicesState() {
-      state.services = [];
-      const serviceMap = {
-        'hotel': 'Nearby Haram Hotel Booking Support',
-        'meals': 'Home-Cooked Family Meals & Qahwa',
-        'guidance': 'Personal Umrah & Rawdah Guidance',
-        'flight': 'Flight Booking & Route Guidance',
-        'train': 'Haramain Train (HHR) Booking Support',
-        'pickup': 'Airport or Train Station Pickup',
-        'journey_trans': 'Transportation Throughout the Journey'
-      };
-
-      for (const [id, label] of Object.entries(serviceMap)) {
-        const card = document.getElementById('srv_' + id);
-        if (card && card.classList.contains('checked')) {
-          state.services.push(label);
-        }
-      }
-    }
-
     function handleStep4() {
-      syncServicesState();
-      // Read sub-inputs
-      const mIn = document.getElementById('q_makkah_checkin');
-      const mOut = document.getElementById('q_makkah_checkout');
-      const mdIn = document.getElementById('q_madinah_checkin');
-      const mdOut = document.getElementById('q_madinah_checkout');
-      const roomsEl = document.getElementById('q_rooms_count');
-      const bedsEl = document.getElementById('q_bed_setup');
-      const fNotesEl = document.getElementById('q_flight_notes');
-      const mealsFreeEl = document.getElementById('q_meals_freetext');
+      state.hotel_makkah = document.getElementById('dd_hotel_makkah').value;
+      state.hotel_madinah = document.getElementById('dd_hotel_madinah').value;
+      state.hotel_rooms = document.getElementById('dd_hotel_rooms').value;
+      state.flight = document.getElementById('dd_flight').value;
+      state.train = document.getElementById('dd_train').value;
+      state.transport = document.getElementById('dd_transport').value;
+      state.meals = document.getElementById('dd_meals').value;
+      state.guidance = document.getElementById('dd_guidance').value;
 
-      if (mIn) state.hotel_details.makkah_checkin = mIn.value;
-      if (mOut) state.hotel_details.makkah_checkout = mOut.value;
-      if (mdIn) state.hotel_details.madinah_checkin = mdIn.value;
-      if (mdOut) state.hotel_details.madinah_checkout = mdOut.value;
-      if (roomsEl) state.hotel_details.rooms = roomsEl.value;
-      if (bedsEl) state.hotel_details.beds = bedsEl.value;
-      if (fNotesEl) state.flight_details.notes = fNotesEl.value.trim();
-      if (mealsFreeEl) state.meals_details.freetext = mealsFreeEl.value.trim();
+      state.services = [];
+      if (!state.hotel_makkah.includes('Not needed') && !state.hotel_makkah.includes('Already arranged')) {
+        state.services.push(`Makkah Hotel: ${state.hotel_makkah}`);
+      }
+      if (!state.hotel_madinah.includes('Not needed') && !state.hotel_madinah.includes('Already arranged')) {
+        state.services.push(`Madinah Hotel: ${state.hotel_madinah}`);
+      }
+      if (!state.hotel_rooms.includes('Not needed')) {
+        state.services.push(`Rooms: ${state.hotel_rooms}`);
+      }
+      if (!state.flight.includes('Not needed') && !state.flight.includes('Already arranged')) {
+        state.services.push(`Flight: ${state.flight}`);
+      }
+      if (!state.train.includes('Not needed')) {
+        state.services.push(`Bullet Train: ${state.train}`);
+      }
+      if (!state.transport.includes('Not needed')) {
+        state.services.push(`Local Transport: ${state.transport}`);
+      }
+      if (!state.meals.includes('Not needed')) {
+        state.services.push(`Family Table: ${state.meals}`);
+      }
+      if (!state.guidance.includes('Not needed')) {
+        state.services.push(`Sacred Guidance: ${state.guidance}`);
+      }
 
       nextCard(4, 5);
     }
@@ -1842,38 +1347,9 @@
       btn.innerText = 'Submitting...';
       btn.disabled = true;
 
-      // Construct detailed services summary
-      let servicesFormatted = [];
-      if (state.services.includes('Nearby Haram Hotel Booking Support')) {
-        let hInfo = `  • Hotel Booking Support:\n    - Makkah: ${state.hotel_details.makkah_tier}` +
-          (state.hotel_details.makkah_checkin ? ` (${state.hotel_details.makkah_checkin} → ${state.hotel_details.makkah_checkout})` : '') +
-          `\n    - Madinah: ${state.hotel_details.madinah_tier}` +
-          (state.hotel_details.madinah_checkin ? ` (${state.hotel_details.madinah_checkin} → ${state.hotel_details.madinah_checkout})` : '') +
-          `\n    - Rooms & Beds: ${state.hotel_details.rooms}, ${state.hotel_details.beds}`;
-        servicesFormatted.push(hInfo);
-      }
-      if (state.services.includes('Home-Cooked Family Meals & Qahwa')) {
-        let mInfo = `  • Home-Cooked Meals & Qahwa: Coverage (${state.meals_details.timing})` +
-          (state.meals_details.freetext ? `\n    - Dishes / Diet: ${state.meals_details.freetext}` : '');
-        servicesFormatted.push(mInfo);
-      }
-      if (state.services.includes('Personal Umrah & Rawdah Guidance')) {
-        servicesFormatted.push(`  • Personal Umrah, Rawdah & Ziyarah Guidance`);
-      }
-      if (state.services.includes('Flight Booking & Route Guidance')) {
-        servicesFormatted.push(`  • Flight Guidance: ${state.flight_details.airport}${state.flight_details.notes ? ` (${state.flight_details.notes})` : ''}`);
-      }
-      if (state.services.includes('Haramain Train (HHR) Booking Support')) {
-        servicesFormatted.push(`  • Haramain Bullet Train: ${state.train_details.route} (${state.train_details.class})`);
-      }
-      if (state.services.includes('Airport or Train Station Pickup')) {
-        servicesFormatted.push(`  • Arrival Pickup: ${state.pickup_details.location}`);
-      }
-      if (state.services.includes('Transportation Throughout the Journey')) {
-        servicesFormatted.push(`  • Full Transportation: ${state.journey_trans_details.vehicle}`);
-      }
-
-      const servicesOutputText = servicesFormatted.length ? servicesFormatted.join('\n') : '  • General hospitality & local guidance';
+      const servicesOutputText = state.services.length 
+        ? state.services.map(s => `  • ${s}`).join('\n') 
+        : '  • General brotherly hospitality & local advice';
 
       const tgMessage = 
         `🕋 *New Guest of the Haramain (Dhuyuf ar-Rahman)*\n\n` +
@@ -1881,7 +1357,7 @@
         `🌍 *Traveling from:* ${state.country}\n` +
         `🗓 *Dates:* ${state.arrival_date} → ${state.departure_date}\n` +
         `👥 *Party:* ${state.party_type} • ${state.guest_count}\n\n` +
-        `🤝 *Hospitality & Services Requested:*\n${servicesOutputText}\n\n` +
+        `🤝 *Hospitality & Guidance Desired:*\n${servicesOutputText}\n\n` +
         `📱 *WhatsApp:* \`${state.phone}\`\n` +
         `✉️ *Email:* \`${state.email}\`\n` +
         (state.linkedin ? `💼 *LinkedIn:* ${state.linkedin}\n` : '') +
@@ -1929,17 +1405,19 @@
       document.getElementById('sum_name_origin').innerText = `${state.full_name} (${state.country})`;
       document.getElementById('sum_dates').innerText = `${state.arrival_date} to ${state.departure_date}`;
       document.getElementById('sum_party').innerText = `${state.party_type} • ${state.guest_count}`;
-      document.getElementById('sum_needs').innerText = state.services.length ? state.services.join(', ') : 'General hospitality & advice';
+      document.getElementById('sum_needs').innerText = state.services.length ? state.services.join(', ') : 'General personal hospitality & advice';
 
       // 5. Format WhatsApp link
-      const waServices = state.services.length ? state.services.map(s => `- ${s}`).join('\n') : '- General hospitality & advice';
+      const waServices = state.services.length 
+        ? state.services.map(s => `- ${s}`).join('\n') 
+        : '- General brotherly hospitality & local advice';
       const waText = encodeURIComponent(
         `Assalamu Alaikum Brother Aamir,\n\n` +
         `This is ${state.full_name} from ${state.country}.\n` +
         `I have submitted a journey request to be hosted as a Guest of the Haramain:\n\n` +
         `🗓 Dates: ${state.arrival_date} to ${state.departure_date}\n` +
         `👥 Party: ${state.party_type} (${state.guest_count})\n` +
-        `🤝 Support needed:\n${waServices}\n\n` +
+        `🤝 Guidance desired:\n${waServices}\n\n` +
         `✉️ Email: ${state.email}\n` +
         (state.linkedin ? `💼 LinkedIn: ${state.linkedin}\n` : '') +
         (state.note ? `💬 Note: ${state.note}\n\n` : '') +
@@ -1962,15 +1440,28 @@
       state.adults = 2;
       state.kids = 0;
       state.guest_count = '2 Guests (2 Adults, 0 Kids)';
+      state.hotel_makkah = '';
+      state.hotel_madinah = '';
+      state.hotel_rooms = '';
+      state.flight = '';
+      state.train = '';
+      state.transport = '';
+      state.meals = '';
+      state.guidance = '';
       state.services = [];
       state.phone = '';
       state.email = '';
       state.linkedin = '';
       state.note = '';
 
-      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_email', 'q_linkedin', 'q_note', 'q_flight_notes', 'q_meals_freetext', 'q_makkah_checkin', 'q_makkah_checkout', 'q_madinah_checkin', 'q_madinah_checkout'].forEach(id => {
+      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_email', 'q_linkedin', 'q_note'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
+      });
+
+      ['dd_hotel_makkah', 'dd_hotel_madinah', 'dd_hotel_rooms', 'dd_flight', 'dd_train', 'dd_transport', 'dd_meals', 'dd_guidance'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.selectedIndex = 0;
       });
 
       const valAdults = document.getElementById('val_adults');
@@ -1980,7 +1471,6 @@
       updatePartyBadge();
 
       document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
-      document.querySelectorAll('.service-card').forEach(c => c.classList.remove('checked'));
       document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
       const submitBtn = document.getElementById('submitBtn');
