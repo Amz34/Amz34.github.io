@@ -931,22 +931,22 @@
         console.warn('Telegram notice error:', err);
       }
 
-      // 2. Direct Sync to Google Sheets
+      // 2. Direct Sync to Notion & Google Sheets via 24/7 Cloudflare Edge Worker
       try {
-        await fetch('https://script.google.com/macros/s/AKfycbxPI5ffCOjWu42TrgZIDOIxsXrohGBGSLL6vtX5MjGEnjV2UsVmB8SbG9vUIznO2kCp/exec', {
+        await fetch('https://haramain-lead-sync.sanad-io.workers.dev', {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(state)
         });
       } catch (err) {
-        console.warn('Google Sheet sync notice:', err);
+        console.warn('Edge Ledger sync notice:', err);
       }
 
-      // 3. Also try local API if accessible
+      // 3. Direct Fallback Sync to Google Sheets
       try {
-        await fetch('/api/submit', {
+        await fetch('https://script.google.com/macros/s/AKfycbxPI5ffCOjWu42TrgZIDOIxsXrohGBGSLL6vtX5MjGEnjV2UsVmB8SbG9vUIznO2kCp/exec', {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(state)
         });
