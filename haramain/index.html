@@ -11,9 +11,9 @@
     :root {
       --paper: #faf8f4;
       --card: #ffffff;
-      --ink: #0d1711;
-      --ink-soft: #1e2c22;
-      --muted: #435448;
+      --ink: #08110b;
+      --ink-soft: #18261d;
+      --muted: #3d4f43;
       --line: #ded7c6;
       --line-strong: #b8af99;
       --emerald: #0b3d24;
@@ -51,32 +51,32 @@
       overflow-x: hidden;
       width: 100%;
       max-width: 100vw;
-      font-size: 19px;
+      font-size: 21px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Sacred Top Ribbon */
+    /* Sacred Top Ribbon - High Visibility */
     .sacred-ribbon {
       background: #fdf7ec;
       border-bottom: 2px solid #e9d6b2;
       color: var(--gold-dark);
-      padding: 16px 24px;
+      padding: 18px 26px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       position: sticky;
       top: 0;
       z-index: 100;
       text-align: center;
-      box-shadow: 0 4px 16px rgba(110, 78, 16, 0.06);
+      box-shadow: 0 4px 18px rgba(110, 78, 16, 0.07);
     }
 
     .sacred-arabic {
       font-family: var(--font-arabic);
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 700;
       line-height: 1.25;
       letter-spacing: 0.02em;
@@ -84,7 +84,7 @@
 
     .sacred-sub {
       font-family: var(--font-mono);
-      font-size: 15px;
+      font-size: 16px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--gold-dark);
@@ -92,15 +92,15 @@
       opacity: 0.95;
     }
 
-    /* Main Container */
+    /* Main Container - Immersive 880px Canvas */
     .main-wrapper {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 22px 52px;
-      max-width: 780px;
+      padding: 46px 24px 60px;
+      max-width: 880px;
       margin: 0 auto;
       width: 100%;
     }
@@ -113,10 +113,10 @@
 
     .card {
       background: #ffffff;
-      border: 2px solid rgba(11, 61, 36, 0.15);
-      border-radius: 26px;
-      padding: 48px 42px;
-      box-shadow: 0 16px 48px rgba(11, 61, 36, 0.09), 0 2px 10px rgba(0, 0, 0, 0.02);
+      border: 2.5px solid rgba(11, 61, 36, 0.16);
+      border-radius: 28px;
+      padding: 50px 46px;
+      box-shadow: 0 18px 54px rgba(11, 61, 36, 0.09), 0 2px 10px rgba(0, 0, 0, 0.02);
       display: none;
       animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
@@ -133,10 +133,10 @@
     /* Progress bar */
     .progress-wrap {
       width: 100%;
-      height: 8px;
+      height: 9px;
       background: var(--line);
-      border-radius: 4px;
-      margin-bottom: 30px;
+      border-radius: 5px;
+      margin-bottom: 32px;
       overflow: hidden;
     }
 
@@ -147,28 +147,28 @@
       transition: width 0.35s ease;
     }
 
-    /* Typography */
+    /* Extra-Large Eye-Viewing Typography */
     .step-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 15px;
       color: var(--emerald);
       background: var(--emerald-tint);
-      padding: 7px 16px;
+      padding: 8px 18px;
       border-radius: 30px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-weight: 800;
-      margin-bottom: 18px;
-      border: 1.5px solid rgba(11, 61, 36, 0.2);
+      margin-bottom: 20px;
+      border: 1.5px solid rgba(11, 61, 36, 0.22);
     }
 
     h1 {
       font-family: var(--font-display);
-      font-size: 44px;
-      line-height: 1.18;
+      font-size: 48px;
+      line-height: 1.16;
       color: var(--ink);
       font-weight: 800;
       margin-bottom: 18px;
@@ -177,8 +177,8 @@
 
     h2 {
       font-family: var(--font-display);
-      font-size: 34px;
-      line-height: 1.22;
+      font-size: 38px;
+      line-height: 1.2;
       color: var(--ink);
       font-weight: 800;
       margin-bottom: 16px;
@@ -187,32 +187,31 @@
 
     p.lead {
       color: var(--muted);
-      font-size: 20px;
-      line-height: 1.65;
-      margin-bottom: 28px;
+      font-size: 22px;
+      line-height: 1.6;
+      margin-bottom: 30px;
       font-weight: 500;
     }
 
-    /* Form Inputs */
+    /* Form Inputs - Spacious & High-Touch Targets */
     .input-group {
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       text-align: left;
     }
 
     label {
       display: block;
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 800;
       color: var(--ink-soft);
-      margin-bottom: 9px;
+      margin-bottom: 10px;
       letter-spacing: -0.01em;
     }
 
     .input-subtext {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--muted);
-      margin-top: -5px;
-      margin-bottom: 9px;
+      margin-top: 5px;
       font-weight: 500;
     }
 
@@ -226,15 +225,19 @@
       width: 100%;
       max-width: 100%;
       min-width: 0;
-      padding: 17px 20px;
-      font-size: 18px;
+      padding: 18px 22px;
+      font-size: 20px;
       border: 2.5px solid var(--line);
       border-radius: 14px;
       background: #fdfdfc;
       color: var(--ink);
       font-family: var(--font-body);
       font-weight: 600;
+      min-height: 60px;
       transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    select {
       cursor: pointer;
     }
 
@@ -250,20 +253,20 @@
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 20px;
     }
 
-    /* Form Section Header (Step 4) */
+    /* Form Section Header */
     .form-section-header {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--emerald-dark);
-      margin: 20px 0 12px;
-      padding-bottom: 6px;
+      margin: 24px 0 14px;
+      padding-bottom: 8px;
       border-bottom: 2px solid var(--emerald-tint);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     /* Choice Cards (Step 3) */
@@ -277,10 +280,10 @@
     .choice-card {
       display: flex;
       align-items: center;
-      gap: 20px;
-      padding: 22px 24px;
+      gap: 22px;
+      padding: 24px 26px;
       border: 2.5px solid var(--line);
-      border-radius: 16px;
+      border-radius: 18px;
       background: #fdfdfc;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -292,7 +295,7 @@
       border-color: var(--emerald);
       background: var(--emerald-tint);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(11, 61, 36, 0.08);
+      box-shadow: 0 6px 20px rgba(11, 61, 36, 0.08);
     }
 
     .choice-card.selected {
@@ -302,14 +305,14 @@
     }
 
     .choice-icon {
-      font-size: 34px;
+      font-size: 38px;
       line-height: 1;
       flex-shrink: 0;
     }
 
     .choice-text strong {
       display: block;
-      font-size: 21px;
+      font-size: 22px;
       color: var(--ink);
       font-weight: 800;
       margin-bottom: 4px;
@@ -317,7 +320,7 @@
 
     .choice-text span {
       display: block;
-      font-size: 16px;
+      font-size: 17px;
       color: var(--muted);
       line-height: 1.55;
     }
@@ -326,13 +329,13 @@
     .stepper-box {
       background: #fbfaf7;
       border: 2px solid var(--line);
-      border-radius: 16px;
-      padding: 24px 26px;
-      margin-bottom: 24px;
+      border-radius: 18px;
+      padding: 26px 28px;
+      margin-bottom: 26px;
     }
 
     .stepper-header {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--ink);
       margin-bottom: 18px;
@@ -345,7 +348,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 0;
+      padding: 16px 0;
       border-bottom: 1px dashed var(--line);
     }
 
@@ -355,14 +358,14 @@
     }
 
     .stepper-label {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--ink-soft);
     }
 
     .stepper-sub {
       display: block;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--muted);
     }
@@ -370,17 +373,17 @@
     .stepper-controls {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .stepper-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
       border: 2.5px solid var(--line-strong);
       background: #ffffff;
       color: var(--ink);
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -401,9 +404,9 @@
     }
 
     .stepper-value {
-      min-width: 42px;
+      min-width: 44px;
       text-align: center;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       font-family: var(--font-mono);
       color: var(--emerald-dark);
@@ -411,11 +414,11 @@
 
     .party-summary-pill {
       display: inline-block;
-      padding: 7px 16px;
+      padding: 8px 18px;
       background: var(--emerald-tint);
       color: var(--emerald);
       font-weight: 800;
-      font-size: 15px;
+      font-size: 16px;
       border-radius: 20px;
       font-family: var(--font-mono);
       border: 1px solid rgba(11, 61, 36, 0.2);
@@ -426,19 +429,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      margin-top: 34px;
+      gap: 18px;
+      margin-top: 36px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 20px 34px;
-      font-size: 19px;
+      gap: 12px;
+      padding: 22px 38px;
+      font-size: 20px;
       font-weight: 800;
-      border-radius: 14px;
+      border-radius: 16px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -449,13 +452,13 @@
     .btn-primary {
       background: var(--emerald);
       color: #ffffff;
-      box-shadow: 0 6px 18px rgba(11, 61, 36, 0.24);
+      box-shadow: 0 6px 20px rgba(11, 61, 36, 0.24);
     }
 
     .btn-primary:hover {
       background: var(--emerald-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(11, 61, 36, 0.32);
+      box-shadow: 0 8px 24px rgba(11, 61, 36, 0.32);
     }
 
     .btn-secondary {
@@ -473,9 +476,9 @@
     .btn-whatsapp {
       background: #1f9d55;
       color: #ffffff;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 800;
-      padding: 24px 36px;
+      padding: 24px 38px;
       box-shadow: 0 8px 24px rgba(31, 157, 85, 0.3);
       border-radius: 16px;
       width: 100%;
@@ -492,9 +495,9 @@
     .summary-box {
       background: var(--paper);
       border: 2px solid var(--line);
-      border-radius: 16px;
-      padding: 26px;
-      margin: 26px 0;
+      border-radius: 18px;
+      padding: 28px;
+      margin: 28px 0;
       text-align: left;
     }
 
@@ -502,10 +505,10 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 12px 0;
+      padding: 14px 0;
       border-bottom: 1px dashed var(--line);
-      font-size: 17px;
-      gap: 18px;
+      font-size: 18px;
+      gap: 20px;
     }
 
     .summary-row:last-child {
@@ -526,7 +529,7 @@
 
     .error-msg {
       color: #b91c1c;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       margin-top: 8px;
       display: none;
@@ -535,8 +538,8 @@
     /* Footer */
     footer {
       text-align: center;
-      padding: 38px 24px;
-      font-size: 16px;
+      padding: 40px 24px;
+      font-size: 17px;
       color: var(--muted);
       border-top: 2px solid rgba(11, 61, 36, 0.12);
       background: #f4f8f5;
@@ -553,77 +556,77 @@
       color: var(--emerald-hover);
     }
 
-    /* Responsive Mobile Overrides */
+    /* Mobile Viewport Optimizations */
     @media (max-width: 640px) {
       body {
-        font-size: 17px;
+        font-size: 18px;
         line-height: 1.55;
       }
 
       .sacred-ribbon {
-        padding: 10px 14px;
+        padding: 12px 14px;
         gap: 6px;
         flex-direction: column;
       }
 
       .sacred-arabic {
-        font-size: 22px;
+        font-size: 24px;
         line-height: 1.2;
       }
 
       .sacred-sub {
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 0.06em;
       }
 
       .main-wrapper {
-        padding: 16px 12px 36px;
+        padding: 18px 12px 38px;
         width: 100%;
         max-width: 100%;
       }
 
       .card {
-        padding: 24px 18px;
-        border-radius: 18px;
+        padding: 26px 18px;
+        border-radius: 20px;
         box-shadow: 0 8px 24px rgba(11, 61, 36, 0.07);
-        border-width: 1.5px;
+        border-width: 2px;
       }
 
       .step-pill {
-        font-size: 12px;
-        padding: 5px 12px;
+        font-size: 13px;
+        padding: 6px 14px;
         margin-bottom: 14px;
       }
 
       h1 {
-        font-size: 28px;
-        line-height: 1.22;
+        font-size: 30px;
+        line-height: 1.2;
         margin-bottom: 14px;
       }
 
       h2 {
-        font-size: 24px;
+        font-size: 26px;
         line-height: 1.25;
         margin-bottom: 12px;
       }
 
       p.lead {
-        font-size: 17px;
+        font-size: 18px;
         line-height: 1.55;
         margin-bottom: 22px;
       }
 
       .grid-2 {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 16px;
       }
 
       .input-group {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
       }
 
       label {
-        font-size: 16px;
+        font-size: 17px;
         margin-bottom: 8px;
       }
 
@@ -634,49 +637,45 @@
       input[type="date"],
       textarea,
       select {
-        padding: 15px 16px;
+        padding: 16px 18px;
         font-size: 17px;
         border-radius: 12px;
         border-width: 2px;
-        min-height: 52px;
+        min-height: 54px;
       }
 
       .choice-card {
-        padding: 16px 16px;
+        padding: 18px 18px;
         gap: 14px;
-        border-radius: 14px;
-        border-width: 2px;
+        border-radius: 16px;
       }
 
       .choice-icon {
-        font-size: 28px;
+        font-size: 30px;
       }
 
       .choice-text strong {
-        font-size: 18px;
-        margin-bottom: 3px;
+        font-size: 19px;
       }
 
       .choice-text span {
-        font-size: 14px;
-        line-height: 1.45;
+        font-size: 15px;
       }
 
       .stepper-box {
-        padding: 18px 16px;
-        border-radius: 14px;
-        margin-bottom: 20px;
-        border-width: 1.5px;
+        padding: 20px 18px;
+        border-radius: 16px;
+        margin-bottom: 22px;
       }
 
       .stepper-header {
-        font-size: 17px;
+        font-size: 18px;
         margin-bottom: 14px;
       }
 
       .party-summary-pill {
-        font-size: 13px;
-        padding: 4px 10px;
+        font-size: 14px;
+        padding: 5px 12px;
       }
 
       .stepper-row {
@@ -685,72 +684,72 @@
       }
 
       .stepper-label {
-        font-size: 17px;
+        font-size: 18px;
       }
 
       .stepper-sub {
-        font-size: 13px;
+        font-size: 14px;
       }
 
       .stepper-btn {
-        width: 44px;
-        height: 44px;
+        width: 46px;
+        height: 46px;
         border-radius: 12px;
         font-size: 22px;
       }
 
       .stepper-value {
-        min-width: 34px;
-        font-size: 19px;
+        min-width: 36px;
+        font-size: 20px;
       }
 
       .form-section-header {
-        font-size: 16px;
-        margin: 16px 0 10px;
+        font-size: 17px;
+        margin: 18px 0 10px;
       }
 
       .btn-row {
         flex-direction: column-reverse;
-        gap: 10px;
-        margin-top: 24px;
+        gap: 12px;
+        margin-top: 26px;
         width: 100%;
       }
 
       .btn-row .btn {
         width: 100%;
         padding: 18px 20px;
-        font-size: 17px;
+        font-size: 18px;
         justify-content: center;
       }
 
       .btn-whatsapp {
         padding: 20px 24px;
-        font-size: 18px;
+        font-size: 19px;
         border-radius: 14px;
       }
 
       .summary-box {
-        padding: 18px 16px;
-        border-radius: 14px;
-        margin: 20px 0;
+        padding: 20px 18px;
+        border-radius: 16px;
+        margin: 22px 0;
       }
 
       .summary-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
-        padding: 10px 0;
-        font-size: 15px;
+        padding: 12px 0;
+        font-size: 16px;
       }
 
       .summary-val {
         text-align: left;
-        font-size: 16px;
+        font-size: 17px;
       }
 
       footer {
-        padding: 28px 16px;
-        font-size: 14px;
+        padding: 30px 16px;
+        font-size: 15px;
       }
     }
 
@@ -760,13 +759,13 @@
       }
 
       .card {
-        padding: 20px 12px;
-        border-radius: 14px;
+        padding: 20px 14px;
+        border-radius: 16px;
       }
 
-      h1 { font-size: 25px; }
-      h2 { font-size: 21px; }
-      .btn { padding: 15px 16px; font-size: 16px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 22px; }
+      .btn { padding: 16px 16px; font-size: 17px; }
     }
   </style>
 </head>
@@ -804,7 +803,7 @@
           </div>
         </div>
 
-        <p style="font-size: 18px; color: var(--muted); margin-bottom: 30px; line-height: 1.65; font-weight: 500;">
+        <p style="font-size: 20px; color: var(--muted); margin-bottom: 30px; line-height: 1.65; font-weight: 500;">
           Please share a few brief details about your upcoming journey so I can coordinate assistance and prepare to welcome your family.
         </p>
 
@@ -934,7 +933,7 @@
         </div>
       </div>
 
-      <!-- CARD 4: CONCISE SINGLE-PAGE ALIGNED DROPDOWNS -->
+      <!-- CARD 4: CONCISE SINGLE-PAGE ALIGNED DROPDOWNS & HOTEL DATES -->
       <div class="card" id="card-4">
         <div class="step-pill">Step 4 of 5 • Hospitality & Guidance</div>
         <h2>How may we host and assist you?</h2>
@@ -958,6 +957,26 @@
               <option value="Comfort with Shuttle (Economy)">Comfort with Shuttle (Economy)</option>
               <option value="Already arranged / Not needed">Already arranged / Not needed</option>
             </select>
+          </div>
+        </div>
+
+        <!-- HOTEL DATES SECTION DIRECTLY BELOW MAKKAH & MADINAH -->
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="q_makkah_checkin">Makkah Stay Dates</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <input type="date" id="q_makkah_checkin" title="Makkah Check-In Date">
+              <input type="date" id="q_makkah_checkout" title="Makkah Check-Out Date">
+            </div>
+            <div class="input-subtext">Optional: Check-in & Check-out in Makkah</div>
+          </div>
+          <div class="input-group">
+            <label for="q_madinah_checkin">Madinah Stay Dates</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <input type="date" id="q_madinah_checkin" title="Madinah Check-In Date">
+              <input type="date" id="q_madinah_checkout" title="Madinah Check-Out Date">
+            </div>
+            <div class="input-subtext">Optional: Check-in & Check-out in Madinah</div>
           </div>
         </div>
 
@@ -1073,7 +1092,7 @@
 
       <!-- CARD 6: Confirmation & Fast-Track WhatsApp -->
       <div class="card" id="card-6">
-        <div style="font-size: 56px; margin-bottom: 14px; color: var(--emerald);">🤲</div>
+        <div style="font-size: 58px; margin-bottom: 14px; color: var(--emerald);">🤲</div>
         <div class="step-pill" style="background: #e8f7ee; color: #15803d; border-color: #86efac;">Received with Honor</div>
         <h2>Jazakum Allahu Khairan, <span id="conf_name"></span>!</h2>
         <p class="lead" style="margin-bottom: 24px;">
@@ -1095,11 +1114,11 @@
           </div>
           <div class="summary-row">
             <span class="summary-label">Hospitality Desired</span>
-            <span class="summary-val" id="sum_needs" style="max-width: 360px;"></span>
+            <span class="summary-val" id="sum_needs" style="max-width: 400px;"></span>
           </div>
         </div>
 
-        <p style="font-size: 18px; color: var(--ink-soft); font-weight: 700; margin-bottom: 20px;">
+        <p style="font-size: 19px; color: var(--ink-soft); font-weight: 700; margin-bottom: 20px;">
           You can also tap below to open WhatsApp directly with Brother Aamir with your details pre-filled:
         </p>
 
@@ -1116,15 +1135,15 @@
   </div>
 
   <footer>
-    <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
-      <p style="font-size: 18px; font-weight: 800; color: var(--emerald); margin-bottom: 8px;">
+    <div style="max-width: 880px; margin: 0 auto; line-height: 1.8;">
+      <p style="font-size: 19px; font-weight: 800; color: var(--emerald); margin-bottom: 8px;">
         Made with luv from Makkah-tul-Mukarramah ❤️
       </p>
-      <p style="font-size: 15px; margin-bottom: 8px;">
+      <p style="font-size: 16px; margin-bottom: 8px;">
         Connect with Brother Aamir on LinkedIn: 
         <a href="https://www.linkedin.com/in/aamirzameer" target="_blank" rel="noopener noreferrer" class="footer-link">linkedin.com/in/aamirzameer</a>
       </p>
-      <p style="font-size: 14px; color: var(--muted);">
+      <p style="font-size: 15px; color: var(--muted);">
         Khadim Dhuyuf ar-Rahman • Sincere brotherly hospitality with zero commercial agenda.
       </p>
     </div>
@@ -1141,7 +1160,11 @@
       kids: 0,
       guest_count: '2 Guests (2 Adults, 0 Kids)',
       hotel_makkah: '',
+      hotel_makkah_checkin: '',
+      hotel_makkah_checkout: '',
       hotel_madinah: '',
+      hotel_madinah_checkin: '',
+      hotel_madinah_checkout: '',
       hotel_rooms: '',
       flight: '',
       train: '',
@@ -1229,6 +1252,13 @@
 
       state.arrival_date = arr;
       state.departure_date = dep;
+
+      // Smart pre-fill Makkah/Madinah dates if empty
+      const mIn = document.getElementById('q_makkah_checkin');
+      const mdOut = document.getElementById('q_madinah_checkout');
+      if (mIn && !mIn.value) mIn.value = arr;
+      if (mdOut && !mdOut.value) mdOut.value = dep;
+
       nextCard(2, 3);
     }
 
@@ -1279,6 +1309,10 @@
     function handleStep4() {
       state.hotel_makkah = document.getElementById('dd_hotel_makkah').value;
       state.hotel_madinah = document.getElementById('dd_hotel_madinah').value;
+      state.hotel_makkah_checkin = document.getElementById('q_makkah_checkin').value;
+      state.hotel_makkah_checkout = document.getElementById('q_makkah_checkout').value;
+      state.hotel_madinah_checkin = document.getElementById('q_madinah_checkin').value;
+      state.hotel_madinah_checkout = document.getElementById('q_madinah_checkout').value;
       state.hotel_rooms = document.getElementById('dd_hotel_rooms').value;
       state.flight = document.getElementById('dd_flight').value;
       state.train = document.getElementById('dd_train').value;
@@ -1288,10 +1322,18 @@
 
       state.services = [];
       if (!state.hotel_makkah.includes('Not needed') && !state.hotel_makkah.includes('Already arranged')) {
-        state.services.push(`Makkah Hotel: ${state.hotel_makkah}`);
+        let makkahInfo = `Makkah Hotel: ${state.hotel_makkah}`;
+        if (state.hotel_makkah_checkin && state.hotel_makkah_checkout) {
+          makkahInfo += ` (${state.hotel_makkah_checkin} → ${state.hotel_makkah_checkout})`;
+        }
+        state.services.push(makkahInfo);
       }
       if (!state.hotel_madinah.includes('Not needed') && !state.hotel_madinah.includes('Already arranged')) {
-        state.services.push(`Madinah Hotel: ${state.hotel_madinah}`);
+        let madinahInfo = `Madinah Hotel: ${state.hotel_madinah}`;
+        if (state.hotel_madinah_checkin && state.hotel_madinah_checkout) {
+          madinahInfo += ` (${state.hotel_madinah_checkin} → ${state.hotel_madinah_checkout})`;
+        }
+        state.services.push(madinahInfo);
       }
       if (!state.hotel_rooms.includes('Not needed')) {
         state.services.push(`Rooms: ${state.hotel_rooms}`);
@@ -1441,7 +1483,11 @@
       state.kids = 0;
       state.guest_count = '2 Guests (2 Adults, 0 Kids)';
       state.hotel_makkah = '';
+      state.hotel_makkah_checkin = '';
+      state.hotel_makkah_checkout = '';
       state.hotel_madinah = '';
+      state.hotel_madinah_checkin = '';
+      state.hotel_madinah_checkout = '';
       state.hotel_rooms = '';
       state.flight = '';
       state.train = '';
@@ -1454,7 +1500,7 @@
       state.linkedin = '';
       state.note = '';
 
-      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_email', 'q_linkedin', 'q_note'].forEach(id => {
+      ['q_name', 'q_country', 'q_arrival', 'q_departure', 'q_phone', 'q_email', 'q_linkedin', 'q_note', 'q_makkah_checkin', 'q_makkah_checkout', 'q_madinah_checkin', 'q_madinah_checkout'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
