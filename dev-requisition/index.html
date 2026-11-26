@@ -686,6 +686,59 @@
             </div>
           </div>
 
+          <!-- Developer Compensation & Engagement Benchmarks (INR) -->
+          <div style="background: #f8fafc; border: 2px solid var(--line); border-radius: 18px; padding: 26px; margin: 26px 0; text-align: left;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <h3 style="font-family: var(--font-display); font-size: 21px; font-weight: 800; color: var(--ink); margin-bottom: 0;">
+                💼 Transparent Developer Compensation & Project Benchmarks
+              </h3>
+              <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--brand-blue); background: var(--brand-blue-tint); padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(2,132,199,0.25);">
+                INDICATIVE BILLING (INR ₹)
+              </span>
+            </div>
+            <p style="font-size: 16px; color: var(--muted); line-height: 1.55; margin-bottom: 18px;">
+              We believe in direct, equitable technical remuneration for builders who ship reliable code. Our active project tracks operate on the following benchmarks:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 18px;">
+              <!-- Tier 1 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Sprint Track &middot; Modules</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Milestone Feature Sprints</div>
+                  <div style="font-size: 24px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">₹50,000 – ₹1,20,000*</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Per verified deliverable: API pipelines, full-stack modules, or frontend state architectures.</div>
+                </div>
+              </div>
+
+              <!-- Tier 2 -->
+              <div style="background: #f0f9ff; border: 2px solid var(--brand-blue); border-radius: 12px; padding: 18px; position: relative; display: flex; flex-direction: column; justify-content: space-between;">
+                <span style="position: absolute; top: -11px; right: 14px; background: var(--brand-blue); color: #ffffff; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em;">High Demand</span>
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Bandwidth Track &middot; Monthly</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Dedicated Project Bandwidth</div>
+                  <div style="font-size: 24px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">₹1,20,000 – ₹2,50,000*</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Monthly retained capacity for active client builds, autonomous agents, and system backends.</div>
+                </div>
+              </div>
+
+              <!-- Tier 3 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Lead Track &middot; Systems</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Senior Systems Architecture</div>
+                  <div style="font-size: 24px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">₹2,50,000 – ₹4,50,000+*</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Complex distributed systems, LLM evaluation harnesses, high-concurrency DBs, and SRE.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Asterisk Diplomatic Narrative Quote -->
+            <div style="font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; line-height: 1.55; font-style: italic;">
+              * <strong>Project Calibration Note:</strong> Compensation and project billing rates are calibrated competitively based on verified code quality, architectural depth, and autonomous delivery velocity. We prioritize high-conviction technical output and transparent developer compensation without intermediary agency deductions or low-ball rates.
+            </div>
+          </div>
+
           <div class="btn-row">
             <div></div>
             <button class="btn-primary" onclick="goToStep(1)">
@@ -774,6 +827,17 @@
               <input class="form-input" id="cand-mobile" type="tel" placeholder="+966 50 123 4567 or +1 (555) 000-0000" required style="padding-left: 56px; font-size: 20px; font-weight: 600; letter-spacing: 0.02em; background: #ffffff;">
             </div>
             <span style="font-size: 15px; color: var(--muted); margin-top: 8px; display: block; line-height: 1.5;">Required for rapid direct technical scheduling & interview coordination. Kept strictly confidential.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cand-rate">Indicative Project Compensation Benchmark (INR ₹)</label>
+            <select class="form-select" id="cand-rate">
+              <option value="₹50,000 – ₹1,20,000 (Milestone Module / Feature Sprint)">₹50,000 – ₹1,20,000 (Milestone Module / Feature Sprint)</option>
+              <option value="₹1,20,000 – ₹2,50,000 (Dedicated Monthly Project Bandwidth)" selected>₹1,20,000 – ₹2,50,000 (Dedicated Monthly Project Bandwidth)</option>
+              <option value="₹2,50,000 – ₹4,50,000+ (Senior / Lead Systems Architecture)">₹2,50,000 – ₹4,50,000+ (Senior / Lead Systems Architecture)</option>
+              <option value="Competitive Milestone-Based / Open to Discussion">Competitive Milestone-Based / Open to Discussion</option>
+            </select>
+            <span style="font-size: 14px; color: var(--muted); margin-top: 6px; display: block;">* Rates are calibrated competitively based on codebase quality and delivery velocity.</span>
           </div>
 
           <div class="form-group">
@@ -902,6 +966,7 @@
       const portfolioUrl = document.getElementById('portfolio-url').value.trim();
       const highlight = document.getElementById('highlight-scope').value.trim();
       const availability = document.getElementById('cand-avail').value;
+      const rateBenchmark = document.getElementById('cand-rate') ? document.getElementById('cand-rate').value : 'Standard Benchmark';
 
       if (!name) { alert('Please enter your name.'); return; }
       if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -924,7 +989,7 @@
         projectName: "Developer Requisition Profile: " + selectedTrack,
         githubUrl: githubUrl,
         portfolioUrl: portfolioUrl,
-        scope: "Primary Stack: " + stack + " | Availability: " + availability + (highlight ? " | Highlight: " + highlight : ""),
+        scope: `[Target Comp: ${rateBenchmark}] | Primary Stack: ${stack} | Availability: ${availability}` + (highlight ? ` | Highlight: ${highlight}` : ""),
         type: "developer_requisition"
       };
 
