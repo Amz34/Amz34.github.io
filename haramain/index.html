@@ -27,7 +27,7 @@
       --gold-tint: #fcf5e6;
       --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-arabic: 'Amiri', serif;
-      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
     }
 
@@ -60,49 +60,50 @@
 
     /* Sacred Top Ribbon - High Visibility */
     .sacred-ribbon {
-      background: #fdf7ec;
-      border-bottom: 2px solid #e9d6b2;
+      background: #fdfaf3;
+      border-bottom: 2px solid #dfcba4;
       color: var(--gold-dark);
-      padding: 18px 26px;
+      padding: 14px 24px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       position: sticky;
       top: 0;
       z-index: 100;
       text-align: center;
-      box-shadow: 0 4px 18px rgba(110, 78, 16, 0.07);
+      box-shadow: 0 3px 14px rgba(110, 78, 16, 0.06);
     }
 
     .sacred-arabic {
       font-family: var(--font-arabic);
-      font-size: 34px;
+      font-size: 32px;
       font-weight: 700;
-      line-height: 1.25;
+      line-height: 1.2;
       letter-spacing: 0.02em;
+      color: #6a490d;
     }
 
     .sacred-sub {
-      font-family: var(--font-mono);
-      font-size: 16px;
-      letter-spacing: 0.12em;
+      font-family: var(--font-body);
+      font-size: 15px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gold-dark);
-      font-weight: 700;
+      color: #5a3e0b;
+      font-weight: 800;
       opacity: 0.95;
     }
 
-    /* Main Container - Immersive 880px Canvas */
+    /* Main Container - Official 900px Canvas */
     .main-wrapper {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 46px 24px 140px;
-      max-width: 880px;
+      justify-content: flex-start;
+      padding: 34px 20px 32px;
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
     }
@@ -115,12 +116,12 @@
 
     .card {
       background: #ffffff;
-      border: 2.5px solid rgba(11, 61, 36, 0.16);
-      border-radius: 28px;
-      padding: 50px 46px;
-      box-shadow: 0 18px 54px rgba(11, 61, 36, 0.09), 0 2px 10px rgba(0, 0, 0, 0.02);
+      border: 2px solid rgba(11, 61, 36, 0.18);
+      border-radius: 24px;
+      padding: 40px 38px 32px;
+      box-shadow: 0 12px 36px rgba(11, 61, 36, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02);
       display: none;
-      animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .card.active {
@@ -169,50 +170,50 @@
 
     h1 {
       font-family: var(--font-display);
-      font-size: 48px;
-      line-height: 1.16;
-      color: var(--ink);
+      font-size: 42px;
+      line-height: 1.18;
+      color: #061a0f;
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       letter-spacing: -0.025em;
     }
 
     h2 {
       font-family: var(--font-display);
-      font-size: 38px;
-      line-height: 1.2;
-      color: var(--ink);
+      font-size: 34px;
+      line-height: 1.22;
+      color: #061a0f;
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
 
     p.lead {
-      color: var(--muted);
-      font-size: 22px;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      color: #1e3326;
+      font-size: 20px;
+      line-height: 1.55;
+      margin-bottom: 24px;
       font-weight: 500;
     }
 
     /* Form Inputs - Spacious & High-Touch Targets */
     .input-group {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       text-align: left;
     }
 
     label {
       display: block;
       font-size: 19px;
-      font-weight: 800;
-      color: var(--ink-soft);
-      margin-bottom: 10px;
+      font-weight: 700;
+      color: #071c10;
+      margin-bottom: 8px;
       letter-spacing: -0.01em;
     }
 
     .input-subtext {
       font-size: 15px;
-      color: var(--muted);
+      color: #3b5042;
       margin-top: 5px;
       font-weight: 500;
     }
@@ -227,15 +228,15 @@
       width: 100%;
       max-width: 100%;
       min-width: 0;
-      padding: 18px 22px;
-      font-size: 20px;
-      border: 2.5px solid var(--line);
+      padding: 16px 20px;
+      font-size: 19px;
+      border: 2px solid #cbd5cf;
       border-radius: 14px;
-      background: #fdfdfc;
-      color: var(--ink);
+      background: #ffffff;
+      color: #061a0f;
       font-family: var(--font-body);
       font-weight: 600;
-      min-height: 60px;
+      min-height: 56px;
       transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
 
@@ -260,7 +261,7 @@
     select:focus {
       outline: none;
       border-color: var(--emerald);
-      box-shadow: 0 0 0 5px rgba(11, 61, 36, 0.16);
+      box-shadow: 0 0 0 4px rgba(11, 61, 36, 0.14);
       background: #ffffff;
     }
 
@@ -643,19 +644,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 18px;
-      margin-top: 36px;
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      padding: 22px 38px;
-      font-size: 20px;
-      font-weight: 800;
-      border-radius: 16px;
+      gap: 10px;
+      padding: 18px 34px;
+      font-size: 19px;
+      font-weight: 700;
+      border-radius: 14px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -666,19 +667,19 @@
     .btn-primary {
       background: var(--emerald);
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(11, 61, 36, 0.24);
+      box-shadow: 0 4px 16px rgba(11, 61, 36, 0.22);
     }
 
     .btn-primary:hover {
       background: var(--emerald-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(11, 61, 36, 0.32);
+      box-shadow: 0 6px 20px rgba(11, 61, 36, 0.28);
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--muted);
-      border: 2.5px solid var(--line);
+      background: #ffffff;
+      color: #1e3326;
+      border: 2px solid #cbd5cf;
     }
 
     .btn-secondary:hover {
@@ -690,11 +691,11 @@
     .btn-whatsapp {
       background: #1f9d55;
       color: #ffffff;
-      font-size: 22px;
-      font-weight: 800;
-      padding: 24px 38px;
-      box-shadow: 0 8px 24px rgba(31, 157, 85, 0.3);
-      border-radius: 16px;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 20px 32px;
+      box-shadow: 0 6px 20px rgba(31, 157, 85, 0.28);
+      border-radius: 14px;
       width: 100%;
       text-align: center;
     }
@@ -702,7 +703,7 @@
     .btn-whatsapp:hover {
       background: #178345;
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(31, 157, 85, 0.38);
+      box-shadow: 0 8px 24px rgba(31, 157, 85, 0.35);
     }
 
     /* Summary confirmation box */
@@ -710,8 +711,8 @@
       background: var(--paper);
       border: 2px solid var(--line);
       border-radius: 18px;
-      padding: 28px;
-      margin: 28px 0;
+      padding: 24px;
+      margin: 22px 0;
       text-align: left;
     }
 
@@ -719,7 +720,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px dashed var(--line);
       font-size: 18px;
       gap: 20px;
@@ -749,13 +750,13 @@
       display: none;
     }
 
-    /* Footer */
+    /* Footer - Compact, Harmonious, Clean */
     footer {
       text-align: center;
-      padding: 40px 24px;
-      font-size: 17px;
+      padding: 26px 20px;
+      font-size: 16px;
       color: var(--muted);
-      border-top: 2px solid rgba(11, 61, 36, 0.12);
+      border-top: 1.5px solid rgba(11, 61, 36, 0.12);
       background: #f4f8f5;
     }
 
@@ -794,7 +795,7 @@
       }
 
       .main-wrapper {
-        padding: 18px 12px 110px;
+        padding: 16px 12px 20px;
         width: 100%;
         max-width: 100%;
       }
@@ -813,9 +814,9 @@
       }
 
       .card {
-        padding: 26px 18px;
-        border-radius: 20px;
-        box-shadow: 0 8px 24px rgba(11, 61, 36, 0.07);
+        padding: 22px 18px 20px;
+        border-radius: 18px;
+        box-shadow: 0 6px 20px rgba(11, 61, 36, 0.06);
         border-width: 2px;
       }
 
@@ -937,35 +938,35 @@
 
       .btn-row {
         flex-direction: column-reverse;
-        gap: 12px;
-        margin-top: 26px;
+        gap: 10px;
+        margin-top: 20px;
         width: 100%;
       }
 
       .btn-row .btn {
         width: 100%;
-        padding: 18px 20px;
+        padding: 16px 18px;
         font-size: 18px;
         justify-content: center;
       }
 
       .btn-whatsapp {
-        padding: 20px 24px;
-        font-size: 19px;
+        padding: 18px 22px;
+        font-size: 18px;
         border-radius: 14px;
       }
 
       .summary-box {
-        padding: 20px 18px;
-        border-radius: 16px;
-        margin: 22px 0;
+        padding: 18px 16px;
+        border-radius: 14px;
+        margin: 18px 0;
       }
 
       .summary-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
-        padding: 12px 0;
+        padding: 10px 0;
         font-size: 16px;
       }
 
@@ -975,7 +976,7 @@
       }
 
       footer {
-        padding: 30px 16px;
+        padding: 20px 14px;
         font-size: 15px;
       }
     }
