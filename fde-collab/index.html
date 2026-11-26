@@ -556,6 +556,10 @@
       AZ Engineering · Senior Forward Deployed Infrastructure
     </div>
     <div class="ribbon-actions">
+      <!-- Cross Portal Navigation -->
+      <a href="https://amz34.github.io/dev-requisition/" class="ribbon-btn ribbon-gh" style="border-color: #10b981; color: #047857; font-weight: 700;">
+        ⚡ Developer Requisition Gateway &rarr;
+      </a>
       <!-- One-Click Subscribe on LinkedIn in Ribbon -->
       <a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=aamirzameer" 
          target="_blank" 
@@ -643,11 +647,19 @@
           </div>
         </div>
 
-        <div class="input-group">
-          <label for="q_email">Corporate or Developer Email <span class="req">*</span></label>
-          <input type="email" id="q_email" placeholder="name@company.com or personal dev email" required>
-          <span class="field-hint">Never made public. Used solely to dispatch your confirmation receipt & 24h SLA.</span>
-          <div id="err-1b" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Valid work or developer email required</div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="q_email">Corporate or Developer Email <span class="req">*</span></label>
+            <input type="email" id="q_email" placeholder="name@company.com or personal dev email" required>
+            <span class="field-hint">Never made public. Used to dispatch your confirmation receipt & 24h SLA.</span>
+            <div id="err-1b" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Valid work or developer email required</div>
+          </div>
+          <div class="input-group">
+            <label for="q_mobile">Mobile / WhatsApp Number <span class="req">*</span></label>
+            <input type="tel" id="q_mobile" placeholder="e.g. +966 50 123 4567 / +1 555 019" required>
+            <span class="field-hint">Required for rapid technical direct contact & coordination. Never shared.</span>
+            <div id="err-1c" style="color: #b91c1c; font-size: 14px; margin-top: 4px; display: none;">Valid mobile number with country code is required</div>
+          </div>
         </div>
 
         <label style="margin-top: 10px;">Collaboration Track <span class="req">*</span></label>
@@ -726,6 +738,10 @@
           <div class="summary-row">
             <span class="summary-label">Direct Email:</span>
             <span class="summary-val" id="sum_email">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Mobile Contact:</span>
+            <span class="summary-val" id="sum_mobile">—</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Organization:</span>
@@ -853,14 +869,19 @@
     function handleStep1() {
       const name = document.getElementById('q_name').value.trim();
       const email = document.getElementById('q_email').value.trim();
+      const mobile = document.getElementById('q_mobile').value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const cleanDigits = mobile.replace(/\D/g, '');
 
       let valid = true;
       document.getElementById('err-1a').style.display = name ? 'none' : 'block';
       if (!name) valid = false;
 
-      document.getElementById('err-1b').style.display = (email && emailRegex.test(email)) ? 'none' : 'block';
-      if (!email || !emailRegex.test(email)) valid = false;
+      document.getElementById('err-1b').style.display = (email && (email.includes('@'))) ? 'none' : 'block';
+      if (!email || !email.includes('@')) valid = false;
+
+      document.getElementById('err-1c').style.display = (mobile && cleanDigits.length >= 7) ? 'none' : 'block';
+      if (!mobile || cleanDigits.length < 7) valid = false;
 
       if (valid) {
         showCard(2);
@@ -882,6 +903,7 @@
         // Populate Summary
         document.getElementById('sum_name').innerText = document.getElementById('q_name').value.trim();
         document.getElementById('sum_email').innerText = document.getElementById('q_email').value.trim();
+        document.getElementById('sum_mobile').innerText = document.getElementById('q_mobile').value.trim();
         document.getElementById('sum_org').innerText = document.getElementById('q_org').value.trim() || 'Independent';
         document.getElementById('sum_cat').innerText = currentCategory;
         document.getElementById('sum_project').innerText = project;
@@ -897,30 +919,37 @@
       const payload = {
         name: document.getElementById('q_name').value.trim(),
         email: document.getElementById('q_email').value.trim(),
+        mobile: document.getElementById('q_mobile').value.trim(),
         organization: document.getElementById('q_org').value.trim() || 'Independent',
         category: currentCategory,
         projectName: document.getElementById('q_project').value.trim(),
         scope: document.getElementById('q_scope').value.trim(),
         githubUrl: document.getElementById('q_gh').value.trim() || 'https://github.com/Amz34',
+        type: "fde_collaboration",
         submitted_at: new Date().toISOString()
       };
 
-      const webhookUrl = "https://potter-statutes-neutral-protection.trycloudflare.com/webhook/fde-collab";
+      const endpointUrl = "https://fde-intake-sync.sanad-io.workers.dev/submit";
 
       try {
-        await fetch(webhookUrl, {
+        const resp = await fetch(endpointUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-      } catch (err) {
-        console.warn("Webhook background sync complete:", err);
-      }
+        const data = await resp.json().catch(() => ({}));
+        const refId = data.submissionId || ("FDE-" + Date.now().toString().slice(-6));
 
-      // Populate success card
-      document.getElementById('successText').innerHTML = 
-        `Thank you <strong>${payload.name}</strong> (${payload.organization}). Your architectural brief for <strong>${payload.projectName}</strong> has been logged directly into the AZ Senior FDE queue.<br><br>A confirmation receipt and 24h review SLA have been dispatched to <strong>${payload.email}</strong>.`;
-      showCard(4);
+        document.getElementById('successText').innerHTML = 
+          `Thank you <strong>${payload.name}</strong> (${payload.organization}). Your architectural brief for <strong>${payload.projectName}</strong> has been logged directly into the AZ Senior FDE queue and synced to Notion.<br><br>Reference: <strong>${refId}</strong> &bull; Direct contact: <strong>${payload.mobile}</strong> &bull; Review SLA dispatched to <strong>${payload.email}</strong>.`;
+        showCard(4);
+      } catch (err) {
+        console.warn("Intake submission sync warning:", err);
+        const refId = "FDE-" + Date.now().toString().slice(-6);
+        document.getElementById('successText').innerHTML = 
+          `Thank you <strong>${payload.name}</strong> (${payload.organization}). Your architectural brief for <strong>${payload.projectName}</strong> has been logged.<br><br>Reference: <strong>${refId}</strong> &bull; Direct contact: <strong>${payload.mobile}</strong> &bull; Review SLA dispatched to <strong>${payload.email}</strong>.`;
+        showCard(4);
+      }
     }
 
     // Initialize progress

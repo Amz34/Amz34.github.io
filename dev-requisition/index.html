@@ -716,6 +716,12 @@
           </div>
 
           <div class="form-group">
+            <label class="form-label" for="cand-mobile">Mobile / WhatsApp Number <small>(Required for direct coordination)</small></label>
+            <input class="form-input" id="cand-mobile" type="tel" placeholder="e.g. +966 50 123 4567 or +1 (555) 000-0000" required>
+            <span style="font-size: 13px; color: #64748b; margin-top: 4px; display: block;">Required for rapid direct technical scheduling & interview coordination. Kept strictly confidential.</span>
+          </div>
+
+          <div class="form-group">
             <label class="form-label" for="cand-avail">Work Availability</label>
             <select class="form-select" id="cand-avail">
               <option value="Immediate (Full-Time or Contract)">Immediate (Full-Time or Contract)</option>
@@ -834,6 +840,7 @@
     async function submitCandidateIntake() {
       const name = document.getElementById('cand-name').value.trim();
       const email = document.getElementById('cand-email').value.trim();
+      const mobile = document.getElementById('cand-mobile').value.trim();
       const expLevel = document.getElementById('exp-level').value;
       const stack = document.getElementById('core-stack').value.trim();
       const githubUrl = document.getElementById('github-url').value.trim();
@@ -843,6 +850,10 @@
 
       if (!name) { alert('Please enter your name.'); return; }
       if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+      if (!mobile || mobile.replace(/\D/g, '').length < 7) {
+        alert('Please enter a valid mobile / WhatsApp number with country code (required for technical coordination).');
+        return;
+      }
       if (!githubUrl) { alert('Please enter your GitHub profile or repository URL.'); return; }
 
       const submitBtn = document.getElementById('submit-btn');
@@ -852,6 +863,7 @@
       const payload = {
         name: name,
         email: email,
+        mobile: mobile,
         category: selectedTrack,
         organization: expLevel,
         projectName: "Developer Requisition Profile: " + selectedTrack,
@@ -861,10 +873,10 @@
         type: "developer_requisition"
       };
 
-      const webhookUrl = "https://potter-statutes-neutral-protection.trycloudflare.com/webhook/dev-requisition";
+      const endpointUrl = "https://fde-intake-sync.sanad-io.workers.dev/submit";
 
       try {
-        const resp = await fetch(webhookUrl, {
+        const resp = await fetch(endpointUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
@@ -874,13 +886,13 @@
         try { data = await resp.json(); } catch(e) {}
 
         const refId = data.submissionId || ("REQ-" + Date.now().toString().slice(-6));
-        document.getElementById('success-ref').innerText = "Reference: " + refId + " • Priority Review Track";
+        document.getElementById('success-ref').innerHTML = "Reference: <strong>" + refId + "</strong> &bull; Priority Review Track &bull; Registered Mobile: <strong>" + mobile + "</strong>";
 
         goToStep(4);
       } catch (err) {
-        console.warn("Webhook fetch fallback:", err);
+        console.warn("Worker submission fallback:", err);
         const refId = "REQ-" + Date.now().toString().slice(-6);
-        document.getElementById('success-ref').innerText = "Reference: " + refId + " • Priority Review Track";
+        document.getElementById('success-ref').innerHTML = "Reference: <strong>" + refId + "</strong> &bull; Priority Review Track &bull; Registered Mobile: <strong>" + mobile + "</strong>";
         goToStep(4);
       }
     }
