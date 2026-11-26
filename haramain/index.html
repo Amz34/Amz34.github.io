@@ -1248,7 +1248,7 @@
 
         <!-- SECTION 3: FAMILY TABLE & SACRED GUIDANCE -->
         <div class="form-section-header">🤲 Family Table & Sacred Guidance</div>
-        <div class="grid-2" style="margin-bottom: 24px;">
+        <div class="grid-2">
           <div class="input-group">
             <label for="dd_meals">Home Meals & Arabic Qahwa</label>
             <select id="dd_meals">
@@ -1264,6 +1264,30 @@
               <option value="Umrah, Nusuk & Rawdah Advice">Umrah, Nusuk & Rawdah Advice</option>
               <option value="Historic Sites & Ziyarah Visits">Historic Sites & Ziyarah Visits</option>
               <option value="Full On-Ground Resident Support">Full On-Ground Resident Support</option>
+              <option value="Not needed">Not needed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SECTION 4: OTHER COMFORT & CARE (WHEELCHAIR & LAUNDRY) -->
+        <div class="form-section-header">♿ Other Services • Wheelchair & Laundry Care</div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="dd_wheelchair">Wheelchair & Mobility Assistance</label>
+            <select id="dd_wheelchair">
+              <option value="Manual Wheelchair for Tawaf & Sa'ee">Manual Wheelchair (Tawaf & Sa'ee)</option>
+              <option value="Electric Scooter / Cart Access">Electric Scooter / Cart Access</option>
+              <option value="Dedicated Assistant to Push Wheelchair">Dedicated Assistant / Helper</option>
+              <option value="Wheelchair for Entire Holy Land Stay">Wheelchair Throughout Full Stay</option>
+              <option value="Not needed">Not needed</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="dd_laundry">Laundry & Ihram Pressing</label>
+            <select id="dd_laundry">
+              <option value="Express Ihram Washing & Pressing">Express Ihram Washing & Pressing</option>
+              <option value="Daily Family Clothes Laundry">Daily Family Clothes Laundry</option>
+              <option value="Occasional Garment Care as Needed">Occasional / As-Needed Garment Care</option>
               <option value="Not needed">Not needed</option>
             </select>
           </div>
@@ -1393,6 +1417,8 @@
       transport: '',
       meals: '',
       guidance: '',
+      wheelchair: '',
+      laundry: '',
       services: [],
       phone: '',
       email: '',
@@ -1637,6 +1663,8 @@
       state.transport = document.getElementById('dd_transport').value;
       state.meals = document.getElementById('dd_meals').value;
       state.guidance = document.getElementById('dd_guidance').value;
+      state.wheelchair = document.getElementById('dd_wheelchair').value;
+      state.laundry = document.getElementById('dd_laundry').value;
 
       state.services = [];
       if (!state.hotel_makkah.includes('Not needed') && !state.hotel_makkah.includes('Already arranged')) {
@@ -1670,6 +1698,12 @@
       }
       if (!state.guidance.includes('Not needed')) {
         state.services.push(`Sacred Guidance: ${state.guidance}`);
+      }
+      if (!state.wheelchair.includes('Not needed')) {
+        state.services.push(`Mobility / Wheelchair: ${state.wheelchair}`);
+      }
+      if (!state.laundry.includes('Not needed')) {
+        state.services.push(`Laundry Care: ${state.laundry}`);
       }
 
       nextCard(4, 5);
@@ -1812,6 +1846,8 @@
       state.transport = '';
       state.meals = '';
       state.guidance = '';
+      state.wheelchair = '';
+      state.laundry = '';
       state.services = [];
       state.phone = '';
       state.email = '';
@@ -1828,7 +1864,7 @@
       if (fpMakkah) fpMakkah.clear();
       if (fpMadinah) fpMadinah.clear();
 
-      ['dd_hotel_makkah', 'dd_hotel_madinah', 'dd_hotel_rooms', 'dd_flight', 'dd_train', 'dd_transport', 'dd_meals', 'dd_guidance'].forEach(id => {
+      ['dd_hotel_makkah', 'dd_hotel_madinah', 'dd_hotel_rooms', 'dd_flight', 'dd_train', 'dd_transport', 'dd_meals', 'dd_guidance', 'dd_wheelchair', 'dd_laundry'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.selectedIndex = 0;
       });
