@@ -1448,9 +1448,10 @@
         </div>
 
         <div class="input-group">
-          <label for="q_linkedin">LinkedIn Profile URL or Handle (Optional)</label>
-          <p class="input-subtext">Connect professionally with Brother Aamir on LinkedIn</p>
-          <input type="text" id="q_linkedin" placeholder="e.g. linkedin.com/in/yourprofile" autocomplete="off">
+          <label for="q_linkedin">LinkedIn Profile URL or Handle *</label>
+          <p class="input-subtext">Compulsory: Connect professionally with Brother Aamir on LinkedIn</p>
+          <input type="text" id="q_linkedin" placeholder="e.g. linkedin.com/in/yourprofile or https://www.linkedin.com/in/yourprofile" autocomplete="off" required>
+          <div class="error-msg" id="err-5-linkedin">Please enter your LinkedIn profile link (e.g. linkedin.com/in/yourprofile).</div>
         </div>
 
         <div class="input-group">
@@ -1491,6 +1492,10 @@
           <div class="summary-row">
             <span class="summary-label">Hospitality Desired</span>
             <span class="summary-val" id="sum_needs" style="max-width: 400px;"></span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">LinkedIn Profile</span>
+            <span class="summary-val" id="sum_linkedin"></span>
           </div>
         </div>
 
@@ -1922,6 +1927,15 @@
         document.getElementById('err-5-email').style.display = 'none';
       }
 
+      const cleanLinkedin = linkedin.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '');
+      const validLinkedin = linkedin.length >= 3 && (cleanLinkedin.includes('linkedin.com') || cleanLinkedin.startsWith('in/') || /^[a-zA-Z0-9_\-\.]+$/.test(cleanLinkedin));
+      if (!linkedin || !validLinkedin) {
+        document.getElementById('err-5-linkedin').style.display = 'block';
+        hasErr = true;
+      } else {
+        document.getElementById('err-5-linkedin').style.display = 'none';
+      }
+
       if (hasErr) return;
 
       state.phone = phone;
@@ -1946,7 +1960,7 @@
         `🤝 *Hospitality & Guidance Desired:*\n${servicesOutputText}\n\n` +
         `📱 *WhatsApp:* \`${state.phone}\`\n` +
         `✉️ *Email:* \`${state.email}\`\n` +
-        (state.linkedin ? `💼 *LinkedIn:* ${state.linkedin}\n` : '') +
+        `💼 *LinkedIn:* ${state.linkedin}\n` +
         (state.note ? `💬 *Note / Du'a:* ${state.note}\n\n` : '\n') +
         `🌐 *Submitted via:* amz34.github.io/haramain/`;
 
@@ -1992,6 +2006,9 @@
       document.getElementById('sum_dates').innerText = `${state.arrival_date} to ${state.departure_date}`;
       document.getElementById('sum_party').innerText = `${state.party_type} • ${state.guest_count}`;
       document.getElementById('sum_needs').innerText = state.services.length ? state.services.join(', ') : 'None requested (Standard hospitality)';
+      if (document.getElementById('sum_linkedin')) {
+        document.getElementById('sum_linkedin').innerText = state.linkedin;
+      }
 
       // 5. Format WhatsApp link
       const waServices = state.services.length 
@@ -2005,7 +2022,7 @@
         `👥 Party: ${state.party_type} (${state.guest_count})\n` +
         `🤝 Guidance desired:\n${waServices}\n\n` +
         `✉️ Email: ${state.email}\n` +
-        (state.linkedin ? `💼 LinkedIn: ${state.linkedin}\n` : '') +
+        `💼 LinkedIn: ${state.linkedin}\n` +
         (state.note ? `💬 Note: ${state.note}\n\n` : '') +
         `Looking forward to connecting!`
       );
@@ -2070,6 +2087,9 @@
       document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
       document.querySelectorAll('.selected-glow').forEach(el => el.classList.remove('selected-glow'));
       document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+      if (document.getElementById('sum_linkedin')) {
+        document.getElementById('sum_linkedin').innerText = '';
+      }
 
       const submitBtn = document.getElementById('submitBtn');
       if (submitBtn) {
