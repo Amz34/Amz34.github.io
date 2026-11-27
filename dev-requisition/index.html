@@ -686,6 +686,59 @@
             </div>
           </div>
 
+          <!-- Developer Engagement Models & Project Tracks -->
+          <div style="background: #f8fafc; border: 2px solid var(--line); border-radius: 18px; padding: 26px; margin: 26px 0; text-align: left;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <h3 style="font-family: var(--font-display); font-size: 21px; font-weight: 800; color: var(--ink); margin-bottom: 0;">
+                Developer Compensation & Project Engagement Models
+              </h3>
+              <span style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; color: var(--brand-blue); background: var(--brand-blue-tint); padding: 4px 12px; border-radius: 999px; border: 1px solid rgba(2,132,199,0.25);">
+                ENGAGEMENT TRACKS (INR)
+              </span>
+            </div>
+            <p style="font-size: 16px; color: var(--muted); line-height: 1.55; margin-bottom: 18px;">
+              We believe in direct, equitable technical remuneration for builders who ship reliable code. Our active project tracks operate on the following models:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 18px;">
+              <!-- Tier 1 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Sprint Track &middot; Modules</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Milestone Feature Sprints</div>
+                  <div style="font-size: 20px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">Milestone-Governed Sprint</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Per verified deliverable: API pipelines, full-stack modules, or frontend state architectures.</div>
+                </div>
+              </div>
+
+              <!-- Tier 2 -->
+              <div style="background: #f0f9ff; border: 2px solid var(--brand-blue); border-radius: 12px; padding: 18px; position: relative; display: flex; flex-direction: column; justify-content: space-between;">
+                <span style="position: absolute; top: -11px; right: 14px; background: var(--brand-blue); color: #ffffff; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em;">High Demand</span>
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--brand-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Bandwidth Track &middot; Monthly</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Dedicated Project Bandwidth</div>
+                  <div style="font-size: 20px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">Retained Monthly Bandwidth</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Monthly retained capacity for active client builds, autonomous agents, and system backends.</div>
+                </div>
+              </div>
+
+              <!-- Tier 3 -->
+              <div style="background: #ffffff; border: 1.5px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px;">Lead Track &middot; Systems</div>
+                  <div style="font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 6px;">Senior Systems Architecture</div>
+                  <div style="font-size: 20px; font-weight: 800; color: var(--brand-blue); font-family: var(--font-display); margin-bottom: 6px;">Strategic Systems Architecture</div>
+                  <div style="font-size: 14px; color: var(--muted); line-height: 1.45;">Complex distributed systems, evaluation harnesses, high-concurrency DBs, and SRE.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Asterisk Diplomatic Narrative Quote -->
+            <div style="font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; line-height: 1.55; font-style: italic;">
+              * <strong>Project Calibration Note:</strong> Developer compensation and billing rates are calibrated competitively based on verified code quality, architectural depth, and autonomous delivery velocity. Enter your expected pay or quote in INR in Step 4.
+            </div>
+          </div>
+
           <div class="btn-row">
             <div></div>
             <button class="btn-primary" onclick="goToStep(1)">
@@ -776,8 +829,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="cand-rate">Expected Rate / Compensation (INR ₹)</label>
-            <input class="form-input" id="cand-rate" type="text" placeholder="Enter your expected rate or quote in INR (e.g. ₹1,20,000/mo or per-milestone quote)">
+            <label class="form-label" for="cand-rate">Expected Pay / Quote in INR</label>
+            <input class="form-input" id="cand-rate" type="text" placeholder="Enter your expected pay or quote in INR (e.g. ₹1,20,000/mo or per-milestone quote)">
             <span style="font-size: 14px; color: var(--muted); margin-top: 6px; display: block;">* Propose your rate directly based on your technical depth, domain expertise, and velocity.</span>
           </div>
 
