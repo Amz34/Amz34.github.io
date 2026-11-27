@@ -772,6 +772,25 @@
           <div id="err-1c" style="color: #b91c1c; font-size: 15px; margin-top: 6px; display: none; font-weight: 600;">Valid mobile / WhatsApp number with country code is required (min 7 digits)</div>
         </div>
 
+        <!-- Dedicated Canvas-Styled LinkedIn Profile Section (Compulsory) -->
+        <div class="input-group" style="background: #f0f7ff; border: 2px solid #bae6fd; border-radius: 18px; padding: 22px 24px; margin-bottom: 28px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+            <label for="q_linkedin" style="margin-bottom: 0; font-size: 19px; font-weight: 800; color: var(--ink);">
+              LinkedIn Profile URL <span class="req">*</span>
+            </label>
+            <span style="font-size: 13px; font-weight: 700; color: #0284c7; background: #ffffff; padding: 4px 12px; border-radius: 999px; border: 1px solid #7dd3fc; font-family: var(--font-mono); letter-spacing: 0.05em;">
+              VERIFIED IDENTITY (COMPULSORY)
+            </span>
+          </div>
+          <div style="margin-top: 10px;">
+            <input type="url" id="q_linkedin" placeholder="https://linkedin.com/in/your-profile" required style="font-size: 20px; font-weight: 600; letter-spacing: 0.01em; background: #ffffff;">
+          </div>
+          <span class="field-hint" style="font-size: 15px; margin-top: 8px; color: var(--muted); line-height: 1.5;">
+            Compulsory for executive background verification, technical credibility check, and direct partner coordination.
+          </span>
+          <div id="err-1d" style="color: #b91c1c; font-size: 15px; margin-top: 6px; display: none; font-weight: 600;">Valid LinkedIn profile URL is compulsory (must contain linkedin.com/)</div>
+        </div>
+
         <label style="margin-top: 10px;">Collaboration Track <span class="req">*</span></label>
         <div class="choice-stack">
           <div class="choice-card selected" onclick="selectCategory(this, 'AI Application & Agent Builders')">
@@ -871,6 +890,10 @@
           <div class="summary-row">
             <span class="summary-label">Proposed Budget:</span>
             <span class="summary-val" id="sum_budget">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">LinkedIn Profile:</span>
+            <span class="summary-val" id="sum_linkedin">—</span>
           </div>
         </div>
 
@@ -1000,6 +1023,11 @@
       document.getElementById('err-1c').style.display = (mobile && cleanDigits.length >= 7) ? 'none' : 'block';
       if (!mobile || cleanDigits.length < 7) valid = false;
 
+      const linkedin = document.getElementById('q_linkedin').value.trim();
+      const validLinkedin = linkedin.length >= 12 && linkedin.toLowerCase().includes('linkedin.com/');
+      document.getElementById('err-1d').style.display = validLinkedin ? 'none' : 'block';
+      if (!validLinkedin) valid = false;
+
       if (valid) {
         showCard(2);
       }
@@ -1025,6 +1053,7 @@
         document.getElementById('sum_cat').innerText = currentCategory;
         document.getElementById('sum_project').innerText = project;
         document.getElementById('sum_budget').innerText = document.getElementById('q_budget') ? document.getElementById('q_budget').value : 'Standard Alignment';
+        document.getElementById('sum_linkedin').innerText = document.getElementById('q_linkedin').value.trim();
         showCard(3);
       }
     }
@@ -1042,6 +1071,7 @@
         email: document.getElementById('q_email').value.trim(),
         mobile: document.getElementById('q_mobile').value.trim(),
         organization: document.getElementById('q_org').value.trim() || 'Independent',
+        linkedinUrl: document.getElementById('q_linkedin').value.trim(),
         category: currentCategory,
         projectName: document.getElementById('q_project').value.trim(),
         scope: `[Investment Bracket: ${budgetVal}] | ${rawScope}`,

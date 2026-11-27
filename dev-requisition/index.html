@@ -828,6 +828,22 @@
             <span style="font-size: 15px; color: var(--muted); margin-top: 8px; display: block; line-height: 1.5;">Required for rapid direct technical scheduling & interview coordination. Kept strictly confidential.</span>
           </div>
 
+          <!-- Dedicated Canvas-Styled LinkedIn Profile Section (Compulsory) -->
+          <div class="form-group" style="background: #f0f7ff; border: 2px solid #bae6fd; border-radius: 18px; padding: 22px 24px; margin-bottom: 28px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+              <label class="form-label" for="cand-linkedin" style="margin-bottom: 0; font-size: 19px; font-weight: 800; color: var(--ink);">
+                LinkedIn Profile URL <small style="color: #b91c1c; font-weight: 700;">*</small>
+              </label>
+              <span style="font-size: 13px; font-weight: 700; color: #0284c7; background: #ffffff; padding: 4px 12px; border-radius: 999px; border: 1px solid #7dd3fc; font-family: var(--font-mono); letter-spacing: 0.05em;">
+                VERIFIED IDENTITY (COMPULSORY)
+              </span>
+            </div>
+            <div style="margin-top: 10px;">
+              <input class="form-input" id="cand-linkedin" type="url" placeholder="https://linkedin.com/in/your-profile" required style="font-size: 20px; font-weight: 600; letter-spacing: 0.01em; background: #ffffff;">
+            </div>
+            <span style="font-size: 15px; color: var(--muted); margin-top: 8px; display: block; line-height: 1.5;">Compulsory for candidate background verification, peer recognition check, and direct scheduling.</span>
+          </div>
+
           <div class="form-group">
             <label class="form-label" for="cand-rate">Expected Pay / Quote in INR</label>
             <input class="form-input" id="cand-rate" type="text" placeholder="Enter your expected pay or quote in INR (e.g. ₹1,20,000/mo or per-milestone quote)">
@@ -968,6 +984,11 @@
         alert('Please enter a valid mobile / WhatsApp number with country code (required for technical coordination).');
         return;
       }
+      const linkedinUrl = document.getElementById('cand-linkedin') ? document.getElementById('cand-linkedin').value.trim() : '';
+      if (!linkedinUrl || linkedinUrl.length < 12 || !linkedinUrl.toLowerCase().includes('linkedin.com/')) {
+        alert('Please enter your valid LinkedIn profile URL (compulsory for candidate verification: must contain linkedin.com/).');
+        return;
+      }
       if (!githubUrl) { alert('Please enter your GitHub profile or repository URL.'); return; }
 
       const submitBtn = document.getElementById('submit-btn');
@@ -980,6 +1001,7 @@
         mobile: mobile,
         category: selectedTrack,
         organization: expLevel,
+        linkedinUrl: linkedinUrl,
         projectName: "Developer Requisition Profile: " + selectedTrack,
         githubUrl: githubUrl,
         portfolioUrl: portfolioUrl,
