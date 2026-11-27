@@ -308,6 +308,15 @@
       cursor: pointer;
     }
 
+    .selected-glow {
+      border-color: #d4af37 !important;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.45) !important;
+      background-color: #fffdf5 !important;
+      font-weight: 600 !important;
+      color: #0b3d24 !important;
+      transition: all 0.25s ease !important;
+    }
+
     .flatpickr-calendar {
       width: 370px !important;
       max-width: 95vw !important;
@@ -1293,18 +1302,18 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="dd_hotel_makkah">Makkah Hotel Preference</label>
-            <select id="dd_hotel_makkah">
+            <select id="dd_hotel_makkah" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Haram Courtyard (Walkable / 5-Star)">Haram Courtyard (Walkable 5-Star)</option>
               <option value="Comfort with Shuttle (Economy)">Comfort with Shuttle (Economy)</option>
-              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
             </select>
           </div>
           <div class="input-group">
             <label for="dd_hotel_madinah">Madinah Hotel Preference</label>
-            <select id="dd_hotel_madinah">
+            <select id="dd_hotel_madinah" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Central Markaziyah (Near Rawdah)">Central Markaziyah (Near Rawdah)</option>
               <option value="Comfort with Shuttle (Economy)">Comfort with Shuttle (Economy)</option>
-              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
             </select>
           </div>
         </div>
@@ -1313,24 +1322,24 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="q_makkah_range">🕋 Makkah Stay Dates</label>
-            <input type="text" id="q_makkah_range" placeholder="Tap to select Check-In → Check-Out" readonly autocomplete="off">
+            <input type="text" id="q_makkah_range" placeholder="Tap once to select Check-In → Check-Out" readonly autocomplete="off">
             <div class="input-subtext">Optional: Check-in to Check-out in Makkah</div>
           </div>
           <div class="input-group">
             <label for="q_madinah_range">🕌 Madinah Stay Dates</label>
-            <input type="text" id="q_madinah_range" placeholder="Tap to select Check-In → Check-Out" readonly autocomplete="off">
+            <input type="text" id="q_madinah_range" placeholder="Tap once to select Check-In → Check-Out" readonly autocomplete="off">
             <div class="input-subtext">Optional: Check-in to Check-out in Madinah</div>
           </div>
         </div>
 
         <div class="input-group">
           <label for="dd_hotel_rooms">Rooms & Bed Arrangement</label>
-          <select id="dd_hotel_rooms">
+          <select id="dd_hotel_rooms" onchange="updateSelectionGlow(this)">
+            <option value="" selected>Not needed / Skip</option>
             <option value="1 Room • Double / King Bed">1 Room • Double / King Bed</option>
             <option value="1 Room • Twin Beds">1 Room • Twin Beds</option>
             <option value="2 Rooms • Family Setup">2 Rooms • Family Setup</option>
             <option value="3+ Rooms • Group / Custom">3+ Rooms • Group / Custom</option>
-            <option value="Not needed">Not needed</option>
           </select>
         </div>
 
@@ -1339,31 +1348,31 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="dd_flight">Flight Arrival Route</label>
-            <select id="dd_flight">
+            <select id="dd_flight" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Jeddah Airport (JED)">Jeddah Airport (JED)</option>
               <option value="Madinah Airport (MED)">Madinah Airport (MED)</option>
               <option value="Taif or other route">Taif or other route</option>
-              <option value="Already arranged / Not needed">Already arranged / Not needed</option>
             </select>
           </div>
           <div class="input-group">
             <label for="dd_train">Haramain High-Speed Train (HHR)</label>
-            <select id="dd_train">
+            <select id="dd_train" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Makkah ⇄ Madinah High-Speed Train">Makkah ⇄ Madinah Train</option>
               <option value="Jeddah Airport ⇄ Makkah">Jeddah Airport ⇄ Makkah</option>
               <option value="Jeddah Airport ⇄ Madinah">Jeddah Airport ⇄ Madinah</option>
-              <option value="Not needed / Private car preferred">Not needed / Car preferred</option>
             </select>
           </div>
         </div>
 
         <div class="input-group">
           <label for="dd_transport">Local Transportation Assistance</label>
-          <select id="dd_transport">
+          <select id="dd_transport" onchange="updateSelectionGlow(this)">
+            <option value="" selected>Not needed / Skip</option>
             <option value="Airport / Train Station Arrival Pickup">Airport / Station Arrival Pickup</option>
             <option value="Dedicated Family Vehicle (Full Stay)">Dedicated Family Car (Full Stay)</option>
             <option value="Sacred Ziyarah & Intercity Transfers Only">Ziyarah & Transfer Trips Only</option>
-            <option value="Not needed">Not needed</option>
           </select>
         </div>
 
@@ -1372,20 +1381,20 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="dd_meals">Home Meals & Arabic Qahwa</label>
-            <select id="dd_meals">
+            <select id="dd_meals" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Family Dinner & Arabic Qahwa">Family Dinner & Arabic Qahwa</option>
               <option value="Welcome Arabic Qahwa & Dates">Welcome Arabic Qahwa & Dates</option>
               <option value="Daily Home-Cooked Breakfast">Daily Home-Cooked Breakfast</option>
-              <option value="Not needed">Not needed</option>
             </select>
           </div>
           <div class="input-group">
             <label for="dd_guidance">Sacred Guidance & Ziyarah</label>
-            <select id="dd_guidance">
+            <select id="dd_guidance" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Umrah, Nusuk & Rawdah Advice">Umrah, Nusuk & Rawdah Advice</option>
               <option value="Historic Sites & Ziyarah Visits">Historic Sites & Ziyarah Visits</option>
               <option value="Full On-Ground Resident Support">Full On-Ground Resident Support</option>
-              <option value="Not needed">Not needed</option>
             </select>
           </div>
         </div>
@@ -1395,21 +1404,21 @@
         <div class="grid-2">
           <div class="input-group">
             <label for="dd_wheelchair">Wheelchair & Mobility Assistance</label>
-            <select id="dd_wheelchair">
+            <select id="dd_wheelchair" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Manual Wheelchair for Tawaf & Sa'ee">Manual Wheelchair (Tawaf & Sa'ee)</option>
               <option value="Electric Scooter / Cart Access">Electric Scooter / Cart Access</option>
               <option value="Dedicated Assistant to Push Wheelchair">Dedicated Assistant / Helper</option>
               <option value="Wheelchair for Entire Holy Land Stay">Wheelchair Throughout Full Stay</option>
-              <option value="Not needed">Not needed</option>
             </select>
           </div>
           <div class="input-group">
             <label for="dd_laundry">Laundry & Ihram Pressing</label>
-            <select id="dd_laundry">
+            <select id="dd_laundry" onchange="updateSelectionGlow(this)">
+              <option value="" selected>Not needed / Skip</option>
               <option value="Express Ihram Washing & Pressing">Express Ihram Washing & Pressing</option>
               <option value="Daily Family Clothes Laundry">Daily Family Clothes Laundry</option>
               <option value="Occasional Garment Care as Needed">Occasional / As-Needed Garment Care</option>
-              <option value="Not needed">Not needed</option>
             </select>
           </div>
         </div>
@@ -1627,18 +1636,33 @@
         dateFormat: "Y-m-d",
         altInput: true,
         altFormat: "M j, Y",
+        altInputClass: "form-control flatpickr-alt-input",
         minDate: "today",
         disableMobile: true,
-        onChange: function(selectedDates, dateStr) {
+        allowInput: false,
+        clickOpens: true,
+        onChange: function(selectedDates, dateStr, instance) {
           if (selectedDates.length === 2) {
             state.hotel_makkah_checkin = formatDate(selectedDates[0]);
             state.hotel_makkah_checkout = formatDate(selectedDates[1]);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
+            setTimeout(function() { instance.close(); }, 200);
           } else if (selectedDates.length === 1) {
             state.hotel_makkah_checkin = formatDate(selectedDates[0]);
             state.hotel_makkah_checkout = formatDate(selectedDates[0]);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
           } else {
             state.hotel_makkah_checkin = '';
             state.hotel_makkah_checkout = '';
+            if (instance.altInput) instance.altInput.classList.remove('selected-glow');
+          }
+        },
+        onClose: function(selectedDates, dateStr, instance) {
+          if (selectedDates.length === 1) {
+            state.hotel_makkah_checkin = formatDate(selectedDates[0]);
+            state.hotel_makkah_checkout = formatDate(selectedDates[0]);
+            instance.setDate([selectedDates[0], selectedDates[0]], true);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
           }
         }
       });
@@ -1648,21 +1672,56 @@
         dateFormat: "Y-m-d",
         altInput: true,
         altFormat: "M j, Y",
+        altInputClass: "form-control flatpickr-alt-input",
         minDate: "today",
         disableMobile: true,
-        onChange: function(selectedDates, dateStr) {
+        allowInput: false,
+        clickOpens: true,
+        onChange: function(selectedDates, dateStr, instance) {
           if (selectedDates.length === 2) {
             state.hotel_madinah_checkin = formatDate(selectedDates[0]);
             state.hotel_madinah_checkout = formatDate(selectedDates[1]);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
+            setTimeout(function() { instance.close(); }, 200);
           } else if (selectedDates.length === 1) {
             state.hotel_madinah_checkin = formatDate(selectedDates[0]);
             state.hotel_madinah_checkout = formatDate(selectedDates[0]);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
           } else {
             state.hotel_madinah_checkin = '';
             state.hotel_madinah_checkout = '';
+            if (instance.altInput) instance.altInput.classList.remove('selected-glow');
+          }
+        },
+        onClose: function(selectedDates, dateStr, instance) {
+          if (selectedDates.length === 1) {
+            state.hotel_madinah_checkin = formatDate(selectedDates[0]);
+            state.hotel_madinah_checkout = formatDate(selectedDates[0]);
+            instance.setDate([selectedDates[0], selectedDates[0]], true);
+            if (instance.altInput) instance.altInput.classList.add('selected-glow');
           }
         }
       });
+
+      // Ensure 1-tap open on mobile without double tapping
+      if (fpMakkah.altInput) {
+        fpMakkah.altInput.addEventListener('click', () => fpMakkah.open());
+        fpMakkah.altInput.addEventListener('touchend', (e) => { e.preventDefault(); fpMakkah.open(); });
+      }
+      if (fpMadinah.altInput) {
+        fpMadinah.altInput.addEventListener('click', () => fpMadinah.open());
+        fpMadinah.altInput.addEventListener('touchend', (e) => { e.preventDefault(); fpMadinah.open(); });
+      }
+    }
+
+    function updateSelectionGlow(el) {
+      if (!el) return;
+      const val = (el.value || '').trim();
+      if (val && !val.includes('Not needed') && !val.includes('Already arranged')) {
+        el.classList.add('selected-glow');
+      } else {
+        el.classList.remove('selected-glow');
+      }
     }
 
     function handleStep1() {
@@ -1798,42 +1857,44 @@
       state.laundry = document.getElementById('dd_laundry').value;
 
       state.services = [];
-      if (!state.hotel_makkah.includes('Not needed') && !state.hotel_makkah.includes('Already arranged')) {
+      const isSelected = (val) => val && val.trim() !== '' && !val.includes('Not needed') && !val.includes('Already arranged');
+
+      if (isSelected(state.hotel_makkah)) {
         let makkahInfo = `Makkah Hotel: ${state.hotel_makkah}`;
         if (state.hotel_makkah_checkin && state.hotel_makkah_checkout) {
           makkahInfo += ` (${state.hotel_makkah_checkin} → ${state.hotel_makkah_checkout})`;
         }
         state.services.push(makkahInfo);
       }
-      if (!state.hotel_madinah.includes('Not needed') && !state.hotel_madinah.includes('Already arranged')) {
+      if (isSelected(state.hotel_madinah)) {
         let madinahInfo = `Madinah Hotel: ${state.hotel_madinah}`;
         if (state.hotel_madinah_checkin && state.hotel_madinah_checkout) {
           madinahInfo += ` (${state.hotel_madinah_checkin} → ${state.hotel_madinah_checkout})`;
         }
         state.services.push(madinahInfo);
       }
-      if (!state.hotel_rooms.includes('Not needed')) {
+      if (isSelected(state.hotel_rooms)) {
         state.services.push(`Rooms: ${state.hotel_rooms}`);
       }
-      if (!state.flight.includes('Not needed') && !state.flight.includes('Already arranged')) {
+      if (isSelected(state.flight)) {
         state.services.push(`Flight: ${state.flight}`);
       }
-      if (!state.train.includes('Not needed')) {
+      if (isSelected(state.train)) {
         state.services.push(`Bullet Train: ${state.train}`);
       }
-      if (!state.transport.includes('Not needed')) {
+      if (isSelected(state.transport)) {
         state.services.push(`Local Transport: ${state.transport}`);
       }
-      if (!state.meals.includes('Not needed')) {
+      if (isSelected(state.meals)) {
         state.services.push(`Family Table: ${state.meals}`);
       }
-      if (!state.guidance.includes('Not needed')) {
+      if (isSelected(state.guidance)) {
         state.services.push(`Sacred Guidance: ${state.guidance}`);
       }
-      if (!state.wheelchair.includes('Not needed')) {
+      if (isSelected(state.wheelchair)) {
         state.services.push(`Mobility / Wheelchair: ${state.wheelchair}`);
       }
-      if (!state.laundry.includes('Not needed')) {
+      if (isSelected(state.laundry)) {
         state.services.push(`Laundry Care: ${state.laundry}`);
       }
 
@@ -1874,7 +1935,7 @@
 
       const servicesOutputText = state.services.length 
         ? state.services.map(s => `  • ${s}`).join('\n') 
-        : '  • General brotherly hospitality & local advice';
+        : '  • None requested (Standard hospitality)';
 
       const tgMessage = 
         `🕋 *New Guest of the Haramain (Dhuyuf ar-Rahman)*\n\n` +
@@ -1930,12 +1991,12 @@
       document.getElementById('sum_name_origin').innerText = `${state.full_name} (${state.country})`;
       document.getElementById('sum_dates').innerText = `${state.arrival_date} to ${state.departure_date}`;
       document.getElementById('sum_party').innerText = `${state.party_type} • ${state.guest_count}`;
-      document.getElementById('sum_needs').innerText = state.services.length ? state.services.join(', ') : 'General personal hospitality & advice';
+      document.getElementById('sum_needs').innerText = state.services.length ? state.services.join(', ') : 'None requested (Standard hospitality)';
 
       // 5. Format WhatsApp link
       const waServices = state.services.length 
         ? state.services.map(s => `- ${s}`).join('\n') 
-        : '- General brotherly hospitality & local advice';
+        : '- None requested (Standard brotherly hospitality)';
       const waText = encodeURIComponent(
         `Assalamu Alaikum Brother Aamir,\n\n` +
         `This is ${state.full_name} from ${state.country}.\n` +
@@ -2007,6 +2068,7 @@
       updatePartyBadge();
 
       document.querySelectorAll('#card-3 .choice-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.selected-glow').forEach(el => el.classList.remove('selected-glow'));
       document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
 
       const submitBtn = document.getElementById('submitBtn');
